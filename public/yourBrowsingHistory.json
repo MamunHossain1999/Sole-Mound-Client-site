@@ -1,0 +1,111 @@
+[
+    {
+      "id": 1,
+      "name": "Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
+      "price": 240,
+      "rating": 3,
+      "reviews": 994,
+      "image": "https://i.ibb.co.com/zWm88N36/Image-9.png",
+      "category": "Electronics",
+      "description": "Wireless over-ear headphones with premium sound quality and comfortable design",
+      "features": [
+        "Bluetooth connectivity",
+        "Up to 40 hours of battery life",
+        "Built-in microphone",
+        "Foldable design"
+      ],
+      "inStock": true,
+      "slug": "amazon-basics-headphones"
+    },
+    {
+      "id": 2,
+      "name": "Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
+      "price": 380,
+      "rating": 4,
+      "reviews": 994,
+      "image": "https://i.ibb.co.com/VcFDvhv1/Image-10.png",
+      "category": "Accessories",
+      "description": "Elegant rose gold watch with stainless steel mesh band",
+      "features": [
+        "Analog display with Roman numerals",
+        "Water resistant",
+        "Adjustable mesh band",
+        "Japanese quartz movement"
+      ],
+      "inStock": false,
+      "slug": "amazon-basics-watch"
+    },
+    {
+      "id": 3,
+      "name": "Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
+      "price": 550,
+      "rating": 5,
+      "reviews": 994,
+      "image": "https://i.ibb.co.com/PGpZNm40/Image-11.png",
+      "category": "Smart Home",
+      "description": "360-degree home security camera with motion detection",
+      "features": [
+        "1080p HD video",
+        "Night vision",
+        "Two-way audio",
+        "Cloud storage options"
+      ],
+      "inStock": true,
+      "slug": "amazon-basics-security-camera"
+    },
+    {
+      "id": 4,
+      "name": "Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
+      "price": 310,
+      "rating": 2,
+      "reviews": 994,
+      "image": "https://i.ibb.co.com/mVb6WZ5W/Image-12.png",
+      "category": "Smart Home",
+      "description": "Smart doorbell camera with motion detection and video recording",
+      "features": [
+        "HD video quality",
+        "Night vision",
+        "Two-way communication",
+        "Mobile app integration"
+      ],
+      "inStock": false,
+      "slug": "amazon-basics-doorbell-camera"
+    },
+    {
+      "id": 5,
+      "name": "Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
+      "price": 550,
+      "rating": 5,
+      "reviews": 994,
+      "image": "https://i.ibb.co.com/PGpZNm40/Image-11.png",
+      "category": "Smart Home",
+      "description": "360-degree home security camera with motion detection",
+      "features": [
+        "1080p HD video",
+        "Night vision",
+        "Two-way audio",
+        "Cloud storage options"
+      ],
+      "inStock": true,
+      "slug": "amazon-basics-security-camera"
+    },
+    {
+      "id": 6,
+      "name": "Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
+      "price": 310,
+      "rating": 2,
+      "reviews": 994,
+      "image": "https://i.ibb.co.com/mVb6WZ5W/Image-12.png",
+      "category": "Smart Home",
+      "description": "Smart doorbell camera with motion detection and video recording",
+      "features": [
+        "HD video quality",
+        "Night vision",
+        "Two-way communication",
+        "Mobile app integration"
+      ],
+      "inStock": false,
+      "slug": "amazon-basics-doorbell-camera"
+    }
+  ]
+  

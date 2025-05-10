@@ -1,0 +1,121 @@
+[
+    {
+      "id": 1,
+      "label": "HOT",
+      "image": "https://i.ibb.co.com/KzfS48tc/Image-13.png",
+      "name": "TOZO T6 True Wireless Earbuds with Wireless Charging Case",
+      "rating": 1,
+      "reviewCount": 74538,
+      "price": 70
+    },
+    {
+      "id": 2,
+      "image": "https://i.ibb.co.com/BHZh105p/Image-14.png",
+      "name": "TOZO NC2 Hybrid Active Noise Cancelling Wireless Earbuds",
+      "rating": 5,
+      "reviewCount": 6738,
+      "price": 70
+    },
+    {
+      "id": 3,
+      "label": "BEST DEALS",
+      "image": "https://i.ibb.co.com/BHrQmSP9/Image-15.png",
+      "name": "TOZO T12 Wireless Earbuds with Touch Control and LED Display",
+      "rating": 4,
+      "reviewCount": 1738,
+      "price": 70
+    },
+    {
+      "id": 4,
+      "image": "https://i.ibb.co.com/wZHZmMXF/Image-16.png",
+      "name": "TOZO NC7 Noise Cancelling Bluetooth Earphones",
+      "rating": 3,
+      "reviewCount": 7338,
+      "price": 70
+    },
+    {
+      "id": 5,
+      "image": "https://i.ibb.co.com/vx9wcM0N/Image-17.png",
+      "name": "TOZO A1 Mini Wireless In-Ear Headphones",
+      "rating": 3,
+      "reviewCount": 7348,
+      "price": 70
+    },
+    {
+      "id": 6,
+      "label": "HOT",
+      "image": "https://i.ibb.co.com/Q3myK0XX/Image-18.png",
+      "name": "TOZO G1 Wireless Gaming Earbuds Low Latency Mode",
+      "rating": 5,
+      "reviewCount": 738,
+      "price": 70
+    },
+    {
+      "id": 7,
+      "image": "https://i.ibb.co.com/1YHrgTT7/Image-19.png",
+      "name": "TOZO T10 Bluetooth 5.3 Wireless Earbuds IPX8 Waterproof",
+      "rating": 5,
+      "reviewCount": 7334,
+      "price": 70
+    },
+    {
+        "id": 1,
+        "label": "HOT",
+        "image": "https://i.ibb.co.com/KzfS48tc/Image-13.png",
+        "name": "TOZO T6 True Wireless Earbuds with Wireless Charging Case",
+        "rating": 5,
+        "reviewCount": 738,
+        "price": 70
+      },
+      {
+        "id": 2,
+        "image": "https://i.ibb.co.com/BHZh105p/Image-14.png",
+        "name": "TOZO NC2 Hybrid Active Noise Cancelling Wireless Earbuds",
+        "rating": 4,
+        "reviewCount": 738,
+        "price": 70
+      },
+      {
+        "id": 3,
+        "label": "BEST DEALS",
+        "image": "https://i.ibb.co.com/BHrQmSP9/Image-15.png",
+        "name": "TOZO T12 Wireless Earbuds with Touch Control and LED Display",
+        "rating": 5,
+        "reviewCount": 738,
+        "price": 70
+      },
+      {
+        "id": 4,
+        "image": "https://i.ibb.co.com/wZHZmMXF/Image-16.png",
+        "name": "TOZO NC7 Noise Cancelling Bluetooth Earphones",
+        "rating": 3,
+        "reviewCount": 738,
+        "price": 70
+      },
+      {
+        "id": 5,
+        "image": "https://i.ibb.co.com/vx9wcM0N/Image-17.png",
+        "name": "TOZO A1 Mini Wireless In-Ear Headphones",
+        "rating": 1,
+        "reviewCount": 738,
+        "price": 70
+      },
+      {
+        "id": 6,
+        "label": "HOT",
+        "image": "https://i.ibb.co.com/Q3myK0XX/Image-18.png",
+        "name": "TOZO G1 Wireless Gaming Earbuds Low Latency Mode",
+        "rating": 5,
+        "reviewCount": 738,
+        "price": 70
+      },
+      {
+        "id": 7,
+        "image": "https://i.ibb.co.com/1YHrgTT7/Image-19.png",
+        "name": "TOZO T10 Bluetooth 5.3 Wireless Earbuds IPX8 Waterproof",
+        "rating": 2,
+        "reviewCount": 738,
+        "price": 70
+      }
+  ]
+  

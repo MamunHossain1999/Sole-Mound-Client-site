@@ -1,0 +1,272 @@
+[
+  {
+    "id": "93456789",
+    "name": "Apple iPhone 14",
+    "category": "Smartphones",
+    "status": "Pending",
+    "date": "Jan 12, 2024",
+    "price": 40,
+    "quantity": 3,
+    "total": "$120 (3 Products)",
+    "image": "https://i.ibb.co.com/Fqd5YkV5/Rectangle-34628472-1.png",
+    "steps": ["Ordered", "Processing", "Packaging"],
+    "shipping": {
+      "name": "Ammu Rehena",
+      "address": "456 Elm Street, Dhaka",
+      "phone": "018XXXXXXXX"
+    },
+    "billing": {
+      "name": "Ammu Rehena",
+      "address": "456 Elm Street, Dhaka"
+    },
+    "summary": {
+      "subtotal": 120,
+      "shipping": 7,
+      "tax": 3,
+      "total": 130
+    }
+  },
+  {
+    "id": "97654321",
+    "name": "Samsung Galaxy S23",
+    "category": "Smartphones",
+    "status": "Returned",
+    "date": "Feb 03, 2024",
+    "price": 60,
+    "quantity": 1,
+    "total": "$60 (1 Product)",
+    "image": "https://i.ibb.co.com/RX4VgZ0/Rectangle-34628472-2.png",
+    "steps": ["Ordered", "Delivered", "Returned"],
+    "shipping": {
+      "name": "Ammu Rehena",
+      "address": "789 Pine Street, Dhaka",
+      "phone": "016XXXXXXXX"
+    },
+    "billing": {
+      "name": "Ammu Rehena",
+      "address": "789 Pine Street, Dhaka"
+    },
+    "summary": {
+      "subtotal": 60,
+      "shipping": 0,
+      "tax": 0,
+      "total": 60
+    }
+  },
+  {
+    "id": "94561238",
+    "name": "OnePlus 11R",
+    "category": "Smartphones",
+    "status": "Completed",
+    "date": "Mar 15, 2024",
+    "price": 25,
+    "quantity": 6,
+    "total": "$150 (6 Products)",
+    "image": "https://i.ibb.co.com/RkbpNf4c/Rectangle-34628472.png",
+    "steps": ["Ordered", "Shipped", "Delivered"],
+    "shipping": {
+      "name": "Ammu Rehena",
+      "address": "321 Maple Street, Dhaka",
+      "phone": "015XXXXXXXX"
+    },
+    "billing": {
+      "name": "Ammu Rehena",
+      "address": "321 Maple Street, Dhaka"
+    },
+    "summary": {
+      "subtotal": 150,
+      "shipping": 8,
+      "tax": 5,
+      "total": 163
+    }
+  },
+  {
+    "id": "92473829",
+    "name": "Xiaomi 13 Pro",
+    "category": "Smartphones",
+    "status": "In Progress",
+    "date": "Apr 02, 2024",
+    "price": 22.5,
+    "quantity": 4,
+    "total": "$90 (4 Products)",
+    "image": "https://i.ibb.co.com/Fqd5YkV5/Rectangle-34628472-1.png",
+    "steps": ["Ordered", "Processing"],
+    "shipping": {
+      "name": "Ammu Rehena",
+      "address": "654 Oak Street, Dhaka",
+      "phone": "019XXXXXXXX"
+    },
+    "billing": {
+      "name": "Ammu Rehena",
+      "address": "654 Oak Street, Dhaka"
+    },
+    "summary": {
+      "subtotal": 90,
+      "shipping": 6,
+      "tax": 4,
+      "total": 100
+    }
+  },
+  {
+    "id": "91234567",
+    "name": "Google Pixel 7 Pro",
+    "category": "Smartphones",
+    "status": "Completed",
+    "date": "Dec 30, 2019",
+    "price": 16,
+    "quantity": 5,
+    "total": "$80 (5 Products)",
+    "image": "https://i.ibb.co.com/RkbpNf4c/Rectangle-34628472.png",
+    "steps": ["Ordered", "Shipped", "Out for Delivery", "Delivered"],
+    "shipping": {
+      "name": "Ammu Rehena",
+      "address": "123 Main Street, Dhaka",
+      "phone": "017XXXXXXXX"
+    },
+    "billing": {
+      "name": "Ammu Rehena",
+      "address": "123 Main Street, Dhaka"
+    },
+    "summary": {
+      "subtotal": 80,
+      "shipping": 5,
+      "tax": 2,
+      "total": 87
+    }
+  },
+  {
+    "id": "91726145",
+    "name": "Nothing Phone (2)",
+    "category": "Smartphones",
+    "status": "Pending",
+    "date": "Apr 08, 2024",
+    "price": 37.5,
+    "quantity": 2,
+    "total": "$75 (2 Products)",
+    "image": "https://i.ibb.co.com/RX4VgZ0/Rectangle-34628472-2.png",
+    "steps": ["Ordered"],
+    "shipping": {
+      "name": "Ammu Rehena",
+      "address": "147 Palm Street, Dhaka",
+      "phone": "017XXXXXXXX"
+    },
+    "billing": {
+      "name": "Ammu Rehena",
+      "address": "147 Palm Street, Dhaka"
+    },
+    "summary": {
+      "subtotal": 75,
+      "shipping": 5,
+      "tax": 2,
+      "total": 82
+    }
+  },
+  {
+    "id": "90293847",
+    "name": "Google Pixel Fold",
+    "category": "Foldable Phones",
+    "status": "Completed",
+    "date": "Apr 09, 2024",
+    "price": 28.57,
+    "quantity": 7,
+    "total": "$200 (7 Products)",
+    "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+    "steps": ["Ordered", "Shipped", "Delivered"],
+    "shipping": {
+      "name": "Ammu Rehena",
+      "address": "951 Lakeview Road, Dhaka",
+      "phone": "018XXXXXXXX"
+    },
+    "billing": {
+      "name": "Ammu Rehena",
+      "address": "951 Lakeview Road, Dhaka"
+    },
+    "summary": {
+      "subtotal": 200,
+      "shipping": 10,
+      "tax": 7,
+      "total": 217
+    }
+  },
+  {
+    "id": "97473892",
+    "name": "Motorola Edge 40",
+    "category": "Flagship Phones",
+    "status": "Returned",
+    "date": "Apr 05, 2024",
+    "price": 50,
+    "quantity": 1,
+    "total": "$50 (1 Product)",
+    "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+    "steps": ["Ordered", "Delivered", "Returned"],
+    "shipping": {
+      "name": "Ammu Rehena",
+      "address": "482 Cedar Road, Dhaka",
+      "phone": "016XXXXXXXX"
+    },
+    "billing": {
+      "name": "Ammu Rehena",
+      "address": "482 Cedar Road, Dhaka"
+    },
+    "summary": {
+      "subtotal": 50,
+      "shipping": 0,
+      "tax": 0,
+      "total": 50
+    }
+  },
+  {
+    "id": "94839201",
+    "name": "Asus ROG Phone 7",
+    "category": "Gaming Phones",
+    "status": "Completed",
+    "date": "Apr 07, 2024",
+    "price": 43.33,
+    "quantity": 3,
+    "total": "$130 (3 Products)",
+    "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+    "steps": ["Ordered", "Shipped", "Delivered"],
+    "shipping": {
+      "name": "Ammu Rehena",
+      "address": "329 Hill Street, Dhaka",
+      "phone": "017XXXXXXXX"
+    },
+    "billing": {
+      "name": "Ammu Rehena",
+      "address": "329 Hill Street, Dhaka"
+    },
+    "summary": {
+      "subtotal": 130,
+      "shipping": 6,
+      "tax": 4,
+      "total": 140
+    }
+  },
+  {
+    "id": "95748392",
+    "name": "Realme GT 5",
+    "category": "Budget Flagship",
+    "status": "In Progress",
+    "date": "Apr 10, 2024",
+    "price": 27.5,
+    "quantity": 4,
+    "total": "$110 (4 Products)",
+    "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+    "steps": ["Ordered", "Processing", "Packaging"],
+    "shipping": {
+      "name": "Ammu Rehena",
+      "address": "715 River Road, Dhaka",
+      "phone": "019XXXXXXXX"
+    },
+    "billing": {
+      "name": "Ammu Rehena",
+      "address": "715 River Road, Dhaka"
+    },
+    "summary": {
+      "subtotal": 110,
+      "shipping": 5,
+      "tax": 3,
+      "total": 118
+    }
+  }
+]

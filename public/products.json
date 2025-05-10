@@ -1,0 +1,174 @@
+[
+    {
+      "id": 1,
+      "title": "Clothing",
+      "price": 1200,
+      "originalPrice": 1600,
+      "discount": 25,
+      "image": "https://i.ibb.co.com/0kX4qhb/Rectangle-34628470-2.png",
+      "section": "bestsellers"
+    },
+    {
+      "id": 2,
+      "title": "Baby Toys",
+      "price": 800,
+      "originalPrice": 1200,
+      "discount": 33,
+      "image": "https://i.ibb.co.com/8njHrcRc/Rectangle-34628471-1.png",
+      "section": "bestsellers"
+    },
+    {
+      "id": 3,
+      "title": "Fashion Watch",
+      "price": 100,
+      "originalPrice": 200,
+      "discount": 50,
+      "image": "https://i.ibb.co.com/r1CT3sw/Rectangle-34628469.png",
+      "section": "topbrands"
+    },
+    {
+      "id": 4,
+      "title": "Plant Pot",
+      "price": 50,
+      "originalPrice": 100,
+      "discount": 50,
+      "image": "https://i.ibb.co.com/6J1jqQMJ/Rectangle-34628466.png",
+      "section": "weeklydeals"
+    },
+    {
+      "id": 5,
+      "title": "Smartphone",
+      "price": 600,
+      "originalPrice": 800,
+      "discount": 25,
+      "image": "https://i.ibb.co.com/Zn7Vf3d/Rectangle-34628469-1.png",
+      "section": "topbrands"
+    },
+    {
+      "id": 6,
+      "title": "Gaming Headset",
+      "price": 90,
+      "originalPrice": 150,
+      "discount": 40,
+      "image": "https://i.ibb.co.com/Pv2hhTSm/Rectangle-34628465.png",
+      "section": "weeklydeals"
+    },
+    {
+      "id": 7,
+      "title": "Wireless Speaker",
+      "price": 120,
+      "originalPrice": 200,
+      "discount": 40,
+      "image": "https://i.ibb.co.com/k2YHWP2B/Rectangle-34628467.png",
+      "section": "topbrands"
+    },
+    {
+      "id": 8,
+      "title": "T-shirt",
+      "price": 30,
+      "originalPrice": 50,
+      "discount": 40,
+      "image": "https://i.ibb.co.com/6J1jqQMJ/Rectangle-34628466.png",
+      "section": "bestsellers"
+    },
+    {
+      "id": 9,
+      "title": "Shoes",
+      "price": 100,
+      "originalPrice": 150,
+      "discount": 33,
+      "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+      "section": "bestsellers"
+    },
+    {
+      "id": 10,
+      "title": "Laptop",
+      "price": 1000,
+      "originalPrice": 1300,
+      "discount": 23,
+      "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+      "section": "topbrands"
+    },
+    {
+      "id": 11,
+      "title": "Table Lamp",
+      "price": 40,
+      "originalPrice": 70,
+      "discount": 43,
+      "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+      "section": "weeklydeals"
+    },
+    {
+      "id": 12,
+      "title": "Camera",
+      "price": 500,
+      "originalPrice": 750,
+      "discount": 33,
+      "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+      "section": "topbrands"
+    },
+    {
+      "id": 13,
+      "title": "Handbag",
+      "price": 90,
+      "originalPrice": 130,
+      "discount": 31,
+      "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+      "section": "bestsellers"
+    },
+    {
+      "id": 14,
+      "title": "Coffee Maker",
+      "price": 150,
+      "originalPrice": 220,
+      "discount": 32,
+      "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+      "section": "weeklydeals"
+    },
+    {
+      "id": 15,
+      "title": "Desk Chair",
+      "price": 200,
+      "originalPrice": 280,
+      "discount": 29,
+      "image": "https://i.ibb.co.com/wN83gKFb/Rectangle-34628468.png",
+      "section": "weeklydeals"
+    },
+    {
+        "id": 16,
+        "title": "Camera",
+        "price": 500,
+        "originalPrice": 750,
+        "discount": 33,
+        "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+        "section": "bestsellersSideber"
+      },
+      {
+        "id": 17,
+        "title": "Handbag",
+        "price": 90,
+        "originalPrice": 130,
+        "discount": 31,
+        "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+        "section": "bestsellersSideber"
+      },
+      {
+        "id": 17,
+        "title": "Coffee Maker",
+        "price": 150,
+        "originalPrice": 220,
+        "discount": 32,
+        "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+        "section": "bestsellersSidebar1"
+      },
+      {
+        "id": 18,
+        "title": "Desk Chair",
+        "price": 200,
+        "originalPrice": 280,
+        "discount": 29,
+        "image": "https://i.ibb.co.com/RFvBkDT/Rectangle-34628472-3.png",
+        "section": "bestsellersSidebar1"
+      }
+  ]
+  

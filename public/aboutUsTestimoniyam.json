@@ -1,0 +1,18 @@
+[
+    {
+      "name": "Ridhita Roy",
+      "image": "https://randomuser.me/api/portraits/women/44.jpg",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non duis ultrices quam vel dui sollicitudin aliquet id arcu..."
+    },
+    {
+      "name": "Nusrat Jahan",
+      "image": "https://randomuser.me/api/portraits/women/47.jpg",
+      "text": "Nam vitae a enim nunc, sed sapien egestas ac nam. Tristique ultrices dolor aliquam lacus volutpat praesent."
+    },
+    {
+      "name": "Tania Hossain",
+      "image": "https://randomuser.me/api/portraits/women/43.jpg",
+      "text": "Egestas facilisis viverra quisque congue cursus tellus. Enim blandit ultricies sapien sapien non mauris."
+    }
+  ]
+  

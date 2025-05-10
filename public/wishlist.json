@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "image": "https://i.ibb.co.com/27mHwPpD/Image-20.png",
+      "title": "Bose Sport Earbuds - Wireless Earphones",
+      "oldPrice": "$129.00",
+      "newPrice": "$99.00",
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "image": "https://i.ibb.co.com/27mHwPpD/Image-20.png",
+      "title": "Sony WH-1000XM4 Noise Cancelling Headphones",
+      "oldPrice": "$299.00",
+      "newPrice": "$249.00",
+      "inStock": false
+    },
+    {
+      "id": 3,
+      "image": "https://i.ibb.co.com/J6WVHMb/Image-21.png",
+      "title": "JBL Tune 510BT Wireless On-Ear Headphones",
+      "oldPrice": "$49.99",
+      "newPrice": "$39.99",
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "image": "https://i.ibb.co.com/27mHwPpD/Image-20.png",
+      "title": "Apple AirPods Pro (2nd Gen)",
+      "oldPrice": "$249.00",
+      "newPrice": "$199.00",
+      "inStock": false
+    },
+    {
+      "id": 5,
+      "image": "https://i.ibb.co.com/27mHwPpD/Image-20.png",
+      "title": "Beats Studio3 Wireless Over-Ear Headphones",
+      "oldPrice": "$349.00",
+      "newPrice": "$279.00",
+      "inStock": true
+    }
+  ]
+  

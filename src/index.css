@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* about us page footer pagination */
+.custom-pagination .swiper-pagination-bullet {
+  background-color: #EBDCF9;
+  opacity: 1;
+  width: 40px;
+  height: 4px;
+  border-radius: 9999px;
+  margin: 0 4px;
+  transition: all 0.3s;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  background-color: #C8A8E9;
+}
+
+
+/* all input autoComplete bg-color set */
+input:-webkit-autofill {
+  background-color: #fff !important; /* Optional */
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

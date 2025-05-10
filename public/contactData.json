@@ -1,0 +1,40 @@
+{
+    "breadcrumb": ["Home", "Pages", "Contact us"],
+    "infoAboutUs": {
+      "title": "Information About us",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices tristique amet erat vitae eget dolor los vitae lobortis quis bibendum quam. Lacus penatibus tincidunt.",
+      "colors": ["#F1DAFC", "#C8A8E9", "#E3AADD"]
+    },
+    "getInTouch": {
+      "title": "Get In Touch",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices tristique amet erat vitae eget dolor los vitae lobortis quis bibendum quam.",
+      "fields": ["Your Name*", "Your E-mail*", "Subject*", "Type Your Message*"]
+    },
+    "contactWays": [
+      {
+        "icon": "Phone",
+        "bgColor": "#F1DAFC",
+        "textColor": "text-pink-500",
+        "lines": ["Tel: 877-67-88-99", "Mon-Fri 9am-6pm"]
+      },
+      {
+        "icon": "Mail",
+        "bgColor": "#FFE597",
+        "textColor": "text-blue-500",
+        "lines": ["Email: shop@store.com", "Online support"]
+      },
+      {
+        "icon": "MapPin",
+        "bgColor": "#CEE7B5",
+        "textColor": "text-yellow-500",
+        "lines": ["101 Baker Street", "NY, United States"]
+      },
+      {
+        "icon": "Mail",
+        "bgColor": "#FFB9B9",
+        "textColor": "text-purple-500",
+        "lines": ["Subscribe", "Receive our newsletter"]
+      }
+    ]
+  }
+  
