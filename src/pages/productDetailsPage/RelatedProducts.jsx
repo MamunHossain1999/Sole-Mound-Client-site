@@ -15,22 +15,37 @@ const fetchAllFeaturedProducts = async () => {
 const RelatedProducts = () => {
   const { id } = useParams(); // current product ID
 
-  const { data: allProducts = [], isLoading, isError } = useQuery({
+  const {
+    data: allProducts = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["all-featured-products"],
     queryFn: fetchAllFeaturedProducts,
   });
 
   const currentProduct = allProducts.find((p) => String(p.id) === String(id));
   const relatedProducts = allProducts.filter(
-    (p) => p.category === currentProduct?.category && String(p.id) !== String(id)
+    (p) =>
+      p.category === currentProduct?.category && String(p.id) !== String(id)
   );
 
-  if (isLoading) return <p className="text-center">Loading related products...</p>;
-  if (isError) return <p className="text-center text-red-500">Failed to load products.</p>;
+
+  const handleAddToCart = (product) => {
+    console.log("Added to cart:", product);
+    
+  };
+
+  if (isLoading)
+    return <p className="text-center">Loading related products...</p>;
+  if (isError)
+    return <p className="text-center text-red-500">Failed to load products.</p>;
 
   return (
     <div className="container mx-auto">
-      <h3 className="text-[20px] font-bold text-[#1F1F1F] py-5 ">Related Products</h3>
+      <h3 className="text-[20px] font-bold text-[#1F1F1F] py-5 ">
+        Related Products
+      </h3>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -85,11 +100,19 @@ const RelatedProducts = () => {
                 </div>
 
                 <div className="flex space-x-2">
-                <button className="bg-white border text-black border-gray-300 rounded-md px-4 py-2 text-sm hover:bg-[#C8A8E9] flex-1">
+                  {/* Add to Cart */}
+                  <button
+                    // onClick={() => handleAddToCart(product)}
+                    className="flex-1 bg-white border text-[#1F1F1F] h-[46px] border-[#B6B7BC] rounded-md px-4 py-2 text-[16px] hover:bg-[#C8A8E9] w-full"
+                  >
                     Add to Cart
                   </button>
-                  <Link to={`/categorySearchPage/${product.id}`}>
-                    <button className="bg-white border text-black border-gray-300 rounded-md px-4 py-2 text-sm hover:bg-[#C8A8E9] flex-1">
+                  {/* View Details */}
+                  <Link
+                    to={`category-search-page${product.id}`}
+                    className="flex-1"
+                  >
+                    <button className="bg-white border h-[46px] text-[#1F1F1F] border-[#B6B7BC] rounded-md px-4 py-2 text-[16px] hover:bg-[#C8A8E9] w-full">
                       View Details
                     </button>
                   </Link>

@@ -32,6 +32,9 @@ import FaqPage from "../pages/faqPage/FaqPage";
 import AboutUsPage from "../pages/aboutUsPage/AboutUsPage";
 import ContactUs from "../pages/contactUsPage/ContactUs";
 import LoginPage from "../authintication/loginPage/LoginPage";
+import ResetPassword from "../authintication/resetPassword/ResetPassword";
+import SignUp from "../Layout/SignUp";
+import ResetPasswordSuccess from "../authintication/enterVarificationCode/EnterVarificationCode";
 
 
 
@@ -101,12 +104,31 @@ const router = createBrowserRouter([
       {
         path: '/aboutUs', element: <AboutUsPage/>
       },
-      {
-        path: '/login-page', element: <LoginPage/>
-      }
+    
 
     ]
   },
+
+
+  //signup system
+  {
+    path:'/sign-up', 
+    element: <SignUp/>,
+    children: [
+      {
+        path: 'login-page', element: <LoginPage/>
+      },
+      {
+        path: 'forgot-password', element: <ResetPassword/>
+      },
+      {
+        path:'reset-password-success' , element:<ResetPasswordSuccess/>
+      }
+    ]
+  },
+
+
+  // dashboard
   {
     path: '/dashboard',
     element: <DashBoard/>,

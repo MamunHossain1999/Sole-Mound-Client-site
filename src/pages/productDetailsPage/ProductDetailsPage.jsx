@@ -33,9 +33,7 @@ const ProductDetailsPage = () => {
   const [quantity, setQuantity] = useState(1);
   const thumbnailRef = useRef(null);
 
-  // useEffect(() => {
-  //   window.scrollTo({ top: 0, behavior: "smooth" });
-  // }, []);
+
 
   const {
     data: product = [],
@@ -54,15 +52,6 @@ const ProductDetailsPage = () => {
     }
   }, [product]);
 
-  // const scrollThumbnails = (dir) => {
-  //   const scrollAmount = 120;
-  //   if (thumbnailRef.current) {
-  //     thumbnailRef.current.scrollBy({
-  //       left: dir === "left" ? -scrollAmount : scrollAmount,
-  //       behavior: "smooth",
-  //     });
-  //   }
-  // };
 
   if (isLoading) return <p className="text-center py-10">Loading...</p>;
   if (isError || !product) return <p className="text-center py-10 text-red-500">Something went wrong!</p>;
