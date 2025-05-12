@@ -34,7 +34,8 @@ import ContactUs from "../pages/contactUsPage/ContactUs";
 import LoginPage from "../authintication/loginPage/LoginPage";
 import ResetPassword from "../authintication/resetPassword/ResetPassword";
 import SignUp from "../Layout/SignUp";
-import ResetPasswordSuccess from "../authintication/enterVarificationCode/EnterVarificationCode";
+import ResetPasswordSuccess from "../authintication/enterVarificationCode/VarificationCode";
+import CreaateNewPassword from "../authintication/createNewPassword/CreaateNewPassword";
 
 
 
@@ -123,6 +124,9 @@ const router = createBrowserRouter([
       },
       {
         path:'reset-password-success' , element:<ResetPasswordSuccess/>
+      },
+      {
+        path:'reset-password' , element:<CreaateNewPassword/>
       }
     ]
   },
