@@ -42,7 +42,7 @@ const ResetPassword = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email "
-            className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#B6B7BC] mb-4 focus:outline-none focus:ring-1 focus:ring-purple-300"
+            className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] mb-4 focus:outline-none focus:ring-1 focus:ring-purple-300"
           />
 
           <button

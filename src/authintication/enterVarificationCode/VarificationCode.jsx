@@ -49,7 +49,7 @@ const VerificationCode = () => {
             placeholder="Enter your code"
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#B6B7BC] mb-4 focus:outline-none focus:ring-1 focus:ring-purple-300"
+            className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] mb-4 focus:outline-none focus:ring-1 focus:ring-purple-300"
             required
           />
 
@@ -69,7 +69,7 @@ const VerificationCode = () => {
 
           <button
             type="submit"
-            className="w-full bg-[#C8A8E9] hover:bg-purple-400 text-[#1F1F1F] font-semibold py-3 rounded-md transition duration-200 cursor-pointer"
+            className="w-full bg-[#C8A8E9] hover:bg-purple-300 text-[#1F1F1F] font-semibold py-3 rounded-md transition duration-200 cursor-pointer"
           >
             Submit code
           </button>

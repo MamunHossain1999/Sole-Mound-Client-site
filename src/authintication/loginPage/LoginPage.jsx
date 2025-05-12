@@ -95,7 +95,7 @@ const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Enter your email"
-                className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#878A92] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
+                className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
               />
             </div>
 
@@ -114,7 +114,7 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Enter your password"
-                className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#878A92] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
+                className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
               />
             </div>
 
