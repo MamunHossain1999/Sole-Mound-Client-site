@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const VerificationCode = () => {
   const [code, setCode] = useState("");
   const [resendTimer, setResendTimer] = useState(35);
-  const maskedEmail = "a******@gmail.com";
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // ata holo timing er jnno
+  const email = location.state?.email;
+
+  // Masked email display
+  const maskedEmail = email
+    ? email.replace(/^(.{1})(.*)(@.*)$/, (_, a, b, c) =>
+        a + "*".repeat(b.length) + c
+      )
+    : "";
+
   useEffect(() => {
     const timer =
       resendTimer > 0 &&
@@ -15,41 +25,54 @@ const VerificationCode = () => {
     return () => clearInterval(timer);
   }, [resendTimer]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted Code:", code);
-    navigate('/sign-up/reset-password')
-    // verify code API call here
+
+    try {
+      const res = await axios.post("/api/verify-otp", { email, otp: code });
+
+      if (res.status === 200) {
+        toast.success("OTP verified successfully!");
+        navigate("/authintication/reset-password", { state: { email } });
+      }
+    } catch (err) {
+      toast.error(
+        err.response?.data?.message || "Invalid or expired code. Try again."
+      );
+    }
   };
 
-  const handleResend = () => {
+  const handleResend = async () => {
     if (resendTimer === 0) {
-      console.log("Resending code...");
-      setResendTimer(35);
-      // resend code logic here
+      try {
+        await axios.post("/api/send-otp", { email });
+        toast.success("New OTP has been sent.");
+        setResendTimer(35);
+      } catch (err) {
+        toast.error("Failed to resend OTP.");
+      }
     }
   };
 
   return (
-    <div className="bg-gradient-to-b from-[#FAE6F0]  to-b-[#FDF6FA] ">
+    <div className="bg-gradient-to-b from-[#FAE6F0] to-[#FDF6FA] min-h-screen flex flex-col justify-center px-4">
       <div className="text-[32px] font-medium text-[#1F1F1F] text-center mb-6 border-b border-[#919191] py-6">
         <p className="pt-7">Enter verification code</p>
       </div>
-      <div className=" w-[570px] mx-auto">
-       
 
-        <p className="text-gray-600 mb-4 ">
+      <div className="w-full max-w-xl mx-auto">
+        <p className="text-[#505050] mb-4 text-base font-medium">
           For your security, we've sent the code to your email{" "}
-          <span className="font-medium">{maskedEmail}</span>.
+          <span className="font-semibold">{maskedEmail}</span>.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-6 w-[480px] ">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <input
             type="text"
             placeholder="Enter your code"
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] mb-4 focus:outline-none focus:ring-1 focus:ring-purple-300"
+            className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300"
             required
           />
 
@@ -59,7 +82,7 @@ const VerificationCode = () => {
               type="button"
               onClick={handleResend}
               disabled={resendTimer > 0}
-              className={`ml-1 ${
+              className={`ml-1 font-semibold ${
                 resendTimer === 0 ? "text-[#A8537B]" : "text-rose-500"
               }`}
             >

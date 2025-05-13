@@ -138,7 +138,7 @@ const LoginPage = () => {
                 </label>
               </div>
               <Link
-                to="/sign-up/forgot-password"
+                to="/authintication/forgot-password"
                 className="text-base text-[#3CA6FC] hover:text-[#77b9f0]"
               >
                 Forgot Password?

@@ -1,61 +1,67 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!email.trim()) {
       toast.error("Please enter your email.");
       return;
     }
 
-    toast.success("Reset link sent to your email.");
-    navigate("/sign-up/reset-password-success");
+    try {
+      // Send request to backend
+      const res = await axios.post("/api/send-otp", { email });
 
-    // Simulate password reset
-    // toast.success("Reset link sent to your email.");
-    // // Optionally: send reset request to server
-    // navigate("/login");
+      if (res.status === 200) {
+        toast.success("OTP has been sent to your email.");
+        // Navigate to OTP input page with email as state
+        navigate("/authintication/reset-password-success", { state: { email } });
+      }
+    } catch (err) {
+      toast.error(
+        err.response?.data?.message || "Failed to send OTP. Try again."
+      );
+    }
   };
 
-  
   return (
-    <div className='bg-gradient-to-b from-[#FAE6F0]  to-b-[#FDF6FA] '>
-   
+    <div className="bg-gradient-to-b from-[#FAE6F0] to-[#FDF6FA] min-h-screen">
       <div className="text-[32px] font-medium text-[#1F1F1F] text-center mb-6 border-b border-[#919191] py-6">
         <p className="pt-7">Reset your password</p>
       </div>
 
-      <div className="flex items-center justify-center ">
-        <div className="w-[579px] px-6 py-8 mx-4 sm:mx-0"
-        >
-          <div className=" mb-6"></div>
+      <div className="flex items-center justify-center">
+        <div className="w-[579px] px-6 py-8 mx-4 sm:mx-0">
           <p className="text-[#505050] text-base font-semibold mb-4">
-          Enter the email address associated with your sole mound account..
+            Enter the email address associated with your Sole Mound account.
           </p>
 
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email "
+            placeholder="Enter your email"
             className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] mb-4 focus:outline-none focus:ring-1 focus:ring-purple-300"
+            autoComplete="on"
+            required
           />
 
           <button
             onClick={handleSubmit}
-            className="w-full bg-[#C8A8E9] text-center text-[#1F1F1F] font-semibold text-base py-3 rounded-md transition duration-300"
+            className="w-full bg-[#C8A8E9] text-[#1F1F1F] font-semibold py-3 rounded-md transition duration-300"
           >
             Continue
           </button>
 
           <div className="text-center mt-4">
             <span
-              className="text-[#3CA6FC] hover:text-blue-400 text-base cursor-pointer"
-              onClick={() => navigate("/sign-up/login-page")}
+              className="text-[#3CA6FC] hover:text-blue-400 cursor-pointer"
+              onClick={() => navigate("/authintication/login-page")}
             >
               Return to Sign in
             </span>

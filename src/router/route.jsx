@@ -113,7 +113,7 @@ const router = createBrowserRouter([
 
   //signup system
   {
-    path:'/sign-up', 
+    path:'/authintication', 
     element: <SignUp/>,
     children: [
       {

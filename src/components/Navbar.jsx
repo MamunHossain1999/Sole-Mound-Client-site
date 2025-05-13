@@ -40,7 +40,7 @@ const Navbar = () => {
     <>
       {/* Language */}
       <div className="text-center">
-        <NavLink to="/sign-up/login-page" className={navLinkStyle}>
+        <NavLink to="/authintication/login-page" className={navLinkStyle}>
           <span className="flex text-[16px] justify-center">EN /</span>
           <span className="text-[16px]">USD</span>
         </NavLink>
