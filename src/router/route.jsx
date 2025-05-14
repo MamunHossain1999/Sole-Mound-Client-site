@@ -33,9 +33,11 @@ import AboutUsPage from "../pages/aboutUsPage/AboutUsPage";
 import ContactUs from "../pages/contactUsPage/ContactUs";
 import LoginPage from "../authintication/loginPage/LoginPage";
 import ResetPassword from "../authintication/resetPassword/ResetPassword";
-import SignUp from "../Layout/SignUp";
 import ResetPasswordSuccess from "../authintication/enterVarificationCode/VarificationCode";
 import CreaateNewPassword from "../authintication/createNewPassword/CreaateNewPassword";
+import SignIn from "../Layout/SignIn";
+import SignUp from "../Layout/SignUp";
+import RegisterPage from "../authintication/registerPage/RegisterPage";
 
 
 
@@ -111,10 +113,10 @@ const router = createBrowserRouter([
   },
 
 
-  //signup system
+  //signin system
   {
     path:'/authintication', 
-    element: <SignUp/>,
+    element: <SignIn/>,
     children: [
       {
         path: 'login-page', element: <LoginPage/>
@@ -131,6 +133,16 @@ const router = createBrowserRouter([
     ]
   },
 
+  //signUp system
+  {
+    path: '/register',
+    element:<SignUp/>,
+    children:[
+      {
+        path: 'sign-up' , element:<RegisterPage/> 
+      }
+    ]
+  },
 
   // dashboard
   {

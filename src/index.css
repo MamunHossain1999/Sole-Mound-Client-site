@@ -24,3 +24,13 @@ input:-webkit-autofill {
   -webkit-text-fill-color: #000 !important;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+/* your browser history pagination color */
+.custom-swiper-pagination .swiper-pagination-bullet {
+  background-color: #c8a8e9;
+  opacity: 1;
+  padding: 10px;
+}
+.custom-swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #7d55c7;
+}

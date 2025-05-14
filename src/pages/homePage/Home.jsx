@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 import FeaturedProducts from "../../components/FeaturedProducts";
 import YourBrowsingHistory from "../../components/YourBrowsingHistory";
 import BigBrandDeals from "../../components/BigBrandDeals";
-import BestsellersSection from "../../components/BestsellersSection";
+import BestsellersSection from "../../components/bestSellers/BestsellersSection";
 
 
 const Home = () => {
