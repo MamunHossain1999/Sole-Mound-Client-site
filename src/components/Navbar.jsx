@@ -122,7 +122,7 @@ const Navbar = () => {
 
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
-        <div className="md:hidden left-0 w-full bg-white shadow-md transition-all duration-300 ">
+        <div className="md:hidden left-0 w-full pt-4 bg-white shadow-md transition-all duration-300 ">
           <div className="flex flex-col px-6 py-4 space-y-5 text-gray-800">
             <NavLink to="/dashboard/accountPage" onClick={toggleMenu} className="flex items-center gap-3 hover:text-pink-600">
               <FaUser className="text-xl" />
