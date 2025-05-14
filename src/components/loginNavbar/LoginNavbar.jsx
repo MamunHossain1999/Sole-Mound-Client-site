@@ -10,7 +10,7 @@ const LoginNavbar = () => {
   return (
     <div className="w-full">
       {/* Top Navbar */}
-      <div className="bg-[#E3AADD] px-4 md:px-30 h-[99px] flex items-center z-50 transition-all duration-300">
+      <div className="bg-[#E3AADD] px-4 md:px-52 h-[99px] flex items-center z-50 transition-all duration-300">
         {/* logo area */}
         <NavLink to="/">
           <img src={logo} alt="Logo" className="w-[106px] h-[90px]" />

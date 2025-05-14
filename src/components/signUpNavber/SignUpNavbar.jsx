@@ -1,13 +1,12 @@
 
 
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../../assets/Logo 3.png";
 
 const SignUpNavbar = () => {
-    // ata nav items show hide er jnno
-      const location = useLocation();
-      const showLoginText = location.pathname === "/register/sign-up";
+   
+      
     
       return (
         <div className="w-full">
@@ -18,15 +17,14 @@ const SignUpNavbar = () => {
               <img src={logo} alt="Logo" className="w-[106px] h-[90px]" />
             </NavLink>
     
-            {/* ✅ Show "Login" text only on /login */}
-            {showLoginText && (
+           
               <div
                 className="text-4xl text-[#505050] pl-12"
                 style={{ fontFamily: "Oleo Script, cursive" }}
               >
                 Sign up
               </div>
-            )}
+           
           </div>
         </div>
       );

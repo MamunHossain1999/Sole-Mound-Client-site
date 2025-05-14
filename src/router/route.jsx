@@ -38,6 +38,7 @@ import CreaateNewPassword from "../authintication/createNewPassword/CreaateNewPa
 import SignIn from "../Layout/SignIn";
 import SignUp from "../Layout/SignUp";
 import RegisterPage from "../authintication/registerPage/RegisterPage";
+import GoogleSignIn from "../authintication/resetPassword/GoogleSignIn";
 
 
 
@@ -140,6 +141,9 @@ const router = createBrowserRouter([
     children:[
       {
         path: 'sign-up' , element:<RegisterPage/> 
+      },
+      {
+        path: 'google-sign-in', element: <GoogleSignIn/>
       }
     ]
   },
@@ -158,14 +162,6 @@ const router = createBrowserRouter([
       {
         path: 'wishlist', element: <WishList/>
       },
-      // {
-      //   path: 'shoppingCard', element: <ShoppingCart/>
-      // },
-      
-      
-      // {
-      //   path: 'buyAgain', element: <BuyAgain/>
-      // },
       {
         path: 'order-history', element: <OrderhistoryPage/>
       },

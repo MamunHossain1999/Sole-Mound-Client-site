@@ -3,6 +3,13 @@ import { Mail, Lock } from "lucide-react";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 
+// import {
+//   auth,
+//   googleProvider,
+//   facebookProvider,
+//   signInWithPopup,
+// } from "../../firebase";
+
 import signUpbgimg from "../../assets/signUpbgImg/Screenshot_2.png";
 import apple from "../../assets/loginImg/apple.png";
 import google from "../../assets/loginImg/google.png";
@@ -15,7 +22,6 @@ const RegisterPage = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-
   const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (e) => {
@@ -35,6 +41,36 @@ const RegisterPage = () => {
     console.log("Submitting form with:", { email, password });
 
     navigate(from, { replace: true });
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      // const result = await signInWithPopup(auth, googleProvider);
+      // toast.success(`Welcome ${result.user.displayName}`);
+      navigate("/register/google-sign-in");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleAppleLogin = async () => {
+    try {
+      // const result = await signInWithPopup(auth, googleProvider);
+      // toast.success(`Welcome ${result.user.displayName}`);
+      navigate("/register/google-sign-in");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleFacebookLogin = async () => {
+    try {
+      // const result = await signInWithPopup(auth, googleProvider);
+      // toast.success(`Welcome ${result.user.displayName}`);
+      navigate("/register/google-sign-in");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -135,39 +171,37 @@ const RegisterPage = () => {
                   <div className="space-y-6">
                     <button
                       type="button"
+                      onClick={handleGoogleLogin}
                       className="w-full flex items-center justify-between px-4 text-[#505050] text-base font-semibold py-3 border border-[#B6B7BC] cursor-pointer rounded-md hover:bg-gray-50"
                     >
-                      <div className="flex items-center">
-                        <div className="w-5 h-5 mr-3">
-                          <img src={google} alt="google" />
-                        </div>
+                      <div className="w-full flex items-center justify-center">
+                        <img src={google} alt="google" className="w-5 h-5 mr-3" />
                         Continue with Google
                       </div>
                     </button>
 
                     <button
                       type="button"
+                      onClick={handleAppleLogin}
                       className="w-full flex items-center justify-between px-4 text-[#505050] text-base font-semibold py-3 border border-[#B6B7BC] cursor-pointer rounded-md hover:bg-gray-50"
                     >
-                      <div className="flex items-center">
-                        <div className="w-5 h-5 mr-3">
-                          <img src={apple} alt="apple" />
-                        </div>
+                      <div className="w-full flex items-center justify-center">
+                        <img src={apple} alt="apple" className="w-5 h-5 mr-3" />
                         Continue with Apple
                       </div>
                     </button>
 
                     <button
                       type="button"
+                      onClick={handleFacebookLogin}
                       className="w-full flex items-center justify-between px-4 text-[#505050] text-base font-semibold py-3 border border-[#B6B7BC] cursor-pointer rounded-md hover:bg-gray-50"
                     >
-                      <div className="flex items-center">
-                        <div className="w-5 h-5 mr-3">
-                          <img src={facebook} alt="facebook" />
-                        </div>
+                      <div className="w-full flex items-center justify-center">
+                        <img src={facebook} alt="facebook" className="w-5 h-5 mr-3" />
                         Continue with Facebook
                       </div>
                     </button>
+
                   </div>
                 </div>
               </div>

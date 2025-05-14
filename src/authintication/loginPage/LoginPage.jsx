@@ -154,8 +154,9 @@ const LoginPage = () => {
               </div>
             </form>
 
+            {/* divider */}
             <div className="mt-6">
-              <div className="w-full mx-auto divider before:bg-black after:bg-black text-[#1F1F1F]">
+              <div className="w-full mx-auto divider before:bg-[#B6B7BC] after:bg-[#B6B7BC] text-[#1F1F1F]">
                 OR
               </div>
 
