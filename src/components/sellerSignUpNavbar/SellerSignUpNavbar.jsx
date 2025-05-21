@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import logo from "../../assets/Logo 3.png";
+import logo from "../../assets/navbarIcon/Logo 3.png";
 const SellerSignUpNavbar = () => {
   // ata nav items show hide er jnno
   const location = useLocation();

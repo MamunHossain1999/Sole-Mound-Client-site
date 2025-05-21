@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch, FaBars, FaTimes, FaUser } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/Logo 3.png";
+import logo from "../assets/navbarIcon/Logo 3.png";
 import { GrFavorite } from "react-icons/gr";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import AllCategory from "../dropdown/allCategory/AllCategory";

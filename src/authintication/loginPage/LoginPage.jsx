@@ -3,7 +3,7 @@ import apple from "../../assets/loginImg/apple.png";
 import google from "../../assets/loginImg/google.png";
 import facebook from "../../assets/loginImg/facebook.png";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgOne from '../../assets/loginImg/bg-1.png';
 import bgTwo from '../../assets/loginImg/bg-2.png';
 import bgThree from '../../assets/loginImg/bg-3.png';
@@ -12,32 +12,51 @@ import bgFive from '../../assets/loginImg/bg-5.png';
 import bgSix from '../../assets/loginImg/bg-6.png';
 import bgSeven from '../../assets/loginImg/bg-7.png';
 import bgEight from '../../assets/loginImg/bg-8.png';
+import axios from "axios";
 
-
-// import { auth, googleProvider, facebookProvider, appleProvider } from "../../firebase";
-// import { signInWithPopup } from "firebase/auth";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!email.trim() || !password.trim()) {
-      toast.error("Please enter both email and password.");
-      return;
+  if (!email.trim() || !password.trim()) {
+    toast.error("Please enter both email and password.");
+    return;
+  }
+
+  if (!rememberMe) {
+    toast.error("Please check 'Remember Me' to continue.");
+    return;
+  }
+
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL}/auth/login`,
+      {
+        email,
+        password,
+      }
+    );
+
+    if (response.data.success) {
+      toast.success("Login successful!");
+      navigate("/", { replace: true });
+    } else {
+      toast.error("Login failed. Try again.");
     }
+  } catch (error) {
+    toast.error(
+      error.response?.data?.message || "Something went wrong. Please try again."
+    );
+  }
+};
 
-    if (!rememberMe) {
-      toast.error("Please check 'Remember Me' to continue.");
-      return;
-    }
 
-    toast.success("Login successful!");
-    console.log({ email, password, rememberMe });
-  };
   // google login
   const handleGoogleLogin = async () => {
     try {

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/Logo 3.png";
+import logo from "../assets/navbarIcon/Logo 3.png";
 import { FaArrowRightLong } from "react-icons/fa6";
 import visa from "../assets/VISA.png";
 import paypal from "../assets/paypal.png";

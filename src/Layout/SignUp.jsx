@@ -6,7 +6,7 @@ import ScrollToTop from '../components/scrollTop/ScrollTop';
 const SignUp = () => {
      useEffect(() => {
         // Disable scroll on mount
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = "auto";
         return () => {
           // Restore scroll on unmount
           document.body.style.overflow = "auto";
