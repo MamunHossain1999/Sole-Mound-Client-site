@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import bgImg from "../../assets/signUpbgImg/Screenshot_2.png";
+import dotdot from "../../assets/signUpbgImg/dotdot.png";
+import simg from "../../assets/signUpbgImg/simg.png";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { Link } from "react-router-dom";
 import bangladesh from "../../assets/sellerCountry img/bangladesh.png";
@@ -33,34 +34,30 @@ const SellerSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.agree) {
-      toast.error("You must agree to the terms and conditions.");
+      alert("You must agree to the terms and conditions.");
       return;
     }
-    // Submit logic here
     console.log("Form Data Submitted:", formData);
-    toast.success("Form submitted successfully!");
+    alert("Form submitted successfully!");
   };
 
   return (
-    <div className="w-full min-h-screen flex relative ">
-      <img
-        src={bgImg}
-        className="absolute object-cover w-full"
-        alt="background img"
-      />
-      <form
-        onSubmit={handleSubmit}
-        className="w-8/12 mx-auto px-36 py-22 mt-12 bg-white shadow rounded-md z-10 justify-end"
-      >
-    <div className="container mx-auto rounded-lg pr-22">
-        {/* country select */}
-        <div className=" mb-4 relative flex items-center justify-end">
-          <label className="w-[150px] text-[#919191] font-normal text-sm">
-            Country / Region:
-          </label>
+    <div className="w-full flex relative mx-auto min-h-screen bg-gradient-to-b from-[#FAE6F0] to-b-[#FDF6FA] bg-white">
+      <img src={dotdot} alt="bg" className="absolute bottom-40 right-64 w-[153px] h-[153px] " />
+      <img src={simg} alt="bg" className="absolute top-0 left-18 w-[685px] h-[961px] " />
 
-          <div className="relative  ">
-            <div className="w-2xl flex items-center gap-2 border border-[#E2E3E8] px-3 pr-10 py-1 rounded">
+     <div className="flex  mx-auto ">
+         <form
+        onSubmit={handleSubmit}
+        className="w-full md:w-8/12 mx-auto px-6 flex justify-center mt-12 bg-white shadow rounded-md z-10 relative"
+      >
+        <div className="w-full mx-auto space-y-5 py-10 ">
+          {/* Country select */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4 ">
+            <label className="text-sm text-[#919191] w-full md:w-[14rem] text-left md:text-right">
+              Country / Region:
+            </label>
+            <div className="relative w-full md:w-3/5 flex items-center gap-2 border border-[#E2E3E8] px-3 py-2 md:py-0.5 rounded">
               <img
                 src={
                   formData.country === "United Kingdom"
@@ -70,264 +67,213 @@ const SellerSignUp = () => {
                     : bangladesh
                 }
                 alt="flag"
-                className="w-10 h-10"
+                className="w-6 h-6 md:w-10 md:h-10"
               />
               <select
                 name="country"
                 value={formData.country}
                 onChange={handleChange}
-                className="w-full bg-transparent text-[#000000E0] font-normal pl-3 text-sm focus:outline-none appearance-none"
+                className="w-full bg-transparent text-sm text-[#000000E0] focus:outline-none appearance-none pl-2"
               >
                 <option value="United Kingdom">United Kingdom</option>
                 <option value="Japan">Japan</option>
                 <option value="Bangladesh">Bangladesh</option>
               </select>
-
-              <MdOutlineKeyboardArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 text-[#00000040]  cursor-pointer" />
+              <MdOutlineKeyboardArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 text-[#00000040]" />
             </div>
           </div>
-        </div>
 
-        {/* trade role select */}
-        <div className="mb-4 flex items-center justify-end gap-4">
-          <label className="block mb-1 font-normal text-[#919191] text-sm">
-            Please select trade role:
-          </label>
-          <div className="w-2xl flex text-[#000000E0] font-normal text-sm gap-4 items-center">
-            <label className=" flex items-center gap-2">
-              <div className="relative">
-                <input
-                  type="radio"
-                  name="tradeRole"
-                  value="buyer"
-                  onChange={handleChange}
-                  className="peer hidden"
-                />
-                <div className="w-5 h-5 rounded-full border border-gray-300 bg-white flex items-center justify-center peer-checked:bg-[#C8A8E9] peer-checked:border-[#C8A8E9] transition-colors">
-                  <div className="w-2 h-2 rounded-full bg-white peer-checked:block"></div>
+          {/* Trade role */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+            <label className="text-sm text-[#919191] w-full md:w-[14rem] text-left md:text-right ">
+              Please select trade role:
+            </label>
+            <div className="w-full md:w-3/5 flex flex-wrap gap-4 text-sm text-[#000000E0]">
+              {["Buyer", "Seller", "Both"].map((role) => (
+                <label key={role} className="flex items-center gap-2">
+                  <div className="relative">
+                    <input
+                      type="radio"
+                      name="tradeRole"
+                      value={role.toLowerCase()}
+                      onChange={handleChange}
+                      className="peer hidden"
+                    />
+                    <div className="w-5 h-5 rounded-full border border-gray-300 bg-white flex items-center justify-center peer-checked:bg-[#C8A8E9] peer-checked:border-[#C8A8E9]               transition-colors">
+                    <div className="w-2 h-2 rounded-full bg-white peer-checked:block"></div>
+                  </div>
+                  </div>
+                  {role}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Email */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+            <label className="text-sm text-[#919191] w-full md:w-[14rem] text-left md:text-right">
+              Email
+            </label>
+            <input
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your email will be set as account name"
+              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              required
+            />
+          </div>
+
+          {/* Password */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+            <label className="text-sm text-[#919191] w-full md:w-[14rem] text-left md:text-right">
+              Password
+            </label>
+            <input
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Set the login password"
+              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              required
+            />
+          </div>
+
+          {/* Confirm Password */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+            <label className="text-sm text-[#919191] w-full md:w-[14rem] text-left md:text-right">
+              Confirm Password 
+            </label>
+            <input
+              name="confirmPassword"
+              type="password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="Enter your login password again"
+              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              required
+            />
+          </div>
+
+          {/* Company Name */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+            <label className="text-sm text-[#919191] w-full md:w-[14rem] text-left md:text-right">
+              Company Name
+            </label>
+            <input
+              name="companyName"
+              type="text"
+              value={formData.companyName}
+              onChange={handleChange}
+              placeholder="Enter your company name here"
+              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+            />
+          </div>
+
+          {/* Full Name */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+            <label className="text-sm text-[#919191] w-full md:w-[14rem] text-left md:text-right">
+              Full Name
+            </label>
+            <div className="flex flex-col md:flex-row gap-4 w-full md:w-3/5">
+              <input
+                name="firstName"
+                type="text"
+                value={formData.firstName}
+                onChange={handleChange}
+                placeholder="First name"
+                className="w-full md:w-1/2 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              />
+              <input
+                name="lastName"
+                type="text"
+                value={formData.lastName}
+                onChange={handleChange}
+                placeholder="Last name"
+                className="w-full md:w-1/2 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              />
+            </div>
+          </div>
+
+          {/* Phone */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+            <label className="text-sm text-[#919191] w-full md:w-[14rem] text-left md:text-right">
+              Tel:
+            </label>
+            <div className="flex flex-col md:flex-row gap-3 w-full md:w-3/5">
+              <input
+                name="phoneCountry"
+                type="text"
+                value={formData.phoneCountry}
+                onChange={handleChange}
+                className="w-full md:w-1/6 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              />
+              <input
+                name="phoneArea"
+                type="text"
+                value={formData.phoneArea}
+                onChange={handleChange}
+                placeholder="Area"
+                className="w-full md:w-1/4 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              />
+              <input
+                name="phoneNumber"
+                type="text"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                placeholder="Phone Number"
+                className="w-full md:w-2/3 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              />
+            </div>
+          </div>
+
+          {/* Terms */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+            <label className=" gap-3 text-sm text-[#919191] w-full md:w-[14rem] text-left md:text-right mt-1">
+                <div className="relative">
+                    <input
+                    type="checkbox"
+                    name="agree"
+                    checked={formData.agree}
+                    onChange={handleChange}
+                    className="peer w-5 h-5 accent-[#C8A8E9] bg-white border border-gray-300 rounded appearance-none checked:bg-[#C8A8E9] checked:border-transparent"
+                    />
+                    <span className="pointer-events-none absolute left-1.5 md:left-52.5 top-[2px] text-white text-xs font-bold peer-checked:block hidden">
+                    ✓
+                    </span>
                 </div>
-              </div>
-              Buyer
             </label>
 
-            <label className=" flex items-center gap-2">
-              <div className="relative">
-                <input
-                  type="radio"
-                  name="tradeRole"
-                  value="buyer"
-                  onChange={handleChange}
-                  className="peer hidden"
-                />
-                <div className="w-5 h-5 rounded-full border border-gray-300 bg-white flex items-center justify-center peer-checked:bg-[#C8A8E9] peer-checked:border-[#C8A8E9] transition-colors">
-                  <div className="w-2 h-2 rounded-full bg-white peer-checked:block"></div>
-                </div>
-              </div>
-              Seller
-            </label>
 
-            <label className=" flex items-center gap-2">
-              <div className="relative">
-                <input
-                  type="radio"
-                  name="tradeRole"
-                  value="buyer"
-                  onChange={handleChange}
-                  className="peer hidden"
-                />
-                <div className="w-5 h-5 rounded-full border border-gray-300 bg-white flex items-center justify-center peer-checked:bg-[#C8A8E9] peer-checked:border-[#C8A8E9] transition-colors">
-                  <div className="w-2 h-2 rounded-full bg-white peer-checked:block"></div>
-                </div>
-              </div>
-              Both
+            <div className="flex flex-col md:flex-row gap-4 w-full md:w-3/5">
+              <p>
+                I agree to the{" "}
+              <Link to="/membership-agreement" className="text-[#A8537B]">Free Membership Agreement</Link>,{" "}
+              <Link to="/terms-and-conditions" className="text-[#A8537B]">Terms of Use</Link>, and{" "}
+              <Link to="/privacy-policy" className="text-[#A8537B]">Privacy Policy</Link> of Sole Mound.
+              I also agree to receive more information about its products and services.
+              </p>
+            </div>
+          </div>
+         
+
+          {/* Submit */}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 mt-18 md:gap-4">
+            <label className="text-sm text-[#919191] w-full md:w-[14rem] text-left md:text-right">
+             
             </label>
+            <button
+                type="submit"
+                className="w-full md:w-3/5 px-3 bg-[#C8A8E9] hover:bg-purple-300 text-sm font-medium text-[#1F1F1F] py-3 rounded"
+            >
+                Create an account
+            </button>
           </div>
         </div>
-
-        {/* email*/}
-        <div className="mb-4 flex items-center justify-end gap-4">
-          <label
-            htmlFor="email"
-            className="block text-sm text-[#919191] font-normal mb-1"
-          >
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Your email will be set as account name"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-2xl border border-[#E2E3E8] px-3 pr-10 py-3 text-[#000000E0] appearance-none font-normal text-sm rounded focus:border-[#E2E3E8] focus:outline-none"
-            required
-          />
-        </div>
-
-        {/* //password */}
-        <div className="mb-4 flex items-center justify-end gap-4">
-          <label
-            htmlFor="password"
-            className="block text-sm text-[#919191] font-normal mb-1"
-          >
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="Set the login password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-2xl border border-[#E2E3E8] px-3 pr-10 py-3 text-[#000000E0] appearance-none font-normal text-sm rounded focus:border-[#E2E3E8] focus:outline-none"
-            required
-          />
-        </div>
-
-        {/* confirm password */}
-        <div className="mb-4 flex items-center justify-end gap-4">
-          <label
-            htmlFor="confirmPassword"
-            className="block text-sm text-[#919191] font-normal mb-1"
-          >
-            Confirm Password
-          </label>
-          <input
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            placeholder="Enter your login password again"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            className="w-2xl border border-[#E2E3E8] px-3 pr-10 py-3 text-[#000000E0] appearance-none font-normal text-sm rounded focus:border-[#E2E3E8] focus:outline-none"
-            required
-          />
-        </div>
-
-        {/* company name*/}
-        <div className="mb-4 flex items-center justify-end gap-4">
-          <label
-            htmlFor="companyName"
-            className="block text-sm text-[#919191] font-normal mb-1"
-          >
-            Company Name
-          </label>
-          <input
-            id="companyName"
-            name="companyName"
-            type="text"
-            placeholder="Enter your company name here"
-            value={formData.companyName}
-            onChange={handleChange}
-            className="w-2xl border border-[#E2E3E8] px-3 pr-10 py-3 text-[#000000E0] appearance-none font-normal text-sm rounded focus:border-[#E2E3E8] focus:outline-none"
-          />
-        </div>
-
-        {/* full name */}
-        <div className=" flex justify-end gap-4 items-center mb-4">
-          <label
-            htmlFor="firstName"
-            className="block text-sm  text-[#919191] font-normal "
-          >
-            First Name
-          </label>
-          <input
-            id="firstName"
-            name="firstName"
-            type="text"
-            placeholder="First name"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="w-[20.5rem] border border-[#E2E3E8] px-3 pr-10 py-3 text-[#000000E0] appearance-none font-normal text-sm rounded focus:border-[#E2E3E8] focus:outline-none"
-          />
-
-          <input
-            id="lastName"
-            name="lastName"
-            type="text"
-            placeholder="Last name"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="w-[20.5rem]  border border-[#E2E3E8] px-3 pr-10 py-3 text-[#000000E0] appearance-none font-normal text-sm rounded focus:border-[#E2E3E8] focus:outline-none"
-          />
-        </div>
-
-        {/* phone number */}
-        <div className="flex gap-4 mb-4 items-center justify-end">
-          <label
-            htmlFor="firstName"
-            className="block text-sm text-[#919191] font-normal "
-          >
-            Tel:
-          </label>
-          <input
-            name="phoneCountry"
-            type="telephone"
-            value={formData.phoneCountry}
-            onChange={handleChange}
-            className="w-1/8 border border-[#E2E3E8] px-3 py-3 text-[#000000E0] appearance-none font-normal text-sm rounded focus:border-[#E2E3E8] focus:outline-none"
-          />
-          -
-          <input
-            name="phoneArea"
-            type="text"
-            placeholder="area"
-            value={formData.phoneArea}
-            onChange={handleChange}
-            className="w-1/7 border border-[#E2E3E8] px-3  py-3 text-[#000000E0] appearance-none font-normal text-sm rounded focus:border-[#E2E3E8] focus:outline-none"
-          />
-          -
-          <input
-            name="phoneNumber"
-            type="text"
-            placeholder="phone number"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            className="w-[34%] border border-[#E2E3E8] px-3 py-3 text-[#000000E0] appearance-none font-normal text-sm rounded focus:border-[#E2E3E8] focus:outline-none"
-          />
-        </div>
-
-        {/* term and condition  */}
-        <div className="flex gap-4 mb-4 items-center justify-end ">
-          <label className="flex items-start gap-4 text-sm relative">
-            <input
-              type="checkbox"
-              name="agree"
-              checked={formData.agree}
-              onChange={handleChange}
-              className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 appearance-none border-[#C8A8E9]  rounded checked:bg-purple-600 checked:border-transparent"
-            />
-            <span className="pointer-events-none absolute left-[5px] top-0.5 text-white text-xs font-bold peer-checked:block hidden">
-              ✓
-            </span>
-          </label>
-          <span className="text-[#919191] font-normal w-2xl text-sm">
-            I agree to the{" "}
-            <Link to="/membership-agreement">
-              <span className="text-[#A8537B]">Free Membership Agreement,</span>
-            </Link>
-            <Link to="/terms-and-conditions">
-              <span className="text-[#A8537B]">Terms of Use</span>
-            </Link>
-            , and{" "}
-            <Link to="/privacy-policy">
-              <span className="text-[#A8537B]">Privacy Policy</span>
-            </Link>{" "}
-            of Sole Mound. I also agree to receive more information about its
-            products and servies.
-          </span>
-        </div>
-
-        <div className="flex justify-end mt-18">
-          <button
-            type="submit"
-            className="w-2xl bg-[#C8A8E9] hover:bg-purple-300 text-sm font-medium text-[#1F1F1F] py-3 px-4 rounded"
-          >
-            Create an account
-          </button>
-        </div>
-     </div>   
       </form>
+     </div>
     </div>
   );
 };

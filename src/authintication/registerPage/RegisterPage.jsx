@@ -3,7 +3,8 @@ import { Mail, Lock } from "lucide-react";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import signUpbgimg from "../../assets/signUpbgImg/Screenshot_2.png";
+import signUpbgimg from "../../assets/signUpbgImg/simg.png";
+import dotdot from "../../assets/signUpbgImg/dotdot.png";
 import apple from "../../assets/loginImg/apple.png";
 import google from "../../assets/loginImg/google.png";
 import facebook from "../../assets/loginImg/facebook.png";
