@@ -52,11 +52,11 @@ const RegisterPage = () => {
 
   return (
     <div
-      className="w-full min-h-screen bg-cover bg-center flex items-center justify-center px-4"
+      className="w-full min-h-screen bg-cover flex items-center justify-center px-4"
       style={{ backgroundImage: `url(${signUpbgimg})` }}
     >
       <div className="container mx-auto flex justify-center items-center md:-mt-[150px]">
-        <div className="bg-white w-full max-w-5xl rounded-lg shadow-lg p-6 md:p-12">
+        <div className="bg-white w-full max-w-5xl md:h-[550px] rounded-lg shadow-lg p-6 md:p-12">
           <h2 className="text-[26px] sm:text-[32px] font-medium text-center text-[#1F1F1F] mb-6">
             Create your Sole Mound account
           </h2>

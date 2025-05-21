@@ -63,9 +63,12 @@ export default function BuyAgainPage() {
   if (isLoading) return <p className="text-center py-10">Loading...</p>;
 
   const filteredOrders = filterOrdersByPeriod(allOrders, filterPeriod);
-  const latestOrder = filteredOrders.length > 0
-    ? [...filteredOrders].sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate))[0]
-    : null;
+  const latestOrder =
+    filteredOrders.length > 0
+      ? [...filteredOrders].sort(
+          (a, b) => new Date(b.orderDate) - new Date(a.orderDate)
+        )[0]
+      : null;
 
   const pageSize = 3;
   const totalPages = Math.ceil(filteredOrders.length / pageSize);
@@ -77,7 +80,6 @@ export default function BuyAgainPage() {
   return (
     <div className="bg-white min-h-auto py-10">
       <div className="container mx-auto px-4 lg:px-24">
-        
         {/* Filter & Order Count */}
         <div className="my-4 flex justify-between items-center">
           <div className="bg-[#FDF1F7] rounded-lg px-4 py-3">
@@ -101,13 +103,21 @@ export default function BuyAgainPage() {
               <option value="2023">2023</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-              <svg className="w-5 h-5 text-[#ADB7BC]" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 12a1 1 0 01-.707-.293l-3-3a1 1 0 011.414-1.414L10 9.586l2.293-2.293a1 1 0 011.414 1.414l-3 3A1 1 0 0110 12z" clipRule="evenodd" />
+              <svg
+                className="w-5 h-5 text-[#ADB7BC]"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 12a1 1 0 01-.707-.293l-3-3a1 1 0 011.414-1.414L10 9.586l2.293-2.293a1 1 0 011.414 1.414l-3 3A1 1 0 0110 12z"
+                  clipRule="evenodd"
+                />
               </svg>
             </div>
           </div>
         </div>
-
 
         {/* Header for latest order */}
         {latestOrder && (
@@ -115,26 +125,37 @@ export default function BuyAgainPage() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
               <div className="flex flex-col md:flex-row gap-8 w-full justify-between">
                 <div>
-                  <p className="text-[#475156] font-semibold text-base mb-1">Orders Placed</p>
+                  <p className="text-[#475156] font-semibold text-base mb-1">
+                    Orders Placed
+                  </p>
                   <p className="text-[#505050] text-sm font-normal">
-                    {new Date(latestOrder.orderDate).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
+                    {new Date(latestOrder.orderDate).toLocaleDateString(
+                      "en-US",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      }
+                    )}
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-[#475156] font-semibold text-base mb-1">Total</p>
+                  <p className="text-[#475156] font-semibold text-base mb-1">
+                    Total
+                  </p>
                   <p className="text-[#505050] text-sm font-normal">
                     ${latestOrder.total.toFixed(2)}
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-[#475156] font-semibold text-base mb-1">Ship To</p>
-                  <p className="text-[#505050] text-sm font-normal">{latestOrder.shipTo || "N/A"}</p>
+                  <p className="text-[#475156] font-semibold text-base mb-1">
+                    Ship To
+                  </p>
+                  <p className="text-[#505050] text-sm font-normal">
+                    {latestOrder.shipTo || "N/A"}
+                  </p>
                 </div>
 
                 <div className="flex flex-col mt-4 md:mt-0">
@@ -143,13 +164,16 @@ export default function BuyAgainPage() {
                   </p>
                   <button
                     className="text-[#3CA6FC] text-sm font-normal hover:underline"
-                    onClick={() => alert(`View details for order #${latestOrder.orderNumber}`)}
+                    onClick={() =>
+                      alert(
+                        `View details for order #${latestOrder.orderNumber}`
+                      )
+                    }
                   >
                     View Order Details
                   </button>
                 </div>
               </div>
-
             </div>
           </div>
         )}
@@ -185,11 +209,15 @@ export default function BuyAgainPage() {
 
                     <div className="flex flex-col items-end gap-8 ml-4">
                       <button className="bg-[#C8A8E9] hover:bg-purple-400 rounded-lg px-3 py-2 text-sm flex items-center gap-2">
-                        <span className="text-[#1F1F1F] text-base font-semibold">Buy It Again</span>
+                        <span className="text-[#1F1F1F] text-base font-semibold">
+                          Buy It Again
+                        </span>
                         <RefreshCw className="h-4 w-4 text-[#1F1F1F]" />
                       </button>
                       <button className="bg-white border border-[#B6B7BC] text-[#475156] rounded-lg px-3 py-2 text-sm flex items-center gap-2">
-                        <span className="text-[#1F1F1F] text-base font-semibold">Add to Cart</span>
+                        <span className="text-[#1F1F1F] text-base font-semibold">
+                          Add to Cart
+                        </span>
                         <ShoppingCart className="h-4 w-4" />
                       </button>
                     </div>
@@ -202,20 +230,20 @@ export default function BuyAgainPage() {
 
         {/* Pagination */}
         <div className="max-w-6xl w-full mx-auto flex justify-end p-4">
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
             <button
               onClick={() => setCurrentPage(currentPage - 1)}
               disabled={currentPage === 1}
-              className="w-10 h-10 rounded-full border border-[#C8A8E9] text-[#C8A8E9] flex items-center justify-center"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#C8A8E9] text-[#C8A8E9] flex items-center justify-center disabled:opacity-50"
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
 
             {Array.from({ length: totalPages }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentPage(index + 1)}
-                className={`w-10 h-10 flex items-center justify-center rounded-full text-sm font-semibold ${
+                className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full text-xs sm:text-sm font-semibold ${
                   currentPage === index + 1
                     ? "bg-[#C8A8E9] text-white"
                     : "text-[#1F1F1F] hover:bg-purple-100"
@@ -228,9 +256,9 @@ export default function BuyAgainPage() {
             <button
               onClick={() => setCurrentPage(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="w-10 h-10 rounded-full border border-[#C8A8E9] text-[#C8A8E9] flex items-center justify-center"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#C8A8E9] text-[#C8A8E9] flex items-center justify-center disabled:opacity-50"
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
           </div>
         </div>

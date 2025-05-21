@@ -65,7 +65,7 @@ const handleSaveToWishlist = () => {
           {historyItems.map((item, index) => (
             <div
               key={index}
-              className="bg-[#FDF1F7] border hover:border-[#C8A8E9]  rounded-lg p-4 overflow-hidden transition-all duration-300"
+              className="bg-[#FDF1F7]  hover:border border-[#C8A8E9]  rounded-lg p-4 overflow-hidden transition-all duration-300"
             >
               <div className="">
                 <img

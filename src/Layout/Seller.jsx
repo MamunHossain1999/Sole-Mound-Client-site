@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import SignUpNavbar from '../components/signUpNavber/SignUpNavbar';
-import { Outlet } from 'react-router-dom';
 import ScrollToTop from '../components/scrollTop/ScrollTop';
+import { Outlet } from 'react-router-dom';
+import SellerNavbar from '../components/sellerNavbar/SellerNavbar';
 
-const SignUp = () => {
+const Seller = () => {
      useEffect(() => {
         // Disable scroll on mount
         document.body.style.overflow = "hidden";
@@ -15,7 +15,7 @@ const SignUp = () => {
     return (
         <div className='overflow-hidden'>
             <ScrollToTop/>
-            <SignUpNavbar/>
+            <SellerNavbar/>
             <div>
                 <Outlet/>
             </div>
@@ -23,4 +23,5 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+
+export default Seller;

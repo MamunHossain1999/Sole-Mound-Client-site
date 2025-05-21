@@ -38,7 +38,11 @@ import CreaateNewPassword from "../authintication/createNewPassword/CreaateNewPa
 import SignIn from "../Layout/SignIn";
 import SignUp from "../Layout/SignUp";
 import RegisterPage from "../authintication/registerPage/RegisterPage";
-import GoogleSignIn from "../authintication/resetPassword/GoogleSignIn";
+import CategorySearchPage from "../pages/categorySearchPage/CategorySearchPage";
+import SellerLoginPage from "../authintication/sellerLogin/SellerLoginPage";
+import Seller from "../Layout/Seller";
+import SellerSignUp from "../authintication/sellerLogin/SellerSignUp";
+import SellerRegister from "../Layout/SellerRegister";
 
 
 
@@ -62,6 +66,9 @@ const router = createBrowserRouter([
       },
       {
         path: '/check-out-order-success', element: <CheckOutOrderSuccessPage/>
+      },
+      {
+        path: '/category-search-page', element: <CategorySearchPage/>
       },
       {
         path: '/buy-again', element: <BuyAgain/>
@@ -141,12 +148,34 @@ const router = createBrowserRouter([
     children:[
       {
         path: 'sign-up' , element:<RegisterPage/> 
-      },
+      }
+      
+    ]
+  },
+
+
+  //seller login dashboard
+  {
+    path: '/seller',
+    element:<Seller/>,
+    children:[
       {
-        path: 'google-sign-in', element: <GoogleSignIn/>
+        path: 'seller-login-page' , element:<SellerLoginPage/>
+      },
+    ]
+  },
+
+  // seller dashboard
+   {
+    path: '/seller-sign-up',
+    element:<SellerRegister/>,
+    children:[
+      {
+        path: 'seller-sign-up' , element:<SellerSignUp/>
       }
     ]
   },
+
 
   // dashboard
   {

@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import LoginNavbar from "../components/loginNavbar/LoginNavbar";
 import ScrollToTop from "../components/scrollTop/ScrollTop";
 
 const SignIn = () => {
+  useEffect(() => {
+    // Disable scroll on mount
+    document.body.style.overflow = "hidden";
+    return () => {
+      // Restore scroll on unmount
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
-    <div className="overflow-">
+    <div className="overflow-hidden">
       <ScrollToTop />
       <LoginNavbar />
-      <div className="min- bg-white">
+      <div className="bg-white">
         <Outlet />
       </div>
     </div>

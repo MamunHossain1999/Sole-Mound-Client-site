@@ -4,20 +4,19 @@ import google from "../../assets/loginImg/google.png";
 import facebook from "../../assets/loginImg/facebook.png";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import bgOne from '../../assets/loginImg/bg-1.png';
-import bgTwo from '../../assets/loginImg/bg-2.png';
-import bgThree from '../../assets/loginImg/bg-3.png';
-import bgFour from '../../assets/loginImg/bg-4.png';
-import bgFive from '../../assets/loginImg/bg-5.png';
-import bgSix from '../../assets/loginImg/bg-6.png';
-import bgSeven from '../../assets/loginImg/bg-7.png';
-import bgEight from '../../assets/loginImg/bg-8.png';
-
+import bgOne from "../../assets/loginImg/bg-1.png";
+import bgTwo from "../../assets/loginImg/bg-2.png";
+import bgThree from "../../assets/loginImg/bg-3.png";
+import bgFour from "../../assets/loginImg/bg-4.png";
+import bgFive from "../../assets/loginImg/bg-5.png";
+import bgSix from "../../assets/loginImg/bg-6.png";
+import bgSeven from "../../assets/loginImg/bg-7.png";
+import bgEight from "../../assets/loginImg/bg-8.png";
 
 // import { auth, googleProvider, facebookProvider, appleProvider } from "../../firebase";
 // import { signInWithPopup } from "firebase/auth";
 
-const LoginPage = () => {
+const SellerLoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -71,19 +70,48 @@ const LoginPage = () => {
   return (
     <div className="relative bg-gradient-to-b from-[#FAE6F0] to-b-[#FDF6FA] min-h-screen">
       {/* Background Icons */}
-      <img src={bgOne} alt="bg" className="absolute top-5 left-5 w-[120.68px] h-[109.72px] " />
-      <img src={bgTwo} alt="bg" className="absolute top-40 left-95 w-[110px] h-[103px]" />
-      <img src={bgThree} alt="bg" className="absolute top-25  left-3/6 w-[127px] h-[108px]" />
-      <img src={bgFour} alt="bg" className="absolute top-10 right-40 w-[278px] h-[220px]" />
-      <img src={bgFive} alt="bg" className="absolute top-3/5 left-0 w-[145px] h-[124px] " />
-      <img src={bgSix} alt="bg" className="absolute top-1/2 left-[20%] w-[290px] h-[202px]" />
-      <img src={bgSeven} alt="bg" className="absolute top-2/3 left-[47%] w-[128px] h-[97px]" />
-      <img src={bgEight} alt="bg" className="absolute bottom-[25%] right-[13%] w-[116px] h-[110px]" />
+      <img
+        src={bgOne}
+        alt="bg"
+        className="absolute top-5 left-5 w-[120.68px] h-[109.72px] "
+      />
+      <img
+        src={bgTwo}
+        alt="bg"
+        className="absolute top-40 left-95 w-[110px] h-[103px]"
+      />
+      <img
+        src={bgThree}
+        alt="bg"
+        className="absolute top-25  left-3/6 w-[127px] h-[108px]"
+      />
+      <img
+        src={bgFour}
+        alt="bg"
+        className="absolute top-10 right-40 w-[278px] h-[220px]"
+      />
+      <img
+        src={bgFive}
+        alt="bg"
+        className="absolute top-3/5 left-0 w-[145px] h-[124px] "
+      />
+      <img
+        src={bgSix}
+        alt="bg"
+        className="absolute top-1/2 left-[20%] w-[290px] h-[202px]"
+      />
+      <img
+        src={bgSeven}
+        alt="bg"
+        className="absolute top-2/3 left-[47%] w-[128px] h-[97px]"
+      />
+      <img
+        src={bgEight}
+        alt="bg"
+        className="absolute bottom-[25%] right-[13%] w-[116px] h-[110px]"
+      />
 
-      <div
-        className="h-[600px] md:h-[850px] w-full bg-cover flex items-center justify-center px-4"
-        
-      >
+      <div className="h-[600px] md:h-[850px] w-full bg-cover flex items-center justify-center px-4">
         <div className="flex flex-col md:flex-row max-w-7xl w-full space-x-28 ">
           {/* Left Section */}
           <div className="hidden md:flex md:w-1/2 p-10 flex-col justify-center ">
@@ -91,7 +119,7 @@ const LoginPage = () => {
               Welcome!
             </h1>
             <p className="text-2xl lg:text-3xl text-[#EC75AD]">
-              Unlock exclusive perks when you log in
+              To Global Selling Center
             </p>
           </div>
 
@@ -209,10 +237,10 @@ const LoginPage = () => {
             <div className="mt-6 text-center">
               <p className="text-base text-[#505050]">
                 Don't have an account?{" "}
-                <Link to='/register/sign-up'>
-                    <span className="font-normal text-[#3CA6FC] hover:text-[#77b9f0] cursor-pointer">
+                <Link to="/seller-sign-up/seller-sign-up">
+                  <span className="font-normal text-[#3CA6FC] hover:text-[#77b9f0] cursor-pointer">
                     Create Account
-                    </span>
+                  </span>
                 </Link>
               </p>
             </div>
@@ -223,4 +251,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SellerLoginPage;

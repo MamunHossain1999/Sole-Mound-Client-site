@@ -39,7 +39,7 @@ const YourBrowsingHistory = () => {
       >
         {data.map((product, index) => (
           <SwiperSlide key={index}>
-            <div className="relative group bg-[#F8F8F8] hover:bg-[#FDF1F7] rounded-lg overflow-hidden cursor-pointer duration-400 hover:border hover:border-[#C8A8E9]">
+            <div className="relative group bg-[#F8F8F8] hover:bg-[#FDF1F7] rounded-lg overflow-hidden cursor-pointer duration-400  hover:border border-[#C8A8E9] ">
               {/* 👇 Hover Icons */}
               <div className="absolute inset-0 flex items-center justify-center bg-opacity-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <div className="flex gap-4">

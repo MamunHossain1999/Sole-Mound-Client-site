@@ -44,7 +44,7 @@ const BigBrandDeals = () => {
       >
         {brandImages.map((item, index) => (
           <SwiperSlide key={index}>
-            <div key={index}  className="bg-[#FDF1F7] h-auto rounded-lg overflow-hidden border  cursor-pointer duration-300 p-4">
+            <div key={index}  className="bg-[#FDF1F7] h-auto rounded-lg overflow-hidden hover:border border-[#C8A8E9]   cursor-pointer duration-300 p-4">
               <div className="">
                 <img 
                   src={item.image} 

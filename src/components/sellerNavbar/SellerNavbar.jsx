@@ -1,11 +1,12 @@
+
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/Logo 3.png";
 
-const LoginNavbar = () => {
+const SellerNavbar = () => {
   // ata nav items show hide er jnno
   const location = useLocation();
-  const showLoginText = location.pathname === "/authintication/login-page";
+  const showLoginText = location.pathname === "/seller/seller-login-page";
 
   return (
     <div className="w-full">
@@ -30,4 +31,4 @@ const LoginNavbar = () => {
   );
 };
 
-export default LoginNavbar;
+export default SellerNavbar;

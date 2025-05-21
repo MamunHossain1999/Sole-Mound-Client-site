@@ -1,11 +1,10 @@
-import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import logo from "../../assets/Logo 3.png";
-
-const LoginNavbar = () => {
+const SellerSignUpNavbar = () => {
   // ata nav items show hide er jnno
   const location = useLocation();
-  const showLoginText = location.pathname === "/authintication/login-page";
+  const showLoginText = location.pathname === "/seller-sign-up/seller-sign-up";
 
   return (
     <div className="w-full">
@@ -22,7 +21,7 @@ const LoginNavbar = () => {
             className="text-4xl text-[#505050] pl-12"
             style={{ fontFamily: "Oleo Script, cursive" }}
           >
-            Log In
+            Sign up as a supplier
           </div>
         )}
       </div>
@@ -30,4 +29,4 @@ const LoginNavbar = () => {
   );
 };
 
-export default LoginNavbar;
+export default SellerSignUpNavbar;

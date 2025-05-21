@@ -31,11 +31,11 @@ const WishList = () => {
     }
   };
 
-  const toggleFavorite = (id) => {
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id]
-    );
-  };
+  // const toggleFavorite = (id) => {
+  //   setFavorites((prev) =>
+  //     prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id]
+  //   );
+  // };
 
   const handleViewMore = () => {
     setVisibleCount((prev) => Math.min(prev + 2, allProducts.length));

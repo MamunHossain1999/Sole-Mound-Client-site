@@ -152,14 +152,39 @@ const Navbar = () => {
             </div>
 
             <div className="pt-4 border-t">
-              <p className="text-xs text-gray-400">Quick Links</p>
-              <div className="mt-2 space-y-2 text-sm">
-                <NavLink to="/weeklyDeals" onClick={toggleMenu} className="block hover:text-pink-600">Today’s Deals</NavLink>
-                <NavLink to="/shoppingCard" onClick={toggleMenu} className="block hover:text-pink-600">Shop</NavLink>
-                <NavLink to="/trending" onClick={toggleMenu} className="block hover:text-pink-600">Trending</NavLink>
-                <NavLink to="/blackFriday" onClick={toggleMenu} className="block hover:text-pink-600">Black Friday</NavLink>
-                <NavLink to="/buyAgain" onClick={toggleMenu} className="block hover:text-pink-600">Buy Again</NavLink>
-                <NavLink to="/browsHistory" onClick={toggleMenu} className="block hover:text-pink-600">Browsing History</NavLink>
+              <p className="text-base text-gray-400">Quick Links</p>
+              <div>
+                {/* Main Links */}
+                <div className="mt-2 space-y-2 text-base text-[#1F1F1F]">
+                  <NavLink to="/weeklyDeals" onClick={toggleMenu} className="block hover:text-pink-600">
+                    Today’s Deals
+                  </NavLink>
+                  <NavLink to="/shoppingCard" onClick={toggleMenu} className="block hover:text-pink-600">
+                    Shop
+                  </NavLink>
+                  <NavLink to="/trending" onClick={toggleMenu} className="block hover:text-pink-600">
+                    Trending
+                  </NavLink>
+                  <NavLink to="/blackFriday" onClick={toggleMenu} className="block hover:text-pink-600">
+                    Black Friday
+                  </NavLink>
+                  <NavLink to="/buyAgain" onClick={toggleMenu} className="block hover:text-pink-600">
+                    Buy Again
+                  </NavLink>
+                  <NavLink to="/browsing-history" onClick={toggleMenu} className="block hover:text-pink-600">
+                    Browsing History
+                  </NavLink>
+                </div>
+
+                {/* Utility Links */}
+                <div className="text-[#1F1F1F] mt-4 space-y-2 text-base">
+                  <NavLink to="/get-the-app" onClick={toggleMenu} className="block hover:text-pink-600">
+                    Get the App
+                  </NavLink>
+                  <NavLink to="/seller/seller-login-page" onClick={toggleMenu} className="block hover:text-pink-600">
+                    Become a Supplier
+                  </NavLink>
+                </div>
               </div>
             </div>
           </div>
@@ -167,14 +192,20 @@ const Navbar = () => {
       )}
 
       {/* Bottom Navbar for Desktop */}
-      <div className="hidden md:flex bg-white h-[71px] px-66 md:pt-16 md:pb-10 items-center gap-6 text-[#1F1F1F] text-[16px]">
-        <AllCategory />
-        <NavLink to="/weekly-deals" className={textLinkStyle}>Todays Deals</NavLink>
-        <NavLink to="/" className={textLinkStyle}>Shop</NavLink>
-        <NavLink to="/trending" className={textLinkStyle}>Trending</NavLink>
-        <NavLink to="/blackFriday" className={textLinkStyle}>Black Friday</NavLink>
-        <NavLink to="/buy-again" className={textLinkStyle}>Buy Again</NavLink>
-        <NavLink to="/brows-history" className={textLinkStyle}>Browsing History</NavLink>
+      <div className="container mx-auto md:flex bg-white items-center justify-between">
+        <div className="hidden md:flex h-[71px]  md:pt-16 md:pb-10 items-center gap-6 text-[#1F1F1F] text-base">
+          <AllCategory />
+          <NavLink to="/weekly-deals" className={textLinkStyle}>Todays Deals</NavLink>
+          <NavLink to="/" className={textLinkStyle}>Shop</NavLink>
+          <NavLink to="/trending" className={textLinkStyle}>Trending</NavLink>
+          <NavLink to="/blackFriday" className={textLinkStyle}>Black Friday</NavLink>
+          <NavLink to="/buy-again" className={textLinkStyle}>Buy Again</NavLink>
+          <NavLink to="/brows-history" className={textLinkStyle}>Browsing History</NavLink>
+        </div>
+        <div className="hidden md:flex  h-[71px]  md:pt-16 md:pb-10 items-center gap-6 text-[#1F1F1F] text-[16px]">
+          <NavLink to="/brows-history" className={textLinkStyle}>Get the app</NavLink>
+          <NavLink to="/seller/seller-login-page"  className={textLinkStyle}>Become a supplier</NavLink>
+        </div>
       </div>
 
       <hr className="h-[2px] bg-[#E2E3E8] border-0" />
