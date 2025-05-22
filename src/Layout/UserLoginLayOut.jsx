@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import LoginNavbar from "../components/loginNavbar/LoginNavbar";
 import ScrollToTop from "../components/scrollTop/ScrollTop";
 
-const SignIn = () => {
+const UserLoginLayOut = () => {
   useEffect(() => {
     // Disable scroll on mount
     document.body.style.overflow = "hidden";
@@ -24,4 +24,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default UserLoginLayOut;

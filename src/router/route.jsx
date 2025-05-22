@@ -31,18 +31,18 @@ import EmailVerificationForm from "../UserDashBoard/loginAndSerurity/EmailVerifi
 import FaqPage from "../pages/faqPage/FaqPage";
 import AboutUsPage from "../pages/aboutUsPage/AboutUsPage";
 import ContactUs from "../pages/contactUsPage/ContactUs";
-import LoginPage from "../authintication/loginPage/LoginPage";
+import LoginPage from "../authintication/userloginPage/UserLoginPage";
 import ResetPassword from "../authintication/resetPassword/ResetPassword";
 import ResetPasswordSuccess from "../authintication/enterVarificationCode/VarificationCode";
 import CreaateNewPassword from "../authintication/createNewPassword/CreaateNewPassword";
-import SignIn from "../Layout/SignIn";
-import SignUp from "../Layout/SignUp";
 import RegisterPage from "../authintication/registerPage/RegisterPage";
 import CategorySearchPage from "../pages/categorySearchPage/CategorySearchPage";
 import SellerLoginPage from "../authintication/sellerLogin/SellerLoginPage";
 import Seller from "../Layout/Seller";
 import SellerSignUp from "../authintication/sellerLogin/SellerSignUp";
 import SellerRegister from "../Layout/SellerRegister";
+import UserLoginLayOut from "../Layout/UserLoginLayOut";
+import UserSignUp from "../Layout/UserSignUp";
 
 
 
@@ -124,7 +124,7 @@ const router = createBrowserRouter([
   //signin system
   {
     path:'/authintication', 
-    element: <SignIn/>,
+    element: <UserLoginLayOut/>,
     children: [
       {
         path: 'login-page', element: <LoginPage/>
@@ -144,7 +144,7 @@ const router = createBrowserRouter([
   //signUp system
   {
     path: '/register',
-    element:<SignUp/>,
+    element:<UserSignUp/>,
     children:[
       {
         path: 'sign-up' , element:<RegisterPage/> 

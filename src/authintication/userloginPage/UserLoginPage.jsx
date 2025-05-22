@@ -15,7 +15,7 @@ import bgEight from '../../assets/loginImg/bg-8.png';
 import axios from "axios";
 
 
-const LoginPage = () => {
+const UserLoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -132,7 +132,7 @@ const handleSubmit = async (e) => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="Enter your email"
-                  className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
+                  className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                 />
               </div>
 
@@ -151,7 +151,7 @@ const handleSubmit = async (e) => {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   placeholder="Enter your password"
-                  className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
+                  className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                 />
               </div>
 
@@ -162,7 +162,7 @@ const handleSubmit = async (e) => {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 appearance-none border-[#C8A8E9]  rounded checked:bg-purple-600 checked:border-transparent"
+                    className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 cursor-pointer appearance-none border-[#C8A8E9]  rounded checked:bg-purple-600 checked:border-transparent"
                   />
                   <span className="pointer-events-none absolute left-[5px] top-1 text-white text-xs font-bold peer-checked:block hidden">
                     ✓
@@ -185,7 +185,7 @@ const handleSubmit = async (e) => {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-3 px-4 rounded-md text-base font-semibold text-[#1F1F1F] bg-[#C8A8E9] hover:bg-purple-400 focus:outline-none focus:ring-purple-400"
+                  className="w-full flex justify-center cursor-pointer py-3 px-4 rounded-md text-base font-semibold text-[#1F1F1F] bg-[#C8A8E9] hover:bg-purple-400 focus:outline-none focus:ring-purple-400"
                 >
                   Log In
                 </button>
@@ -242,4 +242,4 @@ const handleSubmit = async (e) => {
   );
 };
 
-export default LoginPage;
+export default UserLoginPage;
