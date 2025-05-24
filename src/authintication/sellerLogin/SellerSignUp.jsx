@@ -67,7 +67,7 @@ const SellerSignUp = () => {
                 src={
                   formData.country === "United Kingdom"
                     ? uk
-                    : formData.country === "Japan"
+                    : formData.country === "United States"
                     ? japan
                     : bangladesh
                 }
@@ -81,7 +81,7 @@ const SellerSignUp = () => {
                 className="w-full bg-transparent text-sm text-[#000000E0] focus:outline-none appearance-none pl-2"
               >
                 <option value="United Kingdom">United Kingdom</option>
-                <option value="Japan">Japan</option>
+                <option value="United States">United States</option>
                 <option value="Bangladesh">Bangladesh</option>
               </select>
               <MdOutlineKeyboardArrowDown className="absolute right-3 top-1/2 -translate-y-1/2 text-[#00000040]" />

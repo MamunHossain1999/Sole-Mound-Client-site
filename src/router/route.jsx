@@ -43,6 +43,7 @@ import UserRegisterPage from "../authintication/userloginPage/UserRegisterPage";
 import SellerRegisterLayOut from "../Layout/SellerRegisterLayOut";
 import SellerLoginLayOut from "../Layout/SellerLoginLayOut";
 import UserSignUpLayOut from "../Layout/UserSignUpLayOut";
+import PrivateRoute from "../protectedRoute/PrivateRoute";
 
 
 
@@ -180,7 +181,7 @@ const router = createBrowserRouter([
   // dashboard
   {
     path: '/dashboard',
-    element: <DashBoard/>,
+    element: <PrivateRoute><DashBoard/></PrivateRoute>,
     children: [
       {
         path: 'account-page', element:<AccountPage/>
@@ -189,7 +190,7 @@ const router = createBrowserRouter([
         path: 'brows-history', element: <BrowsHistory/>
       },
       {
-        path: 'wishlist', element: <WishList/>
+        path: 'wishlist', element: <PrivateRoute><WishList/></PrivateRoute>
       },
       {
         path: 'order-history', element: <OrderhistoryPage/>

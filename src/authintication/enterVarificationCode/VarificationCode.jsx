@@ -11,7 +11,7 @@ const VerificationCode = () => {
 
   const email = location.state?.email;
 
-  // Masked email display
+  // Masked email for display
   const maskedEmail = email
     ? email.replace(/^(.{1})(.*)(@.*)$/, (_, a, b, c) =>
         a + "*".repeat(b.length) + c
@@ -19,33 +19,37 @@ const VerificationCode = () => {
     : "";
 
   useEffect(() => {
-    const timer =
-      resendTimer > 0 &&
-      setInterval(() => setResendTimer((prev) => prev - 1), 1000);
-    return () => clearInterval(timer);
+    if (resendTimer > 0) {
+      const timer = setInterval(() => setResendTimer((prev) => prev - 1), 1000);
+      return () => clearInterval(timer);
+    }
   }, [resendTimer]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("/api/verify-otp", { email, otp: code });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/auth/verify-otp`,
+        { otp: code }
+      );
 
       if (res.status === 200) {
         toast.success("OTP verified successfully!");
-        navigate("/authintication/reset-password", { state: { email } });
+        navigate("/auth/reset-password", { state: { email } });
       }
     } catch (err) {
-      toast.error(
-        err.response?.data?.message || "Invalid or expired code. Try again."
-      );
+      const error = err.response?.data;
+      toast.error(error?.error || "Invalid or expired code. Try again.");
     }
   };
 
   const handleResend = async () => {
-    if (resendTimer === 0) {
+    if (resendTimer === 0 && email) {
       try {
-        await axios.post("/api/send-otp", { email });
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/resend-otp`, {
+          email,
+        });
         toast.success("New OTP has been sent.");
         setResendTimer(35);
       } catch (err) {
@@ -55,7 +59,7 @@ const VerificationCode = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-[#FAE6F0] to-[#FDF6FA] min-h-screen flex flex-col justify-center px-4">
+    <div className="w-full mx-auto bg-gradient-to-b from-[#FAE6F0] to-[#FDF6FA] min-h-screen flex flex-col px-4">
       <div className="text-[32px] font-medium text-[#1F1F1F] text-center mb-6 border-b border-[#919191] py-6">
         <p className="pt-7">Enter verification code</p>
       </div>
