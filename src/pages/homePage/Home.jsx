@@ -14,7 +14,7 @@ import BestsellersSection from "../../components/bestSellers/BestsellersSection"
 const Home = () => {
   return (
     <div className=" pb-20">
-      <div className="container mx-auto bg-white border-b overflow-x-auto py-2">
+      <div className="container mx-auto bg-white \overflow-x-auto py-2">
         <div className="container mx-auto px-4 flex items-center justify-between min-w-full mt-10 md:mt-1">
           <div className="flex items-center space-x-4">
             <button className="text-gray-700 hover:text-blue-500 focus:outline-none">

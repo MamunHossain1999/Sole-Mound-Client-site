@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import { Mail, Lock } from "lucide-react";
+import React, { useContext, useState } from "react";
+import { Mail} from "lucide-react";
 import { toast } from "react-toastify";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
-// Images
 import simg from "../../assets/signUpbgImg/simg.png";
 import dotdot from "../../assets/signUpbgImg/dotdot.png";
 import apple from "../../assets/loginImg/apple.png";
 import google from "../../assets/loginImg/google.png";
 import facebook from "../../assets/loginImg/facebook.png";
+import { AuthContext } from "../../providers/AuthProvider";
 
-const RegisterPage = () => {
+const UserRegisterPage = () => {
+  const {handleRegister} = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -20,9 +21,8 @@ const RegisterPage = () => {
     agree: false,
   });
 
-  const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/";
+  
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -33,37 +33,30 @@ const RegisterPage = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const { name, email, password, agree } = formData;
+  const { name, email, password, agree } = formData;
 
-    if (!name || !email || !password) {
-      return toast.error("Please fill in all fields.");
-    }
+  if (!name || !email || !password) {
+    toast.error("Please fill in all fields.");
+    return;  // এটা একটু ভালো practice — early return
+  }
 
-    if (!agree) {
-      return toast.error("Please accept Terms & Conditions to continue.");
-    }
+  if (!agree) {
+    toast.error("Please accept Terms & Conditions to continue.");
+    return;  // একইভাবে early return
+  }
 
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/auth/signup`,
-        { name, email, password }
-      );
+  const result = await handleRegister(name, email, password);
 
-      if (response.data.success) {
-        toast.success("Signup successful!");
-        navigate(from, { replace: true });
-      } else {
-        toast.error("Signup failed. Try again.");
-      }
-    } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Something went wrong. Please try again."
-        
-      );
-    }
-  };
+  if (result.success) {
+    toast.success("Signup successful!");
+    navigate("/auth/login-page", { replace: true });
+  } else {
+    toast.error(result.message || "Login failed. Try again.");
+  }
+};
+
 
   const handleSocialLogin = (platform) => {
     toast.info(`${platform} sign-in not implemented yet.`);
@@ -83,7 +76,7 @@ const RegisterPage = () => {
         className="absolute top-0 left-18 w-[685px] h-[961px]"
       />
 
-      <div className="container mx-auto flex justify-center items-center md:-mt-[150px]">
+      <div className="container mx-auto flex justify-center items-center md:pt-[0px]">
         <div className="bg-white w-full max-w-5xl md:h-[550px] rounded-lg shadow-lg p-6 md:p-12 z-10">
           <h2 className="text-[26px] sm:text-[32px] font-medium text-center text-[#1F1F1F] mb-6">
             Create your Sole Mound account
@@ -106,7 +99,7 @@ const RegisterPage = () => {
                     placeholder="Enter your name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border cursor-pointer border-[#B6B7BC] text-[#878A92] rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                    className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                     required
                   />
                 </div>
@@ -125,7 +118,7 @@ const RegisterPage = () => {
                       placeholder="Enter your email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border cursor-pointer border-[#B6B7BC] text-[#878A92] rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                      className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                       required
                     />
                     <div className="absolute right-3 top-4 text-gray-400">
@@ -148,11 +141,11 @@ const RegisterPage = () => {
                       placeholder="Enter your password"
                       value={formData.password}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border cursor-pointer border-[#B6B7BC] text-[#878A92] rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                      className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                       required
                     />
                     <div
-                      className="absolute right-5 top-4 text-gray-400 cursor-pointer"
+                      className="absolute right-3 top-4 text-gray-400 cursor-pointer"
                       onClick={() => setShowPassword((prev) => !prev)}
                     >
                       {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -168,9 +161,9 @@ const RegisterPage = () => {
                       name="agree"
                       checked={formData.agree}
                       onChange={handleChange}
-                      className="peer h-5 w-5 border-2 cursor-pointer border-[#C8A8E9] rounded appearance-none checked:bg-purple-600 checked:border-transparent"
+                      className="peer h-5 w-5 border-2 cursor-pointer border-[#C8A8E9] rounded appearance-none checked:bg-[#C8A8E9]  checked:border-transparent"
                     />
-                    <span className="pointer-events-none absolute left-[5px] top-1 text-white text-xs font-bold peer-checked:block hidden">
+                    <span className="pointer-events-none absolute left-[5px] top-0.5 text-white text-xs font-bold peer-checked:block hidden">
                       ✓
                     </span>
                   </div>
@@ -234,4 +227,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default UserRegisterPage;

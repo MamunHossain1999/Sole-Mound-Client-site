@@ -35,14 +35,15 @@ import LoginPage from "../authintication/userloginPage/UserLoginPage";
 import ResetPassword from "../authintication/resetPassword/ResetPassword";
 import ResetPasswordSuccess from "../authintication/enterVarificationCode/VarificationCode";
 import CreaateNewPassword from "../authintication/createNewPassword/CreaateNewPassword";
-import RegisterPage from "../authintication/registerPage/RegisterPage";
 import CategorySearchPage from "../pages/categorySearchPage/CategorySearchPage";
 import SellerLoginPage from "../authintication/sellerLogin/SellerLoginPage";
-import Seller from "../Layout/Seller";
 import SellerSignUp from "../authintication/sellerLogin/SellerSignUp";
-import SellerRegister from "../Layout/SellerRegister";
 import UserLoginLayOut from "../Layout/UserLoginLayOut";
-import UserSignUp from "../Layout/UserSignUp";
+import UserRegisterPage from "../authintication/userloginPage/UserRegisterPage";
+import SellerRegisterLayOut from "../Layout/SellerRegisterLayOut";
+import SellerLoginLayOut from "../Layout/SellerLoginLayOut";
+import UserSignUpLayOut from "../Layout/UserSignUpLayOut";
+
 
 
 
@@ -123,7 +124,7 @@ const router = createBrowserRouter([
 
   //signin system
   {
-    path:'/authintication', 
+    path:'/auth', 
     element: <UserLoginLayOut/>,
     children: [
       {
@@ -144,20 +145,19 @@ const router = createBrowserRouter([
   //signUp system
   {
     path: '/register',
-    element:<UserSignUp/>,
+    element:<UserSignUpLayOut/>,
     children:[
       {
-        path: 'sign-up' , element:<RegisterPage/> 
+        path: 'sign-up' , element:<UserRegisterPage/> 
       }
       
     ]
   },
 
-
   //seller login dashboard
   {
     path: '/seller',
-    element:<Seller/>,
+    element:<SellerLoginLayOut/>,
     children:[
       {
         path: 'seller-login-page' , element:<SellerLoginPage/>
@@ -167,8 +167,8 @@ const router = createBrowserRouter([
 
   // seller dashboard
    {
-    path: '/seller-sign-up',
-    element:<SellerRegister/>,
+    path: '/seller-sign',
+    element:<SellerRegisterLayOut/>,
     children:[
       {
         path: 'seller-sign-up' , element:<SellerSignUp/>

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import dotdot from "../../assets/signUpbgImg/dotdot.png";
 import simg from "../../assets/signUpbgImg/simg.png";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bangladesh from "../../assets/sellerCountry img/bangladesh.png";
 import uk from "../../assets/sellerCountry img/uk.png";
 import japan from "../../assets/sellerCountry img/Japan.png";
+import toast from "daisyui/components/toast";
 
 const SellerSignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     country: "United Kingdom",
     tradeRole: "",
@@ -31,15 +33,18 @@ const SellerSignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.agree) {
-      alert("You must agree to the terms and conditions.");
-      return;
-    }
-    console.log("Form Data Submitted:", formData);
-    alert("Form submitted successfully!");
-  };
+ const handleSubmit = (e) => {
+  e.preventDefault();
+
+  if (!formData.agree) {
+    toast.error("You must agree to the terms and conditions.");
+    return;
+  }
+
+  console.log("Form Data Submitted:", formData);
+  toast.success("Form submitted successfully!");
+  navigate("/auth/seller-login-page");
+};
 
   return (
     <div className="w-full flex relative mx-auto min-h-screen bg-gradient-to-b from-[#FAE6F0] to-b-[#FDF6FA] bg-white">
@@ -120,7 +125,7 @@ const SellerSignUp = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Your email will be set as account name"
-              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 text-sm rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
               required
             />
           </div>
@@ -136,7 +141,7 @@ const SellerSignUp = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Set the login password"
-              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 text-sm rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
               required
             />
           </div>
@@ -152,7 +157,7 @@ const SellerSignUp = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="Enter your login password again"
-              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 text-sm rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
               required
             />
           </div>
@@ -168,7 +173,7 @@ const SellerSignUp = () => {
               value={formData.companyName}
               onChange={handleChange}
               placeholder="Enter your company name here"
-              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+              className="w-full md:w-3/5 border border-[#E2E3E8] px-3 py-3 text-sm rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
             />
           </div>
 
@@ -184,7 +189,7 @@ const SellerSignUp = () => {
                 value={formData.firstName}
                 onChange={handleChange}
                 placeholder="First name"
-                className="w-full md:w-1/2 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+                className="w-full md:w-1/2 border border-[#E2E3E8] px-3 py-3 text-sm rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
               />
               <input
                 name="lastName"
@@ -192,7 +197,7 @@ const SellerSignUp = () => {
                 value={formData.lastName}
                 onChange={handleChange}
                 placeholder="Last name"
-                className="w-full md:w-1/2 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+                className="w-full md:w-1/2 border border-[#E2E3E8] px-3 py-3 text-sm rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
               />
             </div>
           </div>
@@ -208,7 +213,7 @@ const SellerSignUp = () => {
                 type="text"
                 value={formData.phoneCountry}
                 onChange={handleChange}
-                className="w-full md:w-1/6 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+                className="w-full md:w-1/6 border border-[#E2E3E8] px-3 py-3 text-sm rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
               />
               <input
                 name="phoneArea"
@@ -216,7 +221,7 @@ const SellerSignUp = () => {
                 value={formData.phoneArea}
                 onChange={handleChange}
                 placeholder="Area"
-                className="w-full md:w-1/4 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+                className="w-full md:w-1/4  border border-[#E2E3E8] px-3 py-3 text-sm rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
               />
               <input
                 name="phoneNumber"
@@ -224,7 +229,7 @@ const SellerSignUp = () => {
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 placeholder="Phone Number"
-                className="w-full md:w-2/3 border border-[#E2E3E8] px-3 py-3 rounded text-sm"
+                className="w-full md:w-2/3  border border-[#E2E3E8] px-3 py-3 text-sm rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
               />
             </div>
           </div>
@@ -238,7 +243,7 @@ const SellerSignUp = () => {
                     name="agree"
                     checked={formData.agree}
                     onChange={handleChange}
-                    className="peer w-5 h-5 accent-[#C8A8E9] bg-white border border-gray-300 rounded appearance-none checked:bg-[#C8A8E9] checked:border-transparent"
+                    className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 cursor-pointer appearance-none border-[#C8A8E9]  rounded checked:bg-[#C8A8E9] checked:border-transparent"
                     />
                     <span className="pointer-events-none absolute left-1.5 md:left-52.5 top-[2px] text-white text-xs font-bold peer-checked:block hidden">
                     ✓

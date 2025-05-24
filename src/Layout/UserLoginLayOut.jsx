@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import LoginNavbar from "../components/loginNavbar/LoginNavbar";
+
 import ScrollToTop from "../components/scrollTop/ScrollTop";
+import UserLoginNavbar from "../components/loginNavbar/UserLoginNavbar";
 
 const UserLoginLayOut = () => {
   useEffect(() => {
@@ -16,7 +17,7 @@ const UserLoginLayOut = () => {
   return (
     <div className="overflow-hidden">
       <ScrollToTop />
-      <LoginNavbar />
+      <UserLoginNavbar />
       <div className="bg-white">
         <Outlet />
       </div>

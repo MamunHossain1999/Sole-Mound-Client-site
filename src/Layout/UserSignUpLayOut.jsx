@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import ScrollToTop from '../components/scrollTop/ScrollTop';
-import { Outlet } from 'react-router-dom';
-import SellerSignUpNavbar from '../components/sellerSignUpNavbar/SellerSignUpNavbar';
 
-const SellerRegister = () => {
-      useEffect(() => {
+import { Outlet } from 'react-router-dom';
+import ScrollToTop from '../components/scrollTop/ScrollTop';
+import UserLoginNavbar from '../components/loginNavbar/UserLoginNavbar';
+
+const UserSignUpLayOut = () => {
+     useEffect(() => {
         // Disable scroll on mount
         document.body.style.overflow = "auto";
         return () => {
@@ -15,7 +16,7 @@ const SellerRegister = () => {
     return (
         <div className='overflow-hidden'>
             <ScrollToTop/>
-            <SellerSignUpNavbar/>
+            <UserLoginNavbar/>
             <div>
                 <Outlet/>
             </div>
@@ -23,4 +24,4 @@ const SellerRegister = () => {
     );
 };
 
-export default SellerRegister;
+export default UserSignUpLayOut;

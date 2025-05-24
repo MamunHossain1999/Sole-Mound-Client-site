@@ -3,7 +3,7 @@ import apple from "../../assets/loginImg/apple.png";
 import google from "../../assets/loginImg/google.png";
 import facebook from "../../assets/loginImg/facebook.png";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgOne from "../../assets/loginImg/bg-1.png";
 import bgTwo from "../../assets/loginImg/bg-2.png";
 import bgThree from "../../assets/loginImg/bg-3.png";
@@ -20,6 +20,7 @@ const SellerLoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +37,7 @@ const SellerLoginPage = () => {
 
     toast.success("Login successful!");
     console.log({ email, password, rememberMe });
+    navigate("/", { replace: true });
   };
   // google login
   const handleGoogleLogin = async () => {
@@ -171,7 +173,7 @@ const SellerLoginPage = () => {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 appearance-none border-[#C8A8E9]  rounded checked:bg-purple-600 checked:border-transparent"
+                    className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 appearance-none border-[#C8A8E9]  rounded checked:bg-[#C8A8E9]  checked:border-transparent"
                   />
                   <span className="pointer-events-none absolute left-[5px] top-1 text-white text-xs font-bold peer-checked:block hidden">
                     ✓
@@ -184,7 +186,7 @@ const SellerLoginPage = () => {
                   </label>
                 </div>
                 <Link
-                  to="/authintication/forgot-password"
+                  to="/auth/forgot-password"
                   className="text-base text-[#3CA6FC] hover:text-[#77b9f0]"
                 >
                   Forgot Password?
@@ -194,7 +196,7 @@ const SellerLoginPage = () => {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-3 px-4 rounded-md text-base font-semibold text-[#1F1F1F] bg-[#C8A8E9] hover:bg-purple-400 focus:outline-none focus:ring-purple-400"
+                  className="w-full flex justify-center py-3 px-4 rounded-md text-base font-semibold text-[#1F1F1F] bg-[#C8A8E9] hover:bg-purple-00 focus:outline-none focus:ring-purple-400"
                 >
                   Log In
                 </button>
@@ -237,7 +239,7 @@ const SellerLoginPage = () => {
             <div className="mt-6 text-center">
               <p className="text-base text-[#505050]">
                 Don't have an account?{" "}
-                <Link to="/seller-sign-up/seller-sign-up">
+                <Link to="/seller-sign/seller-sign-up">
                   <span className="font-normal text-[#3CA6FC] hover:text-[#77b9f0] cursor-pointer">
                     Create Account
                   </span>

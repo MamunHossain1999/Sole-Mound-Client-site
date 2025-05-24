@@ -1,33 +1,37 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const ResetPassword = () => {
+  const {ForgotPassword} = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
-    if (!email.trim()) {
-      toast.error("Please enter your email.");
-      return;
-    }
+const handleSubmit = async () => {
+  if (!email.trim()) {
+    toast.error("Please enter your email.");
+    return;
+  }
 
-    try {
-      // Send request to backend
-      const res = await axios.post("/api/send-otp", { email });
+  try {
+    // Call the forgotPassword function with email
+    const res = await ForgotPassword(email);
 
-      if (res.status === 200) {
-        toast.success("OTP has been sent to your email.");
-        // Navigate to OTP input page with email as state
-        navigate("/authintication/reset-password-success", { state: { email } });
-      }
-    } catch (err) {
-      toast.error(
-        err.response?.data?.message || "Failed to send OTP. Try again."
-      );
+    if (res.success) {
+      toast.success("OTP has been sent to your email.");
+      // Navigate to OTP input page with email as state
+      navigate("/auth/reset-password-success", { state: { email } });
+    } else {
+      toast.error(res.message || "Failed to send OTP. Try again.");
     }
-  };
+  } catch (err) {
+    toast.error(
+      err.response?.data?.message || "Failed to send OTP. Try again."
+    );
+  }
+};
+
 
   return (
     <div className="bg-gradient-to-b from-[#FAE6F0] to-[#FDF6FA] min-h-screen">
@@ -61,7 +65,7 @@ const ResetPassword = () => {
           <div className="text-center mt-4">
             <span
               className="text-[#3CA6FC] hover:text-blue-400 cursor-pointer"
-              onClick={() => navigate("/authintication/login-page")}
+              onClick={() => navigate("/auth/login-page")}
             >
               Return to Sign in
             </span>

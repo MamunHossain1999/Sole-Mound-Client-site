@@ -40,7 +40,7 @@ const Navbar = () => {
     <>
       {/* Language */}
       <div className="text-center">
-        <NavLink to="/authintication/login-page" className={navLinkStyle}>
+        <NavLink to="/auth/login-page" className={navLinkStyle}>
           <span className="flex text-[16px] justify-center">EN /</span>
           <span className="text-[16px]">USD</span>
         </NavLink>
@@ -72,7 +72,7 @@ const Navbar = () => {
   
       {/* Cart */}
       <div className="text-center">
-        <NavLink to="/shoppingCard" className={navLinkStyle}>
+        <NavLink to="/user/register" className={navLinkStyle}>
           <img
             src={cardIcon}
             alt="cart"
@@ -139,7 +139,7 @@ const Navbar = () => {
 
             <div className="flex items-center gap-2 text-sm">
               <span className="text-gray-500">Language:</span>
-              <span>EN / USD</span>
+              <NavLink to="/auth/login-page"><span>EN / USD</span></NavLink>
             </div>
 
             <div className="relative">
