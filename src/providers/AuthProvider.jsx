@@ -144,16 +144,16 @@ const AuthProvider = ({ children }) => {
 
 
 useEffect(() => {
-  console.log("🔄 Checking token for auto-login...");
+  console.log(" Checking token for auto-login...");
   const token = Cookies.get("token");
-  console.log("🧩 Token from cookie:", token);
+  console.log(" Token from cookie:", token);
 
   if (token) {
     try {
       const decoded = jwtDecode(token);
-      console.log("✅ Decoded token:", decoded);
+      console.log(" Decoded token:", decoded);
 
-      // 🛠️ Key ঠিক করা: user_id → userId
+     
       if (decoded.userId) {
         decoded.userId ;
         delete decoded.userId;
@@ -164,7 +164,7 @@ useEffect(() => {
       console.log("📅 Token expires at:", decoded.exp);
 
       if (decoded.exp > currentTime) {
-        console.log("🔐 Token is still valid, trying to fetch user...");
+        console.log(" Token is still valid, trying to fetch user...");
         setLoader(true);
 
         axios
@@ -176,27 +176,27 @@ useEffect(() => {
             if (res.data.success) {
               setUser(res.data.data.user);
             } else {
-              console.log("🚫 Backend says user not found.");
+              console.log(" Backend says user not found.");
               setUser(null);
               Cookies.remove("token");
             }
           })
           .catch((err) => {
-            console.error("❌ Error fetching user from token:", err.message);
+            console.error(" Error fetching user from token:", err.message);
             setUser(null);
             Cookies.remove("token");
           })
           .finally(() => {
-            console.log("⏹️ Loader set to false");
+            console.log(" Loader set to false");
             setLoader(false);
           });
       } else {
-        console.log("⛔ Token expired");
+        console.log(" Token expired");
         setUser(null);
         Cookies.remove("token");
       }
     } catch (err) {
-      console.error("💥 Token decode error:", err.message);
+      console.error(" Token decode error:", err.message);
       setUser(null);
       Cookies.remove("token");
     }
