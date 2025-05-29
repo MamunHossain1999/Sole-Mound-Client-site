@@ -9,7 +9,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(false);
-
+  const localUserData = JSON.parse(localStorage.getItem("user"));
   const api = import.meta.env.VITE_API_BASE_URL;
 
   // ✅ Email/Password Login
@@ -26,8 +26,12 @@ const AuthProvider = ({ children }) => {
 
       if (res.data.success) {
         const { user, token } = res.data.data;
-        setUser(user);
         Cookies.set("token", token, { expires: 7, path: "/" });
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+
+        setUser(user);
+
         console.log("Token set in cookie:", token);
         return { success: true };
       } else {
@@ -78,6 +82,8 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     Cookies.remove("token", { path: "/" });
     console.log("Removed token:", Cookies.get("token"));
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setUser(null);
     window.location.href = "/";
   };
@@ -139,6 +145,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+<<<<<<< HEAD
 
 // ✅ Check if user is logged in on initial load
 
@@ -157,12 +164,32 @@ useEffect(() => {
       if (decoded.userId) {
         decoded.userId ;
         delete decoded.userId;
+=======
+  const verifyAccessToken = async (token) => {
+    try {
+      const response = await axios.get(
+        `${api}/users/verify`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token as Bearer
+          },
+        },
+        { withCredentials: true }
+      );
+
+      return response.data.data.user;
+    } catch (error) {
+      if (error.response?.status === 403) {
+        throw new Error("Access token expired");
+>>>>>>> fad9e2c5d217f28d1df7471edce03b418fdd0ba2
       }
+      throw error;
+    }
+  };
 
-      const currentTime = Date.now() / 1000;
-      console.log("⏱️ Current time (in seconds):", currentTime);
-      console.log("📅 Token expires at:", decoded.exp);
+  // ✅ Check if user is logged in on initial load
 
+<<<<<<< HEAD
       if (decoded.exp > currentTime) {
         console.log(" Token is still valid, trying to fetch user...");
         setLoader(true);
@@ -199,12 +226,81 @@ useEffect(() => {
       console.error(" Token decode error:", err.message);
       setUser(null);
       Cookies.remove("token");
+=======
+  useEffect(() => {
+    const verifyUser = async () => {
+      // if (localStorage.getItem("token") === null) {
+      //   return logOut();
+      // }
+      const userData = await verifyAccessToken(localStorage.getItem("token"));
+
+      if (localUserData === null) {
+        return localStorage.setItem("userData", JSON.stringify(userData));
+        // return await localforage.setItem("user", userData);
+      }
+    };
+    setUser(localUserData);
+
+    verifyUser();
+    console.log("🔄 Checking token for auto-login...");
+    const token = Cookies.get("token");
+    console.log("🧩 Token from cookie:", token);
+
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        console.log("✅ Decoded token:", decoded);
+
+        // 🛠️ Key ঠিক করা: user_id → userId
+        if (decoded.userId) {
+          decoded.userId;
+          delete decoded.userId;
+        }
+
+        const currentTime = Date.now() / 1000;
+        console.log("⏱️ Current time (in seconds):", currentTime);
+        console.log("📅 Token expires at:", decoded.exp);
+
+        if (decoded.exp > currentTime) {
+          console.log("🔐 Token is still valid, trying to fetch user...");
+          setLoader(true);
+
+          axios
+            .get(`${api}/users/profile`, {
+              headers: { Authorization: `Bearer ${token}` },
+              withCredentials: true,
+            })
+            .then((res) => {
+              if (res.data.success) {
+                setUser(res.data.data.user);
+              } else {
+                console.log("🚫 Backend says user not found.");
+                setUser(null);
+                Cookies.remove("token");
+              }
+            })
+            .catch((err) => {
+              console.error("❌ Error fetching user from token:", err.message);
+              setUser(null);
+              Cookies.remove("token");
+            })
+            .finally(() => {
+              console.log("⏹️ Loader set to false");
+              setLoader(false);
+            });
+        } else {
+          console.log("⛔ Token expired");
+          setUser(null);
+          Cookies.remove("token");
+        }
+      } catch (err) {
+        console.error("💥 Token decode error:", err.message);
+        setUser(null);
+        Cookies.remove("token");
+      }
+>>>>>>> fad9e2c5d217f28d1df7471edce03b418fdd0ba2
     }
-  }
-}, []);
-
-
-
+  }, []);
 
   // ✅ Google Login
   const handleGoogleLogin = {
@@ -246,7 +342,9 @@ useEffect(() => {
     handleGoogleLogin,
   };
 
-  return <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
