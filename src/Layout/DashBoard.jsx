@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 
 
@@ -15,8 +15,25 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import UseAuth from "../hooks/UseAuth";
+
 
 const DashBoard = () => {
+  const { user, logOut } = UseAuth();
+  const navigate = useNavigate();
+
+
+ const handleLogout = async () => {
+ 
+  logOut();
+  
+
+    // Redirect
+    navigate("/auth/login-page");
+ 
+};
+
+
   const menuItems = [
     {
       icon: <HomeIcon size={18} />,
@@ -37,7 +54,7 @@ const DashBoard = () => {
       text: "Browsing History",
       href: "/dashboard/brows-history",
     },
-    { icon: <LogOut size={18} />, text: "Log-out", href: "/logout" },
+    
   ];
 
   return (
@@ -47,20 +64,20 @@ const DashBoard = () => {
       <div className="flex flex-1 container mx-auto px-4 py-6 gap-6">
         {/* Sidebar */}
         <aside className="w-64 top-40 h-fit px-2 py-8">
-          <div className="text-[16px] text-gray-700 px-2 pb-6">
-            Welcome, <strong>Mamun</strong>.{" "}
-            <button className="text-blue-600 hover:underline text-[16px] ml-2">
+          <div className="text-base text-[#919191] px-2 pb-6">
+            Welcome, <strong>{user?.name || "User"}</strong>.{" "}
+            <button  onClick={handleLogout} className="text-[#A8537B] hover:underline text-base font-semibold ml-2">
               Sign out
             </button>
           </div>
 
           <ul className="space-y-2 border border-[#B6B7BC] p-2 rounded-lg">
-            {menuItems.map((item, index) => (
+            {menuItems?.map((item, index) => (
               <li key={index}>
                 <NavLink
                   to={item.href}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 p-2 rounded-lg text-[16px] transition-all ${
+                    `flex items-center gap-3 p-2 rounded-lg text-base transition-all ${
                       isActive
                         ? "text-[#A8537B] "
                         : "text-[#505050]"
@@ -72,6 +89,7 @@ const DashBoard = () => {
                 </NavLink>
               </li>
             ))}
+             <p onClick={handleLogout} className="flex items-center gap-3 ml-2 cursor-pointer"> <LogOut size={18} />logout</p>
           </ul>
         </aside>
 

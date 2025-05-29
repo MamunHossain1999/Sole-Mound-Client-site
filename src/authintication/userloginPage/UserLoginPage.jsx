@@ -14,6 +14,7 @@ import bgSeven from "../../assets/loginImg/bg-7.png";
 import bgEight from "../../assets/loginImg/bg-8.png";
 import { Eye, EyeOff, Mail } from "lucide-react";
 import { AuthContext } from "../../providers/AuthProvider";
+import UseAuth from "../../hooks/UseAuth";
 
 const UserLoginPage = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ const UserLoginPage = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { handleLogin } = useContext(AuthContext);
+  const { handleLogin } = UseAuth();
 
   // Email/password login handler
   const handleSubmit = async (e) => {

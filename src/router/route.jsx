@@ -181,7 +181,7 @@ const router = createBrowserRouter([
   // dashboard
   {
     path: '/dashboard',
-    element: <PrivateRoute><DashBoard/></PrivateRoute>,
+    element: <DashBoard/>,
     children: [
       {
         path: 'account-page', element:<AccountPage/>

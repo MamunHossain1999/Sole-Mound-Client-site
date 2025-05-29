@@ -36,7 +36,6 @@ const DealsCard = () => {
     ));
   };
 
-  
 
 const handleClearHistory = () => {
   setHistoryItems([]);
@@ -51,7 +50,7 @@ const handleSaveToWishlist = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="pt-4">
+      <div className="pt-7 md:pt-5 mx-4">
         <h2 className="text-base text-[#000000] font-semibold">Your Browsing History</h2>
         <p className="text-[#505050] text-base mb-4">
           These items were viewed recently. We use them to personalize recommendations.
@@ -61,11 +60,11 @@ const handleSaveToWishlist = () => {
       {historyItems.length === 0 ? (
         <div className="text-center text-gray-500 my-10">No browsing history found.</div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 cursor-pointer">
-          {historyItems.map((item, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 cursor-pointer mx-4">
+          {historyItems?.map((item, index) => (
             <div
               key={index}
-              className="bg-[#FDF1F7]  hover:border border-[#C8A8E9]  rounded-lg p-4 overflow-hidden transition-all duration-300"
+              className="bg-[#FDF1F7] hover:border rounded-lg p-4 overflow-hidden cursor-pointer duration-600 border border-transparent hover:border-[#C8A8E9] transition-all"
             >
               <div className="">
                 <img
@@ -90,7 +89,7 @@ const handleSaveToWishlist = () => {
 
       {/* Buttons */}
       {historyItems.length > 0 && (
-        <div className="flex justify-end gap-4 py-8">
+        <div className="flex justify-center md:justify-end gap-4 py-8">
           <button
             onClick={handleClearHistory}
             className="px-6 py-2 bg-white border border-[#B6B7BC] text-[#1F1F1F] text-base rounded hover:bg-[#C8A8E9]"

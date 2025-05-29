@@ -39,7 +39,7 @@ const YourBrowsingHistory = () => {
       >
         {data.map((product, index) => (
           <SwiperSlide key={index}>
-            <div className="relative group bg-[#F8F8F8] hover:bg-[#FDF1F7] rounded-lg overflow-hidden cursor-pointer duration-400  hover:border border-[#C8A8E9] ">
+            <div className="relative group bg-[#F8F8F8] hover:bg-[#FDF1F7] rounded-lg overflow-hidden cursor-pointer duration-600 border border-transparent hover:border-[#C8A8E9] transition-all ">
               {/* 👇 Hover Icons */}
               <div className="absolute inset-0 flex items-center justify-center bg-opacity-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <div className="flex gap-4">
@@ -63,15 +63,15 @@ const YourBrowsingHistory = () => {
                 />
 
                 <div className="flex items-center mb-2">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <span key={star} className="text-yellow-400 text-[16px]">
+                  {[1, 2, 3, 4, 5]?.map((star) => (
+                    <span key={star} className="text-[#FFC61C] text-base">
                       {star <= product.rating ? '★' : '☆'}
                     </span>
                   ))}
                   <span className="text-[#919191] ml-1">({product.rating})</span>
                 </div>
 
-                <h3 className="font-medium text-[#1F1F1F] text-[16px] mb-2 line-clamp-2 h-12">
+                <h3 className="font-medium text-[#1F1F1F] text-base mb-2 line-clamp-2 h-12">
                   {product.name}
                 </h3>
 
@@ -86,7 +86,7 @@ const YourBrowsingHistory = () => {
         ))}
       </Swiper>
 
-      {/* ✅ Custom Pagination Container - dots will appear here */}
+      {/* Custom Pagination Container - dots will appear here */}
       <div className="custom-swiper-pagination mt-4 flex justify-center gap-2"></div>
     </div>
   );

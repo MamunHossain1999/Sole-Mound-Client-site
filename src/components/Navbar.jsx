@@ -8,6 +8,7 @@ import AllCategory from "../dropdown/allCategory/AllCategory";
 import userIcon from '../assets/navbarIcon/Vector (2).png';
 import favoriteIcon from '../assets/navbarIcon/Vector (3).png';
 import cardIcon from '../assets/navbarIcon/Vector (4).png';
+import UseAuth from "../hooks/UseAuth";
 
 const navLinkStyle = ({ isActive }) =>
   isActive ? "group text-white" : "group text-[#505050]";
@@ -17,6 +18,7 @@ const textLinkStyle = ({ isActive }) =>
   isActive ? "text-[#0F0F0F] font-semibold " : "text-[#505050] ";
 
 const Navbar = () => {
+  const {user} = UseAuth()
   const [menuOpen, setMenuOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
@@ -54,7 +56,7 @@ const Navbar = () => {
             alt="user"
             className="h-[21px] w-[21px] mx-auto group-[.text-white]:invert group-[.text-white]:brightness-0"
           />
-          <span className="text-[16px]">Hello User</span>
+           {user ? <p>Hello {user.name}</p> : <p>Hello User</p>}
         </NavLink>
       </div>
   
@@ -192,7 +194,7 @@ const Navbar = () => {
       )}
 
       {/* Bottom Navbar for Desktop */}
-      <div className="container mx-auto md:flex bg-white items-center justify-between">
+      <div className="container mx-auto md:flex bg-white items-center md:px-4 justify-between">
         <div className="hidden md:flex h-[71px]  md:pt-16 md:pb-10 items-center gap-6 text-[#1F1F1F] text-base">
           <AllCategory />
           <NavLink to="/weekly-deals" className={textLinkStyle}>Todays Deals</NavLink>

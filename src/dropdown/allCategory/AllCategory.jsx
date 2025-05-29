@@ -495,7 +495,7 @@ const AllCategory = () => {
       <div>
         <button
           type="button"
-          className="inline-flex justify-center w-full py-2 text-sm font-medium text-gray-700 bg-white rounded-md cursor-pointer hover:bg-gray-100"
+          className="inline-flex justify-center w-full py-2 text-base  items-center gap-0.5 font-semibold text-[#1F1F1F] bg-white rounded-md cursor-pointer hover:bg-gray-100"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -513,7 +513,7 @@ const AllCategory = () => {
           </svg>
           All Category
           <svg
-            className="-mr-1 ml-2 h-5 w-5 text-gray-400"
+            className=" ml- h-5 w-5 text-[#1F1F1F]"
             viewBox="0 0 20 20"
             fill="currentColor"
             aria-hidden="true"
@@ -530,7 +530,7 @@ const AllCategory = () => {
       {/* Main Menu on Hover */}
       <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-20">
         <div className="py-1">
-          {parentCategories.map((parent) => (
+          {parentCategories?.map((parent) => (
             <div key={parent.name} className="relative group/submenu">
               <Link
                 to={`/category/${parent.name.toLowerCase().replace(/ /g, "-")}`}
@@ -557,7 +557,7 @@ const AllCategory = () => {
               {parent.sub && (
                 <div className="absolute left-full top-0 mt-0 w-56 bg-white rounded-md shadow-lg opacity-0 group-hover/submenu:opacity-100 invisible group-hover/submenu:visible transition-all duration-200 z-30">
                   <div className="py-1 max-h-52 overflow-y-auto">
-                    {parent.sub.map((sub) => (
+                    {parent?.sub?.map((sub) => (
                       <Link
                         key={sub.name}
                         to={sub.link}

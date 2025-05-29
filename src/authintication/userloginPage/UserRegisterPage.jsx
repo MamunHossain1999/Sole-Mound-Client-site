@@ -1,24 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Mail} from "lucide-react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
 import simg from "../../assets/signUpbgImg/simg.png";
 import dotdot from "../../assets/signUpbgImg/dotdot.png";
 import apple from "../../assets/loginImg/apple.png";
 import google from "../../assets/loginImg/google.png";
 import facebook from "../../assets/loginImg/facebook.png";
-import { AuthContext } from "../../providers/AuthProvider";
+import UseAuth from "../../hooks/UseAuth";
+
 
 const UserRegisterPage = () => {
-  const {handleRegister} = useContext(AuthContext);
+  const {handleRegister} = UseAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     agree: false,
+    role: "customer",
   });
 
   const navigate = useNavigate();
@@ -39,15 +40,15 @@ const UserRegisterPage = () => {
 
   if (!name || !email || !password) {
     toast.error("Please fill in all fields.");
-    return;  // এটা একটু ভালো practice — early return
+    return;  
   }
 
   if (!agree) {
     toast.error("Please accept Terms & Conditions to continue.");
-    return;  // একইভাবে early return
+    return;  
   }
 
-  const result = await handleRegister(name, email, password);
+  const result = await handleRegister(name, email, password, "customer");
 
   if (result.success) {
     toast.success("Signup successful!");
