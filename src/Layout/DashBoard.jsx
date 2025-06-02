@@ -1,8 +1,5 @@
 import React from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-
-
-
 import {
   Clock,
   CreditCard,
@@ -19,20 +16,23 @@ import UseAuth from "../hooks/UseAuth";
 
 
 const DashBoard = () => {
-  const { user, logOut } = UseAuth();
+  const { user, loader, logOut } = UseAuth();
   const navigate = useNavigate();
 
 
  const handleLogout = async () => {
- 
   logOut();
-  
-
     // Redirect
     navigate("/auth/login-page");
- 
 };
 
+  if (loader) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div ><span className="loading loading-spinner text-success"></span></div>
+      </div>
+    );
+  }
 
   const menuItems = [
     {

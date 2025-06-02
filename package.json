@@ -15,7 +15,6 @@
     "axios": "^1.8.4",
     "daisyui": "^5.0.12",
     "js-cookie": "^3.0.5",
-    "jwt-decode": "^4.0.0",
     "localforage": "^1.10.0",
     "lucide-react": "^0.487.0",
     "match-sorter": "^8.0.0",

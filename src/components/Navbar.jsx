@@ -18,7 +18,7 @@ const textLinkStyle = ({ isActive }) =>
   isActive ? "text-[#0F0F0F] font-semibold " : "text-[#505050] ";
 
 const Navbar = () => {
-  const {user} = UseAuth()
+  const {user, loader} = UseAuth()
   const [menuOpen, setMenuOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
@@ -37,6 +37,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
 
+  if (loader) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div ><span className="loading loading-spinner text-success"></span></div>
+      </div>
+    );
+  }
   
   const items = (
     <>
