@@ -66,7 +66,7 @@ const UserLoginPage = () => {
       <img src={bgTwo} alt="bg" className="absolute top-40 left-95 w-[110px] h-[103px]" />
       <img src={bgThree} alt="bg" className="absolute top-25 left-3/6 w-[127px] h-[108px]" />
       <img src={bgFour} alt="bg" className="absolute top-10 right-40 w-[278px] h-[220px]" />
-      <img src={bgFive} alt="bg" className="absolute top-3/5 left-0 w-[145px] h-[124px]" />
+      <img src={bgFive} alt="bg" className="absolute top-3/5 left-0 w-[121px] h-[102px]" />
       <img src={bgSix} alt="bg" className="absolute top-1/2 left-[20%] w-[290px] h-[202px]" />
       <img src={bgSeven} alt="bg" className="absolute top-2/3 left-[47%] w-[128px] h-[97px]" />
       <img src={bgEight} alt="bg" className="absolute bottom-[25%] right-[13%] w-[116px] h-[110px]" />

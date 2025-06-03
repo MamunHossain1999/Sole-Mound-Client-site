@@ -2,21 +2,20 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import Loading from "../components/Loading";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loader, setLoader] = useState(false);
+  console.log('user: ', user);
+  const [loader, setLoader] = useState(true); // Start with true since we'll check token on load
   const api = import.meta.env.VITE_API_BASE_URL;
-
-  
-
 
   // ✅ Email/Password Login
   const handleLogin = async (email, password) => {
-    setLoader(true);
     try {
+      setLoader(true);
       const res = await axios.post(
         `${api}/auth/login`,
         { email, password },
@@ -24,8 +23,10 @@ const AuthProvider = ({ children }) => {
       );
 
       if (res.data.success) {
-        const { user, token } = res.data.data;
-        Cookies.set("token", token, { expires: 7, path: "/" });
+        const { user } = res.data.data;
+
+        
+        // Cookies.set("token", token, { expires: 7, path: "/" });
         setUser(user);
         return { success: true };
       } else {
@@ -40,11 +41,10 @@ const AuthProvider = ({ children }) => {
       setLoader(false);
     }
   };
-
   // ✅ Register
   const handleRegister = async (name, email, password, role) => {
-    setLoader(true);
     try {
+      setLoader(true);
       const res = await axios.post(
         `${api}/auth/signup`,
         { name, email, password, role },
@@ -75,10 +75,10 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     window.location.href = "/";
   };
-
   // ✅ Forgot Password
   const ForgotPassword = async (email) => {
     try {
+      setLoader(true);
       const res = await axios.post(
         `${api}/auth/forgot-password`,
         { email },
@@ -90,13 +90,15 @@ const AuthProvider = ({ children }) => {
         success: false,
         message: err.response?.data?.message || "Failed to send reset email",
       };
+    } finally {
+      setLoader(false);
     }
   };
 
   // ✅ Update Profile
   const ManageProfile = async (name, image) => {
-    setLoader(true);
     try {
+      setLoader(true);
       const res = await axios.patch(
         `${api}/users/profile`,
         { name, image },
@@ -134,6 +136,7 @@ const AuthProvider = ({ children }) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        withCredentials: true,
       });
       console.log("verifyAccessToken response:", response.data);
       return response.data.data.user;
@@ -148,40 +151,86 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+
+  
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    console.log("Token from localStorage:", token);
+
+    const loaduser = async () => {
+  
+      try {
+        const userData = await fetch(`${api}/users/profile`, {
+          credentials: "include",
+        });
+
+
+        console.log("Verified user data:", userData);
+        if (userData) {
+          setUser(userData);
+        } else {
+          setUser(null);
+         
+        }
+      } catch (error) {
+        console.error("Token verification failed:", error);
+        setUser(null);
+      
+      } finally {
+        setLoader(false);
+      }
+    }
+   loaduser();
+
+   
+  }, []);
+
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    console.log("Token from cookies:", token);
 
     if (!token) {
       setUser(null);
-      setLoader(false); // ✅ loader false করা দরকার
+      setLoader(false);
       return;
     }
 
     const verifyUser = async () => {
-      const userData = await verifyAccessToken(token);
-      console.log("Verified user data:", userData);
-      if (userData) {
-        setUser(userData);
-      } else {
+      try {
+        const userData = await verifyAccessToken(token);
+        console.log("Verified user data:", userData);
+        if (userData) {
+          setUser(userData);
+        } else {
+          setUser(null);
+          Cookies.remove("token", { path: "/" });
+        }
+      } catch (error) {
+        console.error("Token verification failed:", error);
         setUser(null);
-        localStorage.removeItem("token");
+        Cookies.remove("token", { path: "/" });
+      } finally {
+        setLoader(false);
       }
-      setLoader(false); // ✅ finally loader false
     };
 
     verifyUser();
   }, []);
+
+
 
   // ✅ Google Login
   const handleGoogleLogin = {
     onSuccess: async (tokenResponse) => {
       setLoader(true);
       try {
-        const res = await axios.post(`${api}/auth/google`, {
-          provider: "google",
-          token: tokenResponse.access_token,
-        });
+        const res = await axios.post(
+          `${api}/auth/google`,
+          {
+            provider: "google",
+            token: tokenResponse.access_token,
+          },
+          { withCredentials: true }
+        );
 
         if (res.data.success) {
           setUser(res.data.data.user);
@@ -198,6 +247,10 @@ const AuthProvider = ({ children }) => {
     },
   };
 
+
+
+
+  
   // Shared context value
   const AuthInfo = {
     user,
@@ -210,9 +263,10 @@ const AuthProvider = ({ children }) => {
     ManageProfile,
     handleGoogleLogin,
   };
-
   return (
-    <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={AuthInfo}>
+      {loader ? <Loading /> : children}
+    </AuthContext.Provider>
   );
 };
 

@@ -1,0 +1,33 @@
+{"cards": [
+  {
+    "id": 1,
+    "bankName": "BANK NAME",
+    "network": "VISA",
+    "number": "1234 5678 9009 8765",
+    "cardholderName": "Cardholder Name",
+    "validThru": "08/28",
+    "image": "https://i.ibb.co/zH2tsyDP/Bank-Card-1-2.png"
+  },
+  {
+    "id": 2,
+    "bankName": "BANK NAME",
+    "network": "VISA",
+    "number": "1234 5678 9009 8765",
+    "cardholderName": "Cardholder Name",
+    "validThru": "08/28",
+    "image": "https://i.ibb.co/ccHdrdXD/Bank-Card-2-3.png"
+  }
+],
+  "shippingAddress": {
+    "name": "Kevin Gilbert",
+    "street": "East Tejturi Bazar, Word No. 04, Road No. 13/x, House no. 1320/C, Flat No. 5D, Dhaka - 1200, Bangladesh",
+    "phone": "+1-202-555-0118",
+    "email": "kevingilbert@gmail.com"
+  },
+  "billingAddress": {
+    "name": "Kevin Gilbert",
+    "street": "East Tejturi Bazar, Word No. 04, Road No. 13/x, House no. 1320/C, Flat No. 5D, Dhaka - 1200, Bangladesh",
+    "phone": "+1-202-555-0118",
+    "email": "kevingilbert@gmail.com"
+  }
+}

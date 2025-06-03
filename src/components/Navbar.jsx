@@ -63,7 +63,7 @@ const Navbar = () => {
             alt="user"
             className="h-[21px] w-[21px] mx-auto group-[.text-white]:invert group-[.text-white]:brightness-0"
           />
-           {user ? <p>Hello {user.name}</p> : <p>Hello User</p>}
+           {user ? <p>{user.name}</p> : <p>Hello User</p>}
         </NavLink>
       </div>
   
