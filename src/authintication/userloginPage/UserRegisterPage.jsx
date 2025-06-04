@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { Mail} from "lucide-react";
+import { Mail, Eye, EyeOff } from "lucide-react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
+
 import simg from "../../assets/signUpbgImg/simg.png";
 import dotdot from "../../assets/signUpbgImg/dotdot.png";
 import apple from "../../assets/loginImg/apple.png";
 import google from "../../assets/loginImg/google.png";
 import facebook from "../../assets/loginImg/facebook.png";
-import UseAuth from "../../hooks/UseAuth";
 
+import useAuth from "../../hooks/UseAuth";
 
 const UserRegisterPage = () => {
-  const {handleRegister} = UseAuth();
+  const { handleRegister } = useAuth();
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -21,9 +23,6 @@ const UserRegisterPage = () => {
     agree: false,
     role: "customer",
   });
-
-  const navigate = useNavigate();
-  
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -34,30 +33,41 @@ const UserRegisterPage = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
+    const { name, email, password, agree } = formData;
 
-  const { name, email, password, agree } = formData;
+    if (!name || !email || !password) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
 
-  if (!name || !email || !password) {
-    toast.error("Please fill in all fields.");
-    return;  
-  }
+    if (!agree) {
+      toast.error("Please accept Terms & Conditions to continue.");
+      return;
+    }
 
-  if (!agree) {
-    toast.error("Please accept Terms & Conditions to continue.");
-    return;  
-  }
+    const result = await handleRegister(name, email, password, "customer");
 
-  const result = await handleRegister(name, email, password, "customer");
+    if (result.success) {
+      toast.success("Signup successful!");
 
-  if (result.success) {
-    toast.success("Signup successful!");
-    navigate("/auth/login-page", { replace: true });
-  } else {
-    toast.error(result.message || "Login failed. Try again.");
-  }
-};
+      // ✅ Reset all fields properly
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        agree: false,
+        role: "customer",
+      });
 
+      // Optional: wait before redirect
+      setTimeout(() => {
+        navigate("/auth/login-page", { replace: true });
+      }, 1000);
+    } else {
+      toast.error(result.message || "Signup failed. Try again.");
+    }
+  };
 
   const handleSocialLogin = (platform) => {
     toast.info(`${platform} sign-in not implemented yet.`);
@@ -85,13 +95,9 @@ const UserRegisterPage = () => {
 
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-              {/* Left Side */}
               <div>
                 <div className="mb-4">
-                  <label
-                    htmlFor="name"
-                    className="block text-base font-semibold text-[#505050] mb-1"
-                  >
+                  <label className="block text-base font-semibold text-[#505050] mb-1">
                     Name
                   </label>
                   <input
@@ -100,16 +106,13 @@ const UserRegisterPage = () => {
                     placeholder="Enter your name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
+                    className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                     required
                   />
                 </div>
 
                 <div className="mb-4">
-                  <label
-                    htmlFor="email"
-                    className="block text-base font-semibold text-[#505050] mb-1"
-                  >
+                  <label className="block text-base font-semibold text-[#505050] mb-1">
                     Email
                   </label>
                   <div className="relative">
@@ -119,7 +122,7 @@ const UserRegisterPage = () => {
                       placeholder="Enter your email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
+                      className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                       required
                     />
                     <div className="absolute right-3 top-4 text-gray-400">
@@ -129,10 +132,7 @@ const UserRegisterPage = () => {
                 </div>
 
                 <div className="mb-6">
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-medium text-gray-600 mb-1"
-                  >
+                  <label className="block text-sm font-medium text-gray-600 mb-1">
                     Password
                   </label>
                   <div className="relative">
@@ -142,7 +142,7 @@ const UserRegisterPage = () => {
                       placeholder="Enter your password"
                       value={formData.password}
                       onChange={handleChange}
-                      className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
+                      className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                       required
                     />
                     <div
@@ -162,19 +162,19 @@ const UserRegisterPage = () => {
                       name="agree"
                       checked={formData.agree}
                       onChange={handleChange}
-                      className="peer h-5 w-5 border-2 cursor-pointer border-[#C8A8E9] rounded appearance-none checked:bg-[#C8A8E9]  checked:border-transparent"
+                      className="peer h-5 w-5 border-2 border-[#C8A8E9] rounded appearance-none checked:bg-[#C8A8E9] checked:border-transparent"
                     />
                     <span className="pointer-events-none absolute left-[5px] top-0.5 text-white text-xs font-bold peer-checked:block hidden">
                       ✓
                     </span>
                   </div>
                   <label htmlFor="agree" className="text-sm text-[#505050]">
-                    I agree that I’ve read and agreed to the Terms & Conditions and Privacy Policy
+                    I agree that I’ve read and agreed to the Terms & Conditions
+                    and Privacy Policy
                   </label>
                 </div>
               </div>
 
-              {/* Right Side */}
               <div>
                 <div className="flex items-center gap-4 pb-7 w-full md:w-[422px] mx-auto">
                   <div className="flex-grow h-px bg-[#B6B7BC]"></div>
@@ -186,7 +186,7 @@ const UserRegisterPage = () => {
                   <button
                     type="button"
                     onClick={() => handleSocialLogin("Google")}
-                    className="cursor-pointer w-full flex items-center justify-center px-4 text-[#505050] text-base font-semibold py-3 border border-[#B6B7BC] rounded-md hover:bg-gray-50"
+                    className="w-full flex items-center justify-center px-4 text-[#505050] text-base font-semibold py-3 border border-[#B6B7BC] rounded-md hover:bg-gray-50"
                   >
                     <img src={google} alt="google" className="w-5 h-5 mr-3" />
                     Continue with Google
@@ -195,7 +195,7 @@ const UserRegisterPage = () => {
                   <button
                     type="button"
                     onClick={() => handleSocialLogin("Apple")}
-                    className="cursor-pointer w-full flex items-center justify-center px-4 text-[#505050] text-base font-semibold py-3 border border-[#B6B7BC] rounded-md hover:bg-gray-50"
+                    className="w-full flex items-center justify-center px-4 text-[#505050] text-base font-semibold py-3 border border-[#B6B7BC] rounded-md hover:bg-gray-50"
                   >
                     <img src={apple} alt="apple" className="w-5 h-5 mr-3" />
                     Continue with Apple
@@ -204,7 +204,7 @@ const UserRegisterPage = () => {
                   <button
                     type="button"
                     onClick={() => handleSocialLogin("Facebook")}
-                    className="cursor-pointer w-full flex items-center justify-center px-4 text-[#505050] text-base font-semibold py-3 border border-[#B6B7BC] rounded-md hover:bg-gray-50"
+                    className="w-full flex items-center justify-center px-4 text-[#505050] text-base font-semibold py-3 border border-[#B6B7BC] rounded-md hover:bg-gray-50"
                   >
                     <img src={facebook} alt="facebook" className="w-5 h-5 mr-3" />
                     Continue with Facebook
@@ -216,7 +216,7 @@ const UserRegisterPage = () => {
             <div className="pt-6 w-full md:w-3/4 mx-auto">
               <button
                 type="submit"
-                className="cursor-pointer w-full bg-[#C8A8E9] text-[#1F1F1F] py-3 rounded-md font-semibold hover:bg-purple-300"
+                className="w-full bg-[#C8A8E9] text-[#1F1F1F] py-3 rounded-md font-semibold hover:bg-purple-300"
               >
                 Sign Up
               </button>

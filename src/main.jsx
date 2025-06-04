@@ -13,10 +13,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <React.StrictMode>
-          <ToastContainer position="top-center" autoClose={3000} />
-          <RouterProvider router={router} />
-        </React.StrictMode>
+        <ToastContainer position="top-center" autoClose={3000} />
+        <RouterProvider router={router} />
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

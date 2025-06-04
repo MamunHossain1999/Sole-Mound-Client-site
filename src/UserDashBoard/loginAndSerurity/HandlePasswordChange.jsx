@@ -9,7 +9,7 @@ const HandlePasswordChange = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [loading, setLoading] = useState(false); // ✅ Added loading state
+  const [loading, setLoading] = useState(false); 
 
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const HandlePasswordChange = () => {
   const handleUpdate = async () => {
     setLoading(true);
     try {
-      const response = await axios.post('/api/change-password', {
+      const response = await axios.post(``, {
         oldPassword,
         newPassword
       });

@@ -8,7 +8,8 @@ import AllCategory from "../dropdown/allCategory/AllCategory";
 import userIcon from '../assets/navbarIcon/Vector (2).png';
 import favoriteIcon from '../assets/navbarIcon/Vector (3).png';
 import cardIcon from '../assets/navbarIcon/Vector (4).png';
-import UseAuth from "../hooks/UseAuth";
+import useAuth from "../hooks/UseAuth";
+
 
 const navLinkStyle = ({ isActive }) =>
   isActive ? "group text-white" : "group text-[#505050]";
@@ -18,12 +19,20 @@ const textLinkStyle = ({ isActive }) =>
   isActive ? "text-[#0F0F0F] font-semibold " : "text-[#505050] ";
 
 const Navbar = () => {
-  const {user, loader} = UseAuth()
+  const {user, loader} = useAuth()
   const [menuOpen, setMenuOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+  const [searchText, setSearchText] = useState("");
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const handleSearch = () => {
+  
+  console.log("Searching for:", searchText);
+  // navigate(`/search?query=${searchText}`);
+  };
+
 
   // navbar show hide
   useEffect(() => {
@@ -112,7 +121,11 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search for anything..."
+            autoComplete="off"
             className="input bg-white text-[#919191] input-bordered w-full py-2 pl-10 rounded-full focus:outline-none"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
           />
           <FaSearch className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400" />
         </div>

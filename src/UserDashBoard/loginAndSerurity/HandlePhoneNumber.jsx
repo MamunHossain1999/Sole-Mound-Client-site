@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const HandlePhoneNumber = ({ onClose, onUpdate, initialPhone }) => {
-  const [number, setNumber] = useState(initialPhone);
+const HandlePhoneNumber = ({ onUpdate, initialPhone }) => {
+  const [number, setNumber] = useState(initialPhone || ''); 
+  const navigate = useNavigate(); 
 
   const handleCancel = () => {
-    onClose();
+    navigate(-1);
   };
 
   const handleUpdate = () => {
@@ -16,7 +18,7 @@ const HandlePhoneNumber = ({ onClose, onUpdate, initialPhone }) => {
       <div className="px-6 py-8 border border-[#919191] rounded-lg">
         <h2 className="text-[24px] font-medium text-[#1F1F1F] mb-2">Add your Phone Number</h2>
         <p className="text-sm font-normal text-[#505050] mb-4">
-          To update the name on your Sole Mound account, enter the new name below and click the Save Changes button to confirm
+          To update the phone number on your Sole Mound account, enter the new number below and click the Update button to confirm.
         </p>
 
         {/* Input */}

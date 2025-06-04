@@ -1,4 +1,3 @@
-// AuthProvider.jsx
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -8,11 +7,10 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  console.log('user: ', user);
-  const [loader, setLoader] = useState(true); // Start with true since we'll check token on load
+  const [loader, setLoader] = useState(true); 
   const api = import.meta.env.VITE_API_BASE_URL;
 
-  // ✅ Email/Password Login
+  //Login
   const handleLogin = async (email, password) => {
     try {
       setLoader(true);
@@ -23,10 +21,8 @@ const AuthProvider = ({ children }) => {
       );
 
       if (res.data.success) {
-        const { user } = res.data.data;
-
-        
-        // Cookies.set("token", token, { expires: 7, path: "/" });
+        const { user, token } = res.data.data;
+        Cookies.set("token", token, { expires: 7, path: "/" });
         setUser(user);
         return { success: true };
       } else {
@@ -41,7 +37,8 @@ const AuthProvider = ({ children }) => {
       setLoader(false);
     }
   };
-  // ✅ Register
+
+  //Register
   const handleRegister = async (name, email, password, role) => {
     try {
       setLoader(true);
@@ -71,11 +68,12 @@ const AuthProvider = ({ children }) => {
 
   // ✅ Logout
   const logOut = () => {
-    Cookies.remove("token", { path: "/" });
+    Cookies.remove("token");
     setUser(null);
     window.location.href = "/";
   };
-  // ✅ Forgot Password
+
+  //Forgot Password
   const ForgotPassword = async (email) => {
     try {
       setLoader(true);
@@ -95,20 +93,24 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // ✅ Update Profile
+  //Update Profile
   const ManageProfile = async (name, image) => {
+    const token = Cookies.get("token");
+
+    if (!token) {
+      return { success: false, message: "User not authenticated" };
+    }
+
     try {
       setLoader(true);
-      const res = await axios.patch(
-        `${api}/users/profile`,
-        { name, image },
-        {
-          headers: {
-            Authorization: `Bearer ${Cookies.get("token")}`,
-          },
-          withCredentials: true,
-        }
-      );
+      const payload = { name };
+      if (image) payload.image = image;
+
+      const res = await axios.patch(`${api}/users/profile`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (res.data.success) {
         setUser(res.data.data.user);
@@ -129,96 +131,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // Token verification function
-  const verifyAccessToken = async (token) => {
-    try {
-      const response = await axios.get(`${api}/users/verify`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
-      console.log("verifyAccessToken response:", response.data);
-      return response.data.data.user;
-    } catch (error) {
-      if (error.response) {
-        console.error("API error status:", error.response.status);
-        console.error("API error data:", error.response.data);
-      } else {
-        console.error("Axios error:", error.message);
-      }
-      return null;
-    }
-  };
-
-
-  
-  useEffect(() => {
-
-    const loaduser = async () => {
-  
-      try {
-        const userData = await fetch(`${api}/users/profile`, {
-          credentials: "include",
-        });
-
-
-        console.log("Verified user data:", userData);
-        if (userData) {
-          setUser(userData);
-        } else {
-          setUser(null);
-         
-        }
-      } catch (error) {
-        console.error("Token verification failed:", error);
-        setUser(null);
-      
-      } finally {
-        setLoader(false);
-      }
-    }
-   loaduser();
-
-   
-  }, []);
-
-
-  useEffect(() => {
-    const token = Cookies.get("token");
-    console.log("Token from cookies:", token);
-
-    if (!token) {
-      setUser(null);
-      setLoader(false);
-      return;
-    }
-
-    const verifyUser = async () => {
-      try {
-        const userData = await verifyAccessToken(token);
-        console.log("Verified user data:", userData);
-        if (userData) {
-          setUser(userData);
-        } else {
-          setUser(null);
-          Cookies.remove("token", { path: "/" });
-        }
-      } catch (error) {
-        console.error("Token verification failed:", error);
-        setUser(null);
-        Cookies.remove("token", { path: "/" });
-      } finally {
-        setLoader(false);
-      }
-    };
-
-    verifyUser();
-  }, []);
-
-
-
-  // ✅ Google Login
+  //Google Login
   const handleGoogleLogin = {
     onSuccess: async (tokenResponse) => {
       setLoader(true);
@@ -237,21 +150,52 @@ const AuthProvider = ({ children }) => {
           Cookies.set("token", res.data.data.token, { expires: 7, path: "/" });
         }
       } catch (error) {
-        console.error("Google login error:", error);
+        // error suppressed
       } finally {
         setLoader(false);
       }
     },
     onError: (error) => {
-      console.error("Google Login Failed:", error);
+      // error suppressed
     },
   };
 
+  //Auto login on refresh
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (!token) {
+      setUser(null);
+      setLoader(false);
+      return;
+    }
 
+    const verifyAccessToken = async () => {
+      try {
+        const res = await axios.get(`${api}/users/verify`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        });
 
+        if (res.data.success && res.data.data?.user) {
+          setUser(res.data.data.user);
+        } else {
+          setUser(null);
+          Cookies.remove("token", { path: "/" });
+        }
+      } catch (error) {
+        setUser(null);
+        Cookies.remove("token", { path: "/" });
+      } finally {
+        setLoader(false);
+      }
+    };
 
-  
-  // Shared context value
+    verifyAccessToken();
+  }, []);
+
+  // Context values
   const AuthInfo = {
     user,
     loader,
@@ -263,6 +207,7 @@ const AuthProvider = ({ children }) => {
     ManageProfile,
     handleGoogleLogin,
   };
+
   return (
     <AuthContext.Provider value={AuthInfo}>
       {loader ? <Loading /> : children}

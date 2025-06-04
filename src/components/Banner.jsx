@@ -63,7 +63,7 @@ const Banner = () => {
           modules={[Navigation, Autoplay, Pagination, EffectFade]}
           className="h-full"
         >
-          {bannerSlides.map((slide) => (
+          {bannerSlides?.map((slide) => (
             <SwiperSlide key={slide.id}>
               <div className="container mx-auto flex flex-col md:flex-row items-center justify-between p-6 md:p-12 h-full">
                 <div className="w-full md:w-1/3 flex justify-center md:justify-start">

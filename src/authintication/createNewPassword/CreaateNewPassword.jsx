@@ -3,19 +3,27 @@ import { Eye, EyeOff } from "lucide-react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import useAuth from "../../hooks/UseAuth";
+
 
 const CreateNewPassword = () => {
-  const [oldPassword, setOldPassword] = useState("");
+  const { user } = useAuth(); 
+  const email = user?.email || ""; 
+
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (!oldPassword || !newPassword || !confirmPassword) {
+    if (!email) {
+      toast.error("User email not found. Please login again.");
+      return;
+    }
+
+    if (!newPassword || !confirmPassword) {
       toast.error("All password fields are required");
       return;
     }
@@ -33,12 +41,12 @@ const CreateNewPassword = () => {
     try {
       setLoading(true);
 
-      const res = await axios.patch(
+      const res = await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/auth/reset-password`,
         {
-          password: oldPassword,
-          newPassword: newPassword,
-          conformPassword: confirmPassword,
+          email,
+          newPassword,
+          confirmPassword,
         },
         {
           withCredentials: true,
@@ -68,23 +76,6 @@ const CreateNewPassword = () => {
       </div>
 
       <div className="w-full max-w-lg mx-auto space-y-4">
-        {/* Old Password */}
-        <div className="relative">
-          <input
-            type={showOldPassword ? "text" : "password"}
-            placeholder="Old Password*"
-            value={oldPassword}
-            onChange={(e) => setOldPassword(e.target.value)}
-            className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] focus:outline-none focus:ring-1 focus:ring-purple-300"
-          />
-          <div
-            onClick={() => setShowOldPassword(!showOldPassword)}
-            className="absolute right-3 top-3 cursor-pointer text-gray-600"
-          >
-            {showOldPassword ? <EyeOff /> : <Eye />}
-          </div>
-        </div>
-
         {/* New Password */}
         <div className="relative">
           <input

@@ -2,22 +2,13 @@ import axios from 'axios';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import UseAuth from '../../hooks/UseAuth';
-
-// export const getUserProfile = async () => {
-//   const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/users/profile`);
-//   return response.data;
-// };
+import useAuth from '../../hooks/UseAuth';
 
 const LoginAndSecurity = () => {
-  const {user, loader} = UseAuth()
+  const {user, loader} = useAuth()
   console.log(user)
   const navigate = useNavigate();
 
-  // const { data: users, isLoading, isError } = useQuery({
-  //   queryKey: ['userProfile'],
-  //   queryFn: getUserProfile,
-  // });
   // Delete account handler
   const handleDeleteAccount = async () => {
     try {
@@ -47,7 +38,7 @@ const LoginAndSecurity = () => {
             <p className="text-[16px] font-medium text-[#1F1F1F]">Name</p>
             <p className="text-[14px] text-[#1F1F1F]">{user?.name || 'Not available'}</p>
           </div>
-          <Link to='/change-name'>
+          <Link to='/handle-change-name'>
             <button className="text-[16px] border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
               Edit
             </button>
@@ -60,7 +51,7 @@ const LoginAndSecurity = () => {
             <p className="text-[16px] font-medium text-[#1F1F1F]">Email</p>
             <p className="text-[14px] text-[#1F1F1F]">{user?.email || 'Not available'}</p>
           </div>
-          <Link to='/change-email'>
+          <Link to='/handle-email-change'>
             <button className="text-[16px] border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
               Edit
             </button>
@@ -74,7 +65,7 @@ const LoginAndSecurity = () => {
             {/* Assuming user.phone or user.mobileNumber */}
             <p className="text-[14px] text-[#1F1F1F]">{user?.phone || 'Not added'}</p>
           </div>
-          <Link to='/phone-number'>
+          <Link to='/handle-phone-number'>
             <button className="text-[16px] border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
               {user.phone ? 'Edit' : 'Add'}
             </button>
@@ -87,7 +78,7 @@ const LoginAndSecurity = () => {
             <p className="text-[16px] font-medium text-[#1F1F1F]">Password</p>
             <p className="text-[14px] text-[#1F1F1F]">{'************'}</p>
           </div>
-          <Link to='/password'>
+          <Link to='/handle-password-change'>
             <button className="text-[16px] border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
               Edit
             </button>

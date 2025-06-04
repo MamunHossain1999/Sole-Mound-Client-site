@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import UseAuth from "../../hooks/UseAuth";
+import useAuth from "../../hooks/UseAuth";
 
 const ResetPassword = () => {
-  const {ForgotPassword} = UseAuth();
+  const { ForgotPassword} = useAuth();
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const handleSubmit = async () => {
 
   try {
     // Call the forgotPassword function with email
-    const res = await ForgotPassword(email);
+    const res = await  ForgotPassword(email);
 
     if (res.success) {
       toast.success("OTP has been sent to your email.");
@@ -36,7 +36,7 @@ const handleSubmit = async () => {
   return (
     <div className="bg-gradient-to-b from-[#FAE6F0] to-[#FDF6FA] min-h-screen">
       <div className="text-[32px] font-medium text-[#1F1F1F] text-center mb-6 border-b border-[#919191] py-6">
-        <p className="pt-7">Reset your password</p>
+        <p className="pt-7">Forgot your password</p>
       </div>
 
       <div className="flex items-center justify-center">

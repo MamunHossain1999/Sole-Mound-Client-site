@@ -14,10 +14,6 @@ import WishList from "../UserDashBoard/wishlist/WishList";
 import OrderhistoryPage from "../UserDashBoard/orderHistoryPage/OrderhistoryPage";
 import OrderDetailsPage from "../UserDashBoard/orderDetailsPage/OrderDetailsPage";
 import LoginAndSecurity from "../UserDashBoard/loginAndSerurity/LoginAndSecurity";
-import ChangeNameModal from "../UserDashBoard/loginAndSerurity/ChangeNameModal";
-import HandleEmailChange from "../UserDashBoard/loginAndSerurity/HandleEmailChange";
-import HandlePhoneNumber from "../UserDashBoard/loginAndSerurity/HandlePhoneNumber";
-import HandlePasswordChange from "../UserDashBoard/loginAndSerurity/HandlePasswordChange";
 import ProductDetailsPage from "../pages/productDetailsPage/ProductDetailsPage";
 import CardAndAddress from "../UserDashBoard/paymentOption/CardAndAddress";
 import AddNewCardModal from "../UserDashBoard/paymentOption/AddNewCardModal";
@@ -44,6 +40,10 @@ import SellerRegisterLayOut from "../Layout/SellerRegisterLayOut";
 import SellerLoginLayOut from "../Layout/SellerLoginLayOut";
 import UserSignUpLayOut from "../Layout/UserSignUpLayOut";
 import PrivateRoute from "../protectedRoute/PrivateRoute";
+import HandleEmailChange from "../UserDashBoard/loginAndSerurity/HandleEmailChange";
+import HandlePhoneNumber from "../UserDashBoard/loginAndSerurity/HandlePhoneNumber";
+import HandlePasswordChange from "../UserDashBoard/loginAndSerurity/HandlePasswordChange";
+import ChangeNameModal from "../UserDashBoard/loginAndSerurity/ChangeNameModal";
 
 
 
@@ -82,6 +82,18 @@ const router = createBrowserRouter([
         path: '/category-search-page/:id', element: <ProductDetailsPage/>
       },
       {
+        path: 'handle-change-name', element: <ChangeNameModal/>
+      },
+      {
+        path: 'handle-email-change', element: <HandleEmailChange/>
+      },
+      {
+        path: 'handle-phone-number', element: <HandlePhoneNumber/>
+      },
+      {
+        path: 'handle-password-change', element: <HandlePasswordChange/>
+      },
+      {
         path: '/wishlist', element: <WishList/>
       },
       {
@@ -92,18 +104,6 @@ const router = createBrowserRouter([
       },
       {
         path: 'gift-card-balance-page', element: <GiftCardBalancePage/>
-      },
-      {
-        path: '/change-name', element: <ChangeNameModal/>
-      },
-      {
-        path: '/change-email', element: <HandleEmailChange/>
-      },
-      {
-        path: '/phone-number', element: <HandlePhoneNumber/>
-      },
-      {
-        path: '/password', element: <HandlePasswordChange/>
       },
       {
         path: '/email-varify' , element: <EmailVerificationForm/>
@@ -181,7 +181,7 @@ const router = createBrowserRouter([
   // dashboard
   {
     path: '/dashboard',
-    element: <DashBoard/>,
+    element: <PrivateRoute><DashBoard/></PrivateRoute>,
     children: [
       {
         path: 'account-page', element:<AccountPage/>
@@ -201,10 +201,6 @@ const router = createBrowserRouter([
       {
         path:'login-and-security', element: <LoginAndSecurity/>
       },
-      {
-        path: 'login-security' , element:<LoginAndSecurity/>
-      },
-   
       {
         path: 'card-and-address', element: <CardAndAddress/>
       },
