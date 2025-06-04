@@ -70,7 +70,7 @@ const handleSaveToWishlist = () => {
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-full h-45 object-fit rounded "
+                  className="w-full h-auto object-cover rounded "
                 />
               </div>
               <div className="p-3">
