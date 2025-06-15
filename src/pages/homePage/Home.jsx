@@ -4,19 +4,19 @@ import sellerRight from "../../assets/home/topBrand.png";
 import sellerRight1 from "../../assets/home/weekly.png";
 import banner from "../../assets/home/Banner.png";
 import Banner from "../../components/Banner";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import FeaturedProducts from "../../components/FeaturedProducts";
 import YourBrowsingHistory from "../../components/YourBrowsingHistory";
 import BigBrandDeals from "../../components/BigBrandDeals";
 import BestsellersSection from "../../components/bestSellers/BestsellersSection";
 
-
 const Home = () => {
   return (
-    <div className=" pb-20">
-      <div className="container mx-auto bg-white \overflow-x-auto py-2">
-        <div className="container mx-auto px-4 flex items-center justify-between min-w-full mt-10 md:mt-1">
-          <div className="flex items-center space-x-4">
+    <div className="mt-4">
+      <div className="container mx-auto bg-white py-2 overflow-x-auto">
+        <div className="flex items-center justify-between min-w-max space-x-4 px-4 mt-4 md:mt-1">
+          {/* Category Buttons */}
+          <div className="flex items-center space-x-4 whitespace-nowrap">
             <button className="text-gray-700 hover:text-blue-500 focus:outline-none">
               Environment
             </button>
@@ -48,7 +48,9 @@ const Home = () => {
               Measurement & Analysis...
             </button>
           </div>
-          <button className="text-gray-500 hover:text-gray-700 focus:outline-none">
+
+          {/* Right Arrow */}
+          <button className="text-gray-500 hover:text-gray-700 focus:outline-none flex-shrink-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -64,6 +66,7 @@ const Home = () => {
           </button>
         </div>
       </div>
+
       {/* home banner */}
 
       <div className="w-full">
@@ -75,8 +78,8 @@ const Home = () => {
         <h2 className="text-[36px] font-bold mb-4 text-[#000000]">
           Bestsellers
         </h2>
-      
-        <BestsellersSection/>
+
+        <BestsellersSection />
       </div>
 
       {/* featured Products */}
@@ -85,7 +88,7 @@ const Home = () => {
         <h2 className="text-[36px] font-bold mb-6 text-[#000000]">
           Featured Products
         </h2>
-        <FeaturedProducts/>
+        <FeaturedProducts />
       </div>
 
       {/* add section */}
@@ -99,7 +102,7 @@ const Home = () => {
 
       {/* big brand deals */}
       <div className="container mx-auto my-8 px-4">
-        <BigBrandDeals/>
+        <BigBrandDeals />
       </div>
 
       {/* Your browsing history */}
@@ -108,7 +111,7 @@ const Home = () => {
         <h2 className="text-[36px] font-bold mb-6 text-[#1F1F1F] ">
           Your browsing history
         </h2>
-          <YourBrowsingHistory/>
+        <YourBrowsingHistory />
       </div>
     </div>
   );

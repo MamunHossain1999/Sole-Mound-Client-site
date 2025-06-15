@@ -1,12 +1,18 @@
 import React from "react";
-import { 
-  Clock, ShoppingCart, Heart, CreditCard,  
-  ShoppingBag, Gift, RotateCcw, Shield, Lock
-} from "lucide-react";
 import { Link } from "react-router-dom";
 
+import order from '../../assets/dashboardAccoutImg/yourOrder.svg';
+import shoppingCard from '../../assets/dashboardAccoutImg/shoppingCard.svg';
+import cardAndAddress from '../../assets/dashboardAccoutImg/cardAndAddress.svg';
+import browsingHistory from '../../assets/dashboardAccoutImg/browsing.svg';
+import favorite from '../../assets/dashboardAccoutImg/favorite.svg';
+import buyAgain from '../../assets/dashboardAccoutImg/buyAgain.svg';
+import loginAndSecurity from '../../assets/dashboardAccoutImg/loginAndSecurity.svg';
+import giftCard from '../../assets/dashboardAccoutImg/giftCard.svg';
+import returnRefund from '../../assets/dashboardAccoutImg/returnRefund.svg';
+import privacyPolicy from '../../assets/dashboardAccoutImg/privacyPolicy.svg';
+
 export default function AccountPage() {
- 
   return (
     <div className="container mx-auto pb-18 px-4">
       <div className="flex justify-between items-center py-4">
@@ -15,85 +21,75 @@ export default function AccountPage() {
 
       <div className="flex flex-col md:flex-row gap-6">
         {/* Main Content */}
-        <div className="flex-1 text-gray-300">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+        <div className="flex-1 ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7">
             <MenuCard 
               title="Your Order"
               description="View past orders or track an order you're waiting on."
-              icon={<ShoppingBag size={24} className="text-white" />}
-              bgColor="bg-purple-400"
+              icon={order}
               href="/dashboard/order-history"
             />
             
             <MenuCard 
               title="Shopping Cart"
               description="View and edit your delivery addresses and payment details."
-              icon={<ShoppingCart size={24} className="text-white" />}
-              bgColor="bg-blue-400"
+              icon={shoppingCard} 
               href="/shopping-card"
             />
             
             <MenuCard 
               title="Card & Address"
               description="View past orders or track an order you're waiting on."
-              icon={<CreditCard size={24} className="text-white" />}
-              bgColor="bg-teal-400"
+              icon={cardAndAddress}
               href="/dashboard/card-and-address"
             />
             
             <MenuCard 
               title="Browsing History"
               description="View and edit your delivery addresses and payment details."
-              icon={<Clock size={24} className="text-white" />}
-              bgColor="bg-yellow-300"
+              icon={browsingHistory}
               href="/dashboard/brows-history"
             />
             
             <MenuCard 
               title="Favorite"
               description="View and edit your delivery addresses and payment details."
-              icon={<Heart size={24} className="text-white" />}
-              bgColor="bg-red-300"
+              icon={favorite}
               href="/dashboard/wishlist"
             />
             
             <MenuCard 
               title="Login & Security"
               description="View past orders or track an order you're waiting on."
-              icon={<Lock size={24} className="text-white" />}
-              bgColor="bg-gray-400"
+              icon={loginAndSecurity}
               href="/dashboard/login-and-security"
             />
             
             <MenuCard 
               title="Buy Again"
               description="View past orders or track an order you're waiting on."
-              icon={<ShoppingBag size={24} className="text-white" />}
-              bgColor="bg-blue-300"
+              icon={buyAgain}
               href="/buy-again"
             />
             
             <MenuCard 
               title="Gift Card"
               description="View and edit your delivery addresses and payment details."
-              icon={<Gift size={24} className="text-white" />}
-              bgColor="bg-red-200"
+              icon={giftCard}
               href="/gift-card-balance-page"
             />
             
             <MenuCard 
               title="Return/Refund"
               description="View past orders or track an order you're waiting on."
-              icon={<RotateCcw size={24} className="text-white" />}
-              bgColor="bg-green-300"
+              icon={returnRefund}
               href={`/returnPage/1`}
             />
             
             <MenuCard 
               title="Privacy Policy"
               description="View and edit your delivery addresses and payment details."
-              icon={<Shield size={24} className="text-white" />}
-              bgColor="bg-purple-200"
+              icon={privacyPolicy}
               href="/privacy"
             />
           </div>
@@ -103,18 +99,18 @@ export default function AccountPage() {
   );
 }
 
-function MenuCard({ title, description, icon, bgColor, href }) {
+function MenuCard({ title, description, icon,  href }) {
   return (
     <Link 
       to={href}
-      className="border border-[#F1DAFC] rounded-lg p-4 flex gap-4 items-start transition cursor-pointer bg-white"
+      className="border border-[#F1DAFC] rounded-xl py-8 px-6 flex gap-5 items-center transition cursor-pointer bg-white hover:shadow-md hover:border-[#A8537B]"
     >
-      <div className={`${bgColor} w-12 h-12 rounded-full flex items-center justify-center shrink-0`}>
-        {icon}
+      <div >
+        <img src={icon} alt={title} className="w-[89px] h-[89px]" />
       </div>
       <div className="flex flex-col">
-        <h3 className="font-bold mb-1 text-[18px] md:text-[20px] text-[#1F1F1F]">{title}</h3>
-        <p className="text-[14px] md:text-[16px] text-[#505050]">{description}</p>
+        <h3 className="font-bold mb-1 text-[18px] md:text-2xl text-[#1F1F1F]">{title}</h3>
+        <p className="text-[14px] md:text-base font-normal text-[#1F1F1F]">{description}</p>
       </div>
     </Link>
   );

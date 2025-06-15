@@ -6,90 +6,108 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
-import banner1 from "../assets/home/banner1.png";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
+const fetchBanners = async () => {
+  const { data } = await axios.get("/banner.json");
+  return data;
+};
+
 
 const Banner = () => {
-  const bannerSlides = [
-    {
-      id: 1,
-      image: banner1,
-      title: "Save Big on New Arrivals",
-      subtitle: "Special Discount!",
-      description: "Shop now and enjoy exclusive deals on all categories.",
-      buttonText: "Explore Now"
-    },
-    {
-      id: 2,
-      image: banner1,
-      title: "Buy 1 Get 1 Free",
-      subtitle: "Hot Offer!",
-      description: "Don't miss this opportunity! Offer ends soon.",
-      buttonText: "Grab Now"
-    },
-    {
-      id: 3,
-      image: banner1,
-      title: "Summer Collection 2025",
-      subtitle: "New Season!",
-      description: "Discover our latest styles perfect for this season.",
-      buttonText: "View Collection"
-    },
-    {
-      id: 4,
-      image: banner1,
-      title: "Premium Products",
-      subtitle: "Top Quality!",
-      description: "High-end products with ultimate comfort and style.",
-      buttonText: "Shop Premium"
-    }
-  ];
+    const { data: banners = [], isLoading, isError } = useQuery({
+    queryKey: ["banners"],
+    queryFn: fetchBanners,
+  });
+
+  const banner1 = banners[0];
+  const banner2 = banners[1];
+  const banner3 = banners[2];
+  
+   if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Something went wrong!</p>;
 
   return (
-    <section className="bg-[#FDF1F7] pb-2">
-      <div className="w-full h-[550px] mx-auto overflow-hidden">
+    <section className="">
+      <div className="w-full h-[550px] mx-auto overflow-hidden " >
         <Swiper
           slidesPerView={1}
           spaceBetween={0}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true
-          }}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
+          pagination={{ clickable: true, dynamicBullets: true }}
+          autoplay={{ delay: 90000, disableOnInteraction: false }}
           loop={true}
-          navigation={false}
           modules={[Navigation, Autoplay, Pagination, EffectFade]}
           className="h-full"
         >
-          {bannerSlides?.map((slide) => (
-            <SwiperSlide key={slide.id}>
-              <div className="container mx-auto flex flex-col md:flex-row items-center justify-between p-6 md:p-12 h-full">
-                <div className="w-full md:w-1/3 flex justify-center md:justify-start">
-                  <img
-                    src={slide.image}
-                    alt={`Banner ${slide.id}`}
-                    className="w-[500px] object-contain"
-                  />
+          {/* Slide 1 */}
+          <SwiperSlide>
+            <div className=" w-full md:h-[550px] md:my-6" >
+              <div className="mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
+                <div className="w-full flex relative ">
+                  <img src={banner1.image} alt="Banner 1" className="w-full object-contain" />
                 </div>
-                <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
-                  <p className="text-indigo-600 text-[16px] md:text-[#D76A9D] font-semibold">
-                    {slide.subtitle}
+                <div className="w-full md:w-4/7 text-right pr-3 md:text-left space-y-4 absolute">
+                  <p className="text-base text-[#D76A9D] font-semibold" >
+                    {banner1.subtitle}
                   </p>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#000000] leading-tight">
-                    {slide.title}
+                  <h2 className="md:w-[430px] text-base md:text-4xl font-bold text-[#000000]" >
+                    {banner1.title}
                   </h2>
-                  <p className="text-gray-600">{slide.description}</p>
-                  <button
-                    className="inline-block bg-[#C8A8E9] hover:bg-[#aa7bd8] text-white font-semibold rounded-md px-6 py-3 transition duration-300 cursor-pointer"
-                  >
-                    {slide.buttonText}
+                  <p className="text-[#8A8FB9] text-base font-semibold" >{banner1.description}</p>
+                  <button className="inline-block bg-[#C8A8E9] hover:bg-[#aa7bd8] text-white font-semibold  px-6 py-2 transition duration-300 cursor-pointer">
+                    {banner1.buttonText}
                   </button>
                 </div>
               </div>
-            </SwiperSlide>
-          ))}
+            </div>
+          </SwiperSlide>
+
+          {/* Slide 2 */}
+          <SwiperSlide>
+            <div className="h-full w-full py-5" >
+              <div className=" mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
+                <div className="w-full  flex relative ">
+                  <img src={banner2.image} alt="Banner 2" className="w-full object-contain" />
+                </div>
+                <div className="w-full mx-auto px-52 text-center md:text-left absolute">
+                  <p className="text-[16px] md:text-[96px] text-[#FFFFFF] font-medium" >
+                    {banner2.subtitle}
+                  </p>
+                  <p className="text-3xl md:text-[52px] text-[#ffffff] font-bold" >
+                    {banner2.title}
+                  </p>
+                  <p >{banner2.description}</p>
+                  <button className="inline-block bg-[#C8A8E9] hover:bg-[#aa7bd8] text-[#1F1F1F] text-2xl mt-5 font-bold rounded-[20px] px-6 py-2 transition duration-300 cursor-pointer">
+                    {banner2.buttonText}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+
+          {/* Slide 3 */}
+          <SwiperSlide>
+            <div className="h-full w-full py-5" >
+              <div className=" mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
+                <div className="w-full  flex relative ">
+                  <img src={banner3.image} alt="Banner 2" className="w-full object-contain" />
+                </div>
+                <div className="w-full mx-auto px-52 text-center md:text-left absolute">
+                  <p className="text-[16px] md:text-4xl md:w-[485px] text-[#151875] font-bold" >
+                    {banner3.subtitle}
+                  </p>
+                  <p className="text-base md:text-base text-[#FDF1F7] md:w-[460px] my-3 font-normal" >
+                    {banner3.title}
+                  </p>
+                  <p className="text-base md:text-base text-[#FDF1F7] md:w-[460px] font-normal" >{banner3.description}</p>
+                  <button className="inline-block bg-[#82405F] hover:bg-[#aa7bd8] text-[#FFFFFF] text-[20px] mt-5 font-bold  px-6 py-2 transition duration-300 cursor-pointer">
+                    {banner3.buttonText}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
         </Swiper>
       </div>
     </section>

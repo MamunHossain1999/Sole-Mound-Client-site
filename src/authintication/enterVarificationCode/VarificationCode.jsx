@@ -47,8 +47,8 @@ const VerificationCode = () => {
   const handleResend = async () => {
     if (resendTimer === 0 && email) {
       try {
-        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/resend-otp`, {
-          email,
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/verify-otp`, {
+          email, 
         });
         toast.success("New OTP has been sent.");
         setResendTimer(35);

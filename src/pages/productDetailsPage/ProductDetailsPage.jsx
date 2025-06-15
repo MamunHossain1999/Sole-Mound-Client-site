@@ -33,7 +33,14 @@ const ProductDetailsPage = () => {
   const [quantity, setQuantity] = useState(1);
   const thumbnailRef = useRef(null);
 
-
+  const scrollThumbnails = (direction) => {
+  const scrollAmount = 200;
+  if (direction === "left") {
+    thumbnailRef.current.scrollLeft -= scrollAmount;
+  } else {
+    thumbnailRef.current.scrollLeft += scrollAmount;
+  }
+};
 
   const {
     data: product = [],
@@ -285,7 +292,7 @@ const ProductDetailsPage = () => {
           <span className="text-[#1F1F1F] text-base">{product.description}</span>
         </div>
 
-       =
+       
         {/* Additional Information */}
         <div className="">
           <h3 className="text-[20px] font-bold text-[#1F1F1F] py-3">Additional information</h3>

@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Your Order",
+    "description": "View past orders or track an order you're waiting on.",
+    "icon": "shopping-bag",
+    "bgColor": "bg-purple-400",
+    "href": "/dashboard/order-history"
+  },
+  {
+    "title": "Shopping Cart",
+    "description": "View and edit your delivery addresses and payment details.",
+    "icon": "shopping-cart",
+    "bgColor": "bg-blue-400",
+    "href": "/shopping-card"
+  },
+  {
+    "title": "Card & Address",
+    "description": "View past orders or track an order you're waiting on.",
+    "icon": "credit-card",
+    "bgColor": "bg-teal-400",
+    "href": "/dashboard/card-and-address"
+  },
+  {
+    "title": "Browsing History",
+    "description": "View and edit your delivery addresses and payment details.",
+    "icon": "clock",
+    "bgColor": "bg-yellow-300",
+    "href": "/dashboard/brows-history"
+  },
+  {
+    "title": "Favorite",
+    "description": "View and edit your delivery addresses and payment details.",
+    "icon": "heart",
+    "bgColor": "bg-red-300",
+    "href": "/dashboard/wishlist"
+  },
+  {
+    "title": "Login & Security",
+    "description": "View past orders or track an order you're waiting on.",
+    "icon": "lock",
+    "bgColor": "bg-gray-400",
+    "href": "/dashboard/login-and-security"
+  },
+  {
+    "title": "Buy Again",
+    "description": "View past orders or track an order you're waiting on.",
+    "icon": "shopping-bag",
+    "bgColor": "bg-blue-300",
+    "href": "/buy-again"
+  },
+  {
+    "title": "Gift Card",
+    "description": "View and edit your delivery addresses and payment details.",
+    "icon": "gift",
+    "bgColor": "bg-red-200",
+    "href": "/gift-card-balance-page"
+  },
+  {
+    "title": "Return/Refund",
+    "description": "View past orders or track an order you're waiting on.",
+    "icon": "rotate-ccw",
+    "bgColor": "bg-green-300",
+    "href": "/returnPage/1"
+  },
+  {
+    "title": "Privacy Policy",
+    "description": "View and edit your delivery addresses and payment details.",
+    "icon": "shield",
+    "bgColor": "bg-purple-200",
+    "href": "/privacy"
+  }
+]

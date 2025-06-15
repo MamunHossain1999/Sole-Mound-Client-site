@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "image": "https://i.ibb.co/6cgTgSc3/Frame-2147224258.png",
+    "title": "New Furniture Collection Trends in 2020",
+    "subtitle": "Best Furniture For Your Castle ",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.",
+    "buttonText": "Shop Now"
+  },
+  {
+    "id": 2,
+    "image": "https://i.ibb.co/cKrgvn2M/Action-box-1.png",
+    "title": "Don't Miss Out!",
+    "subtitle": "Save Up to 75% Off",
+    "buttonText": "Shop Now"
+  },
+  {
+    "id": 3,
+    "image": "https://i.ibb.co/Qv4k1GQB/Property-1-Frame-2147224260.png",
+    "title": "Reinforced with double wood dowels, glue, screw - nails corner blocks and machine nails",
+    "subtitle": "Unique Features Of Latest & Trending Products ",
+    "description": "Arms, backs and seats are structurally reinforced",
+    "buttonText": "View Details"
+  }
+]
