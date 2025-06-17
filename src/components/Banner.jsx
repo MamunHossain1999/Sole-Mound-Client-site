@@ -30,28 +30,28 @@ const Banner = () => {
 
   return (
     <section className="">
-      <div className="w-full h-[550px] mx-auto overflow-hidden " >
+      <div className="w-full mx-auto " >
         <Swiper
           slidesPerView={1}
           spaceBetween={0}
           pagination={{ clickable: true, dynamicBullets: true }}
-          autoplay={{ delay: 90000, disableOnInteraction: false }}
+          autoplay={{ delay: 2000, disableOnInteraction: false }}
           loop={true}
           modules={[Navigation, Autoplay, Pagination, EffectFade]}
           className="h-full"
         >
           {/* Slide 1 */}
           <SwiperSlide>
-            <div className=" w-full md:h-[550px] md:my-6" >
-              <div className="mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
-                <div className="w-full flex relative ">
-                  <img src={banner1.image} alt="Banner 1" className="w-full object-contain" />
+            <div className="w-full mt-5 md:my-6">
+              <div className="w-full flex flex-col md:flex-row-reverse items-center justify-between ">
+                <div className="w-full h-[250px] md:h-[550px] mx-auto flex relative ">
+                  <img src={banner1.image} alt="Banner 1" className="w-full h-full object-cover" />
                 </div>
-                <div className="w-full md:w-4/7 text-right pr-3 md:text-left space-y-4 absolute">
-                  <p className="text-base text-[#D76A9D] font-semibold" >
+                <div className=" md:w-1/2 text-center pt-8 md:text-left space-y-4 absolute">
+                  <p className="text-base text-[#D76A9D] font-semibold " >
                     {banner1.subtitle}
                   </p>
-                  <h2 className="md:w-[430px] text-base md:text-4xl font-bold text-[#000000]" >
+                  <h2 className="md:w-[430px] w-[250px] text-base md:text-4xl font-bold text-[#000000]" >
                     {banner1.title}
                   </h2>
                   <p className="text-[#8A8FB9] text-base font-semibold" >{banner1.description}</p>
@@ -68,13 +68,13 @@ const Banner = () => {
             <div className="h-full w-full py-5" >
               <div className=" mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
                 <div className="w-full  flex relative ">
-                  <img src={banner2.image} alt="Banner 2" className="w-full object-contain" />
+                  <img src={banner2.image} alt="Banner 2" className="w-full h-full object-cover" />
                 </div>
                 <div className="w-full mx-auto px-52 text-center md:text-left absolute">
                   <p className="text-[16px] md:text-[96px] text-[#FFFFFF] font-medium" >
                     {banner2.subtitle}
                   </p>
-                  <p className="text-3xl md:text-[52px] text-[#ffffff] font-bold" >
+                  <p className="text-base md:text-[52px] text-[#ffffff] font-bold" >
                     {banner2.title}
                   </p>
                   <p >{banner2.description}</p>
@@ -91,7 +91,7 @@ const Banner = () => {
             <div className="h-full w-full py-5" >
               <div className=" mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
                 <div className="w-full  flex relative ">
-                  <img src={banner3.image} alt="Banner 2" className="w-full object-contain" />
+                  <img src={banner3.image} alt="Banner 2" className="w-full h-full object-cover" />
                 </div>
                 <div className="w-full mx-auto px-52 text-center md:text-left absolute">
                   <p className="text-[16px] md:text-4xl md:w-[485px] text-[#151875] font-bold" >

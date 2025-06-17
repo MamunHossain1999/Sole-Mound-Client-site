@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import UseAuth from "../hooks/UseAuth";
+
 
 import myAccountIcon from "../assets/dashboard/myAccountIcon.svg";
 import orderIcon from "../assets/dashboard/orderIcon.svg";
@@ -12,9 +12,11 @@ import heartIcon from "../assets/dashboard/favoriteIcon.svg";
 import card from "../assets/dashboard/Notebook.svg";
 import browsingIcon from "../assets/dashboard/browsingIcon.svg";
 import SignOut from "../assets/dashboard/SignOut.svg";
+import useAuth from "../hooks/UseAuth";
+
 
 const DashBoard = () => {
-  const { user, loader, logOut } = UseAuth();
+  const { user, loader, logOut } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {

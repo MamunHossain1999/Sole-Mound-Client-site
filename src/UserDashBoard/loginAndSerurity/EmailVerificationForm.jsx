@@ -1,70 +1,93 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import 'react-toastify/dist/ReactToastify.css';
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const EmailVerificationForm = () => {
-  const [otpCode, setOtpCode] = useState("");
+  const location = useLocation();
   const navigate = useNavigate();
-  const email = "mamun@gmail.com";
+  const newEmail = location.state?.newEmail || "";
 
-  const handleSubmit = () => {
-    if (!otpCode || otpCode.length < 4) {
-      toast.error("Please enter a valid OTP code.");
+  const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const verifyOtpAndChangeEmail = async () => {
+    if (otp.length !== 4) {
+      toast.error("Please enter a valid 4-digit OTP.");
       return;
     }
 
-    console.log("OTP verification submitted with code:", otpCode);
-    toast.success("OTP verified successfully!");
+    const token = Cookies.get("token");
+    if (!token) {
+      toast.error("User not authenticated.");
+      return;
+    }
 
-    // Navigate after short delay to allow toast to show
-    setTimeout(() => {
-      navigate("/dashboard/accountPage");
-    }, 1000);
+    setLoading(true);
+    try {
+      const res = await axios.patch(
+        `${import.meta.env.VITE_API_BASE_URL}/users/profile/change-email`,
+        { email: newEmail, otp },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (res.data.success) {
+        toast.success("Email changed successfully!");
+        navigate("/"); 
+      } else {
+        toast.error(res.data.message || "Failed to change email.");
+      }
+    } catch (error) {
+      console.error("Email change error:", error);
+      toast.error(
+        error.response?.data?.message || "Something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-auto pt-16">
-      <div className="w-[690px] bg-white rounded-lg border border-[#B6B7BC] p-8">
-        <div className="mb-4">
-          <h1 className="text-2xl font-medium text-[#262736]">Verify your email</h1>
-        </div>
+    <div className="flex justify-center items-center pt-16">
+      <div className="w-[400px] bg-white rounded-[15px] border border-[#B6B7BC] p-8">
+        <h1 className="text-2xl font-medium text-[#262736] mb-6">
+          Verify OTP to change email
+        </h1>
 
-        <div className="mb-6">
-          <p className="text-[#919191] text-base">{email}</p>
-        </div>
+        <p className="mb-4 text-[#919191]">
+          We sent a 4-digit OTP to your current email. Please enter it below to confirm changing your email to <strong>{newEmail}</strong>.
+        </p>
 
-        <div className="mb-6">
-          <p className="text-[#1F1F1F] text-base">
-            We have sent a One Time Password (OTP) to your email address.
-            Please enter it below.
-          </p>
-        </div>
-
-        <div className="mb-6">
-          <label htmlFor="otpInput" className="block mb-2 text-[#505050] text-base font-semibold">
-            Enter OTP
-          </label>
-          <input
-            type="text"
-            id="otpInput"
-            className="w-full px-4 py-3 rounded-lg text-[#1F1F1F] border border-[#B6B7BC] bg-white autofill:bg-white"
-            placeholder="Code"
-            value={otpCode}
-            onChange={(e) => setOtpCode(e.target.value)}
-          />
-        </div>
+        <input
+          type="text"
+          maxLength={6}
+          value={otp}
+          onChange={(e) => setOtp(e.target.value)}
+          className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md mb-6 text-center text-xl tracking-widest"
+          placeholder="Enter OTP"
+          disabled={loading}
+        />
 
         <button
-          type="button"
-          onClick={handleSubmit}
-          className="w-full py-3 px-4 bg-[#C8A8E9] rounded-lg text-[#1F1F1F] font-semibold text-base hover:bg-purple-400 transition-colors"
+          onClick={verifyOtpAndChangeEmail}
+          className={`w-full py-3 px-4 rounded-lg text-[#1F1F1F] font-medium transition-colors ${
+            loading
+              ? "bg-purple-200 cursor-not-allowed"
+              : "bg-[#C8A8E9] hover:bg-purple-300"
+          }`}
+          disabled={loading}
         >
-          Continue
+          {loading ? "Verifying..." : "Verify OTP"}
         </button>
       </div>
     </div>
   );
 };
+
 
 export default EmailVerificationForm;

@@ -2,17 +2,17 @@ import axios from 'axios';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import useAuth from '../../hooks/UseAuth';
+import useAuth from '../../hooks/useAuth';
+
 
 const LoginAndSecurity = () => {
-  const {user, loader} = useAuth()
-  console.log(user)
+  const {user, loader} = useAuth();
   const navigate = useNavigate();
 
   // Delete account handler
   const handleDeleteAccount = async () => {
     try {
-      const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/users/profile`);
+      // const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/users/profile`);
       if (response.status === 200) {
         toast.success("Account deleted successfully.");
         navigate('/auth/login-page');
@@ -35,11 +35,11 @@ const LoginAndSecurity = () => {
         {/* Name */}
         <div className="px-12 py-4 h-[106px] flex justify-between items-center">
           <div>
-            <p className="text-[16px] font-medium text-[#1F1F1F]">Name</p>
-            <p className="text-[14px] text-[#1F1F1F]">{user?.name || 'Not available'}</p>
+            <p className="text-base cursor-pointer font-medium text-[#1F1F1F]">Name</p>
+            <p className="text-sm text-[#1F1F1F]">{user?.name || 'Not available'}</p>
           </div>
           <Link to='/handle-change-name'>
-            <button className="text-[16px] border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
+            <button className="text-base cursor-pointer border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
               Edit
             </button>
           </Link>
@@ -48,11 +48,11 @@ const LoginAndSecurity = () => {
         {/* Email */}
         <div className="px-12 py-4 h-[106px] flex justify-between items-center">
           <div>
-            <p className="text-[16px] font-medium text-[#1F1F1F]">Email</p>
-            <p className="text-[14px] text-[#1F1F1F]">{user?.email || 'Not available'}</p>
+            <p className="text-base cursor-pointer font-medium text-[#1F1F1F]">Email</p>
+            <p className="text-sm text-[#1F1F1F]">{user?.email || 'Not available'}</p>
           </div>
           <Link to='/handle-email-change'>
-            <button className="text-[16px] border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
+            <button className="text-base cursor-pointer border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
               Edit
             </button>
           </Link>
@@ -61,12 +61,12 @@ const LoginAndSecurity = () => {
         {/* Phone */}
         <div className="px-12 py-4 h-[106px] flex justify-between items-center">
           <div>
-            <p className="text-[16px] font-medium text-[#1F1F1F]">Primary Mobile Number</p>
+            <p className="text-base cursor-pointer font-medium text-[#1F1F1F]">Primary Mobile Number</p>
             {/* Assuming user.phone or user.mobileNumber */}
-            <p className="text-[14px] text-[#1F1F1F]">{user?.phone || 'Not added'}</p>
+            <p className="text-sm text-[#1F1F1F]">{user?.phone || 'Not added'}</p>
           </div>
           <Link to='/handle-phone-number'>
-            <button className="text-[16px] border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
+            <button className="text-base cursor-pointer border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
               {user.phone ? 'Edit' : 'Add'}
             </button>
           </Link>
@@ -75,11 +75,11 @@ const LoginAndSecurity = () => {
         {/* Password */}
         <div className="px-12 py-4 h-[106px] flex justify-between items-center">
           <div>
-            <p className="text-[16px] font-medium text-[#1F1F1F]">Password</p>
-            <p className="text-[14px] text-[#1F1F1F]">{'************'}</p>
+            <p className="text-base font-medium text-[#1F1F1F]">Password</p>
+            <p className="text-sm text-[#1F1F1F]">{'************'}</p>
           </div>
           <Link to='/handle-password-change'>
-            <button className="text-[16px] border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
+            <button className="text-base cursor-pointer border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
               Edit
             </button>
           </Link>
@@ -92,7 +92,7 @@ const LoginAndSecurity = () => {
           </div>
           <button
             onClick={handleDeleteAccount}
-            className="text-base border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]"
+            className="text-base border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F] cursor-pointer "
           >
             Yes
           </button>

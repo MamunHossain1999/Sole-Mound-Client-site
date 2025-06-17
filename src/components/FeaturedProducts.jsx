@@ -42,12 +42,12 @@ const FeaturedProducts = () => {
       >
         {data?.map((product, index) => (
           <SwiperSlide key={index}>
-            <div className="bg-[#FDF1F7] rounded-lg border border-transparent hover:border-[#C8A8E9] transition-all duration-600">
+            <div className="bg-[#FDF1F7] mx-auto rounded-lg border border-transparent hover:border-[#C8A8E9] transition-all duration-600">
               <div className="p-6">
                 <img
                   src={product.images[0]}
                   alt={product.name}
-                  className="w-full h-48 object-cover rounded-lg mb-4"
+                  className="w-full h-[200px] object-cover rounded-lg mb-4"
                 />
 
                 <div className="flex items-center mb-2">

@@ -37,7 +37,7 @@ const YourBrowsingHistory = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {data.map((product, index) => (
+        {data?.map((product, index) => (
           <SwiperSlide key={index}>
             <div className="relative group bg-[#F8F8F8] hover:bg-[#FDF1F7] rounded-lg overflow-hidden cursor-pointer duration-600 border border-transparent hover:border-[#C8A8E9] transition-all ">
               {/* 👇 Hover Icons */}

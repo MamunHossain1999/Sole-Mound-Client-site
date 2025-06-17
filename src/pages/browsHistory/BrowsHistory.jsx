@@ -73,7 +73,7 @@ const handleSaveToWishlist = () => {
                   className="w-full h-auto object-cover rounded "
                 />
               </div>
-              <div className="p-3">
+              <div className="">
                 <div className="flex items-center text-[#919191] mt-1">
                   {renderStars(item.rating)} ({item.reviewCount})
                 </div>
@@ -96,12 +96,7 @@ const handleSaveToWishlist = () => {
           >
             Clear All History
           </button>
-          <button
-            onClick={handleSaveToWishlist}
-            className="px-6 py-2 bg-white border border-[#B6B7BC] text-[#1F1F1F] text-base rounded hover:bg-[#C8A8E9]"
-          >
-            Save to Wishlist
-          </button>
+  
         </div>
       )}
     </div>

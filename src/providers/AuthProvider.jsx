@@ -94,42 +94,44 @@ const AuthProvider = ({ children }) => {
   };
 
   //Update Profile
-  const ManageProfile = async (name, image) => {
-    const token = Cookies.get("token");
+const ManageProfile = async (name, image) => {
+  const token = Cookies.get("token");
+  setLoader(true); 
 
-    if (!token) {
-      return { success: false, message: "User not authenticated" };
-    }
+  if (!token) {
+    setLoader(false); 
+    return { success: false, message: "User not authenticated" };
+  }
 
-    try {
-      setLoader(true);
-      const payload = { name };
-      if (image) payload.image = image;
+  try {
+    const payload = { name };
+    if (image) payload.image = image;
 
-      const res = await axios.patch(`${api}/users/profile`, payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    const res = await axios.patch(`${api}/users/profile`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-      if (res.data.success) {
-        setUser(res.data.data.user);
-        return { success: true };
-      } else {
-        return {
-          success: false,
-          message: res.data.message || "Profile update failed",
-        };
-      }
-    } catch (err) {
+    if (res.data.success) {
+      setUser(res.data.data.user);
+      return { success: true };
+    } else {
       return {
         success: false,
-        message: err.response?.data?.message || "Profile update failed",
+        message: res.data.message || "Profile update failed",
       };
-    } finally {
-      setLoader(false);
     }
-  };
+  } catch (err) {
+    return {
+      success: false,
+      message: err.response?.data?.message || "Profile update failed",
+    };
+  } finally {
+    setLoader(false);
+  }
+};
+
 
   //Google Login
   const handleGoogleLogin = {

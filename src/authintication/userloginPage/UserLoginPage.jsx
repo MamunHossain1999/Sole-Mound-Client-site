@@ -13,7 +13,8 @@ import bgSix from "../../assets/loginImg/bg-6.png";
 import bgSeven from "../../assets/loginImg/bg-7.png";
 import bgEight from "../../assets/loginImg/bg-8.png";
 import { Eye, EyeOff, Mail } from "lucide-react";
-import useAuth from "../../hooks/UseAuth";
+import useAuth from "../../hooks/useAuth";
+
 
 const UserLoginPage = () => {
   const [email, setEmail] = useState("");
