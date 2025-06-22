@@ -23,7 +23,7 @@ const BigBrandDeals = () => {
 
   return (
     <div className="my-8 ">
-      <h2 className="text-4xl font-bold mb-6 text-[#000000]">
+      <h2 className="text-base md:text-[25px] lg:text-4xl font-bold mb-2 md:mb-6 text-[#000000]">
         Big brands deals
       </h2>
 
@@ -38,13 +38,14 @@ const BigBrandDeals = () => {
         breakpoints={{
           0: { slidesPerView: 1 },
           480: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1440: { slidesPerView: 4 }
         }}
       >
         {brandImages?.map((item, index) => (
           <SwiperSlide key={index}>
-            <div key={index}  className="bg-[#FDF1F7] h-auto rounded-lg overflow-hidden border border-transparent hover:border-[#C8A8E9] transition-all duration-600 p-4">
+            <div key={index}  className="bg-[#FDF1F7] cursor-pointer h-auto rounded-lg overflow-hidden border border-transparent hover:border-[#C8A8E9] transition-all duration-600 p-4">
               <div className="">
                 <img 
                   src={item.image} 
@@ -52,8 +53,8 @@ const BigBrandDeals = () => {
                   className="w-full h-52 object-cover rounded-xl mb-4 "
                 />
 
-                <h3 className="font-semibold text-[#1F1F1F] text-lg line-clamp-2 h-10">{item.title}</h3>
-                <h5 className="font-lg text-[#1F1F1F] text-base line-clamp-2 h-12">{item.description}</h5>
+                <h3 className="font-semibold text-[#1F1F1F] text-base line-clamp-2 h-10">{item.title}</h3>
+                <h5 className="font-normal text-[#1F1F1F] text-sm line-clamp-3 h-16">{item.description}</h5>
               </div>
             </div>
           </SwiperSlide>

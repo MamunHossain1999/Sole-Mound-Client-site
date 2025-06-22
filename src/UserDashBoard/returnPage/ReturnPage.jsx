@@ -27,6 +27,7 @@ const ReturnPage = () => {
     returnDate: new Date().toLocaleDateString()
   });
 
+
   const { data: orderData, isLoading, error } = useQuery({
     queryKey: ['order', id],
     queryFn: () => fetchOrderDetails(id),
@@ -118,13 +119,9 @@ const ReturnPage = () => {
         returnDate: new Date().toLocaleDateString()
       };
 
-      const res = await fetch("/api/return", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(returnData),
-      });
+      const res = await axios.post("/api/return", returnData);
 
-      if (res.ok) {
+      if (res.status === 200) {
         toast.success("Return request submitted successfully!");
         navigate("/returns/confirmation", { state: { returnData } });
       } else {
@@ -155,8 +152,8 @@ const ReturnPage = () => {
   );
 
   return (
-    <div className="container mx-auto bg-white pt-6 pb-12">
-      <h1 className="text-[24px] text-[#1F1F1F] font-bold">Return my order(s)</h1>
+    <div className="container mx-auto bg-white pt-6 pb-12 px-4">
+      <h1 className="text-[24px] text-[#1F1F1F] font-bold ">Return my order(s)</h1>
 
       {/* Progress Steps */}
       <div className="flex justify-between my-4 px-4 md:px-28">
@@ -182,48 +179,62 @@ const ReturnPage = () => {
       </div>
 
       {/* Product Info */}
-      <div className="grid grid-cols-2 bg-[#FDF1F7] p-3 mt-5 rounded-t-lg text-[#505050] font-semibold text-base">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 items-center bg-[#FDF1F7] p-3 mt-5 rounded-[2px] text-[#505050] font-semibold text-base gap-2">
         <div>Product</div>
-        <div className="flex w-full justify-between px-28">
-          <div className="text-right">Order Number</div>
-          <div className="text-right">Return Term</div>
+        <div className="flex md:justify-between gap-4 sm:col-span-1 lg:col-span-2">
+          <div className="text-right w-1/2">Order Number</div>
+          <div className="text-right w-1/2">Return Term</div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 items-center border-gray-200 p-3">
-        <div className="space-y-3">
-          <div className="flex items-center space-x-3">
-            <img
-              src={orderData?.image || "/api/placeholder/60/60"}
-              alt={orderData?.name || "Product"}
-              className="w-[68px] h-[67px] rounded-md object-cover"
-            />
-            <div>
-              <p className="text-base text-[#1F1F1F] font-normal">{orderData?.name || "Unknown Product"}</p>
-              <p className="text-base text-[#FF1C1C] font-medium">${orderData?.price || "0.00"}</p>
-            </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center rounded-md p-4 gap-4">
+        {/* Product Info */}
+        <div className="flex items-center space-x-3 ">
+          <img
+            src={orderData?.image || "/api/placeholder/60/60"}
+            alt={orderData?.name || "Product"}
+            className="w-[68px] h-[67px] rounded-md object-cover"
+          />
+          <div>
+            <p className="text-base text-[#1F1F1F] font-normal">
+              {orderData?.name || "Unknown Product"}
+            </p>
+            <p className="text-base text-[#FF1C1C] font-medium">
+              ${orderData?.price || "0.00"}
+            </p>
           </div>
         </div>
-        <div className="flex w-full justify-between px-28">
-            <div className="text-center text-[#505050] text-base font-normal">#{id}</div>
-            <div className="text-right text-[#505050] text-base font-normal">
-              {new Date().toLocaleDateString()}
-            </div>
+
+        {/* Order Info */}
+        <div className="flex md:justify-between gap-4 sm:col-span-1 lg:col-span-2">
+          <div className="text-right w-1/2 text-[#505050] text-base font-normal">
+            #{id}
+          </div>
+          <div className="text-right w-1/2 text-[#505050] text-base font-normal">
+            {new Date().toLocaleDateString()}
+          </div>
         </div>
+
+        {/* Optional: Add an empty div for 3rd col in desktop or add action buttons */}
+        <div className="hidden lg:block"></div>
       </div>
 
+
       {/* Return Reason */}
-      <div className="mt-6 mb-4 pl-4 md:pl-18">
+      <div className="mt-6 mb-4 px-4 md:px-18">
         <h2 className="text-base font-semibold text-[#1F1F1F] mb-1">Reason for Return</h2>
         <p className="text-base text-[#1F1F1F] font-semibold pb-1 mb-3">
           What is the primary reason for returning the product?
         </p>
+
         <div className="space-y-3 rounded-md">
-            {reasons.map((reason, index) => (
-              <label
-                key={index}
-                className="flex items-center space-x-3 cursor-pointer text-base hover:bg-gray-50 p-2 rounded transition-colors relative"
-              >
+          {reasons.map((reason, index) => (
+            <label
+              key={index}
+              className="flex items-center gap-3 cursor-pointer text-base text-[#1F1F1F] hover:bg-gray-50 p-2 rounded transition-colors"
+            >
+              <div className="relative">
                 <input
                   type="checkbox"
                   name="returnReason"
@@ -233,19 +244,17 @@ const ReturnPage = () => {
                   className="peer w-5 h-5 accent-[#C8A8E9] bg-white border border-gray-300 rounded appearance-none checked:bg-[#C8A8E9] checked:border-transparent"
                 />
                 {/* Tick mark */}
-                <span className="pointer-events-none absolute left-[15px] top-3 items-center justify-center text-white text-xs font-bold peer-checked:block hidden">
+                <span className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs font-bold peer-checked:block hidden">
                   ✓
                 </span>
+              </div>
 
-                <span className="text-[#1F1F1F] text-base ml-2">{reason}</span>
-              </label>
-            ))}
-          </div>
-
-        {/* {selectedReasons.length === 0 && (
-          <p className="text-orange-500 text-sm mt-2">Please select at least one reason</p>
-        )} */}
+              <span className="text-[#1F1F1F] text-base">{reason}</span>
+            </label>
+          ))}
+        </div>
       </div>
+
 
 
       {/* Progress Steps */}
@@ -277,7 +286,7 @@ const ReturnPage = () => {
         <div className="space-y-4 max-w-[669px]">
           {shippingMethods.map((method) => (
             <div key={method.id} className="border border-[#919191] rounded-md py-4 hover:bg-gray-50 transition-colors">
-              <label className="flex items-center ml-6 cursor-pointer">
+              <label className="flex items-center ml-2 md:ml-6 cursor-pointer">
                 <div className="relative">
                   <input
                     type="radio"
@@ -311,7 +320,7 @@ const ReturnPage = () => {
         <div className="space-y-4 max-w-[669px]">
           {refundMethods.map((method) => (
             <div key={method.id} className="border border-[#919191] rounded-md py-4 hover:bg-gray-50 transition-colors">
-              <label className="flex items-center ml-6 cursor-pointer">
+              <label className="flex items-center ml-2 md:ml-6 cursor-pointer">
               <div className="relative">
                 <input
                     type="radio"

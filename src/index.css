@@ -2,6 +2,9 @@
 
 @plugin "daisyui";
 
+body {
+  font-family: 'Nunito';
+}
 /* about us page footer pagination */
 .custom-pagination .swiper-pagination-bullet {
   background-color: #EBDCF9;

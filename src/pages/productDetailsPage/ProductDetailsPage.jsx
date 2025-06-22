@@ -4,18 +4,17 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { Star } from "lucide-react";
 import {
-  FaCopy,
   FaFacebook,
-  FaPinterest,
   FaTwitter,
 } from "react-icons/fa";
+import { LiaPinterestP } from "react-icons/lia";
 import ProductReviewsSection from "./ProductReviwsSection";
 import { FaArrowLeftLong,  FaArrowRightLong } from "react-icons/fa6";
 import RelatedProducts from "./RelatedProducts";
-import { PiHandshakeThin, PiHeadphonesThin, PiMedalThin, PiTruckThin } from "react-icons/pi";
+import { PiCopyThin, PiHandshakeThin, PiHeadphonesThin, PiMedalThin, PiTruckThin } from "react-icons/pi";
 import { VscCreditCard, VscHeart } from "react-icons/vsc";
 import { MdKeyboardArrowDown } from "react-icons/md";
-
+import { CgFacebook } from "react-icons/cg";
 // features icon
 const featureIcons = [<PiMedalThin />, <PiTruckThin />, <PiHandshakeThin />, <PiHeadphonesThin />, <VscCreditCard />];
 
@@ -32,9 +31,10 @@ const ProductDetailsPage = () => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const thumbnailRef = useRef(null);
+  const [activeIcon, setActiveIcon] = useState("");
 
   const scrollThumbnails = (direction) => {
-  const scrollAmount = 200;
+  const scrollAmount = 100;
   if (direction === "left") {
     thumbnailRef.current.scrollLeft -= scrollAmount;
   } else {
@@ -71,7 +71,7 @@ const ProductDetailsPage = () => {
           <img
             src={selectedImage}
             alt="Product"
-            className="w-full h-[300px] sm:h-[400px] md:h-[550px] object-cover rounded-lg"
+            className="w-full h-[300px] sm:h-[200px] md:h-[400px] lg:h-[550px] object-cover rounded-lg"
           />
           <div className="relative mt-4">
             <button
@@ -108,8 +108,8 @@ const ProductDetailsPage = () => {
         {/* Product Info */}
         <div>
           {/* Rating */}
-          <div className="flex items-center mb-2">
-            <div className="flex text-yellow-400">
+          <div className="flex items-start mb-2">
+            <div className="flex text-[#FFC61C]">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
@@ -119,9 +119,9 @@ const ProductDetailsPage = () => {
                 />
               ))}
             </div>
-            <span className="text-sm text-gray-500 ml-2">
+            <span className="text-sm text-[#1F1F1F] ml-2">
               {product.rating} Star Rating{" "}
-              <span className="text-xs">
+              <span className="text-xs text-[#919191">
                 ({product.reviews?.toLocaleString()} User feedback)
               </span>
             </span>
@@ -152,27 +152,27 @@ const ProductDetailsPage = () => {
             <span className="text-[#3CA6FC] text-base font-semibold">
               ${product.currentPrice}
             </span>
-            <span className="line-through text-[#919191] gray-400">${product.originalPrice}</span>
-            <span className="bg-yellow-200 text-yellow-800 text-sm px-2 py-1 rounded">
+            <span className="line-through text-[#919191]">${product.originalPrice}</span>
+            <span className="bg-[#FFC61C] text-[#1F1F1F] text-sm px-2 py-1 rounded">
               {product.discount}% OFF
             </span>
           </div>
             
 
             {/* color and size */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 items-center">
             {/* Color */}
             {product.colors?.length > 0 && (
-              <div className="mt-5 text-gray-600">
-                <label className="block mb-1 font-medium">Color</label>
-                <div className="flex gap-3">
-                  {product.colors.map((color, idx) => {
+              <div className="mt-5 ">
+                <label className="block mb-1 font-medium text-[#1F1F1F]">Color</label>
+                <div className="flex gap-3 ">
+                  {product?.colors?.map((color, idx) => {
                     const isSelected = selectedColor === color;
                     return (
                       <button
                         key={idx}
                         onClick={() => setSelectedColor(color)}
-                        className={`w-12 h-12 flex items-center justify-center rounded-full ${
+                        className={`w-12 h-12 flex items-center justify-center rounded-full cursor-pointer ${
                           isSelected ? "border-2 border-pink-400" : "border-2 border-transparent"
                         }`}
                       >
@@ -195,7 +195,7 @@ const ProductDetailsPage = () => {
               <div className="mt-4 text-[#1F1F1F]">
               <label className="mb-2 text-base font-medium">Size</label>
               <div className="relative">
-                <select className="border border-[#E2E3E8] px-3 rounded py-2 w-full appearance-none pr-8">
+                <select className="border border-[#E2E3E8] px-3 cursor-pointer rounded py-2 w-full appearance-none pr-8 focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400">
                   <option>{product.size}</option>
                   {/* Add other size options here if available */}
                 </select>
@@ -214,7 +214,7 @@ const ProductDetailsPage = () => {
                 <div className="mt-4 text-[#1F1F1F]">
                   <label className="block mb-1 font-medium">Memory</label>
                   <div className="relative">
-                    <select className="border border-[#E2E3E8] px-3 rounded py-2 w-full appearance-none pr-8">
+                    <select className="border border-[#E2E3E8] px-3 cursor-pointer rounded py-2 w-full appearance-none pr-8 focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400">
                       <option>{product?.memory}</option>
                     </select>
                     <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
@@ -229,7 +229,7 @@ const ProductDetailsPage = () => {
                 <div className="mt-4 text-[#1F1F1F]">
                   <label className="block mb-1 font-medium">Storage</label>
                   <div className="relative">
-                    <select className="border border-[#E2E3E8] px-3 rounded py-2 w-full appearance-none pr-8">
+                    <select className="border border-[#E2E3E8] px-3 rounded py-2 w-full appearance-none pr-8 focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400">
                       <option>{product?.store}</option>
                     </select>
                     <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
@@ -241,44 +241,90 @@ const ProductDetailsPage = () => {
           </div>
 
           {/* Quantity & Buttons */}
-          <div className="mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-30 justify-end text-[#1F1F1F]">
-            <div className="flex items-center border border-[#B6B7BC] py-1 rounded overflow-hidden">
+          <div className="mt-6 flex flex-col sm:flex-row items-start sm:items-center md:gap-6 lg:gap-24 xl:gap-40 justify-end text-[#1F1F1F]">
+            <div className="flex mb-3 md:mb-0 items-center border border-[#B6B7BC] rounded-lg overflow-hidden">
               <button
-                className="px-3 text-lg"
+                className="px-3 text-lg cursor-pointer"
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
               >
                 -
               </button>
-              <span className="px-4">{quantity}</span>
+              <span className="px-4 py-2">{quantity}</span>
               <button
-                className="px-3 text-lg"
+                className="px-3 text-lg cursor-pointer"
                 onClick={() => setQuantity(quantity + 1)}
               >
                 +
               </button>
             </div>
-            <div className="space-x-2">
-              <button className="bg-[#C8A8E9] text-[#1F1F1F] px-6 py-2 text-base rounded hover:bg-purple-400 transition">
+            <div className="space-x-2 ">
+              <button className="bg-[#C8A8E9] cursor-pointer text-[#1F1F1F] px-6 py-2 text-base rounded-lg hover:bg-purple-400 transition">
                 Add to Cart
               </button>
-              <button className="border border-[#B6B7BC] text-[#1F1F1F] text-base px-6 py-2 rounded hover:bg-gray-100 transition">
+              <button className="border border-[#B6B7BC] cursor-pointer text-[#1F1F1F] text-base px-6 py-2 rounded-lg hover:bg-gray-100 transition">
                 Buy
               </button>
             </div>
           </div>
 
           {/* Wishlist & Share */}
-          <div className="mt-4 text-lg text-[#505050] ">
-            <div className="flex flex-col sm:flex-row justify-end gap-25">
-              <button className="hover:text-[#505050] text-base flex items-center gap-1">
-                <VscHeart className="text-2xl" /> Add to Wishlist
+          <div className="mt-5 text-[#505050] ">
+            <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-3 sm:gap-10 mt-4">
+             <div className="flex gap-2 items-start">
+               <button
+                className={`text-sm flex md:ml-0 lg:ml-62 cursor-pointer ${
+                  activeIcon === "wishlist" ? "text-purple-500" : "hover:text-[#505050]"
+                }`}
+                onClick={() => setActiveIcon("wishlist")}
+              >
+                <VscHeart className="w-[18.75px] h-[16.6px] text-base" /><span className="ml-1">Add to Wishlist</span>
               </button>
-              <div className="flex gap-2 items-center">
-                <span className="text-base">Share product:</span>
-                <span className="cursor-pointer hover:text-purple-600"><FaCopy/></span>
-                <span className="cursor-pointer hover:text-purple-600"><FaFacebook /></span>
-                <span className="cursor-pointer hover:text-purple-600"><FaTwitter /></span>
-                <span className="cursor-pointer hover:text-purple-600"><FaPinterest /></span>
+             </div>
+
+              <div className="flex gap-2 items-start">
+                <span className="text-sm text-[#505050]">Share product:</span>
+
+                <span
+                onClick={() => setActiveIcon("copy")}
+                  className={`cursor-pointer w-3 h-3 mb-1 ${
+                    activeIcon === "copy" ? "text-purple-500" : "hover:text-purple-600"
+                  }`}
+                >
+                  <PiCopyThin size={18} />
+                </span>
+
+                <span
+                  onClick={() => setActiveIcon("facebook")}
+                  className={`
+                    cursor-pointer w-4 h-4 flex items-center justify-center 
+                    rounded-full transition duration-300
+                    ${activeIcon === "facebook" 
+                      ? "bg-purple-500 text-white" 
+                      : "hover:bg-purple-500 hover:text-white"
+                    }
+                  `}
+                >
+                  <CgFacebook size={16} />
+                </span>
+
+
+                <span
+                  className={`cursor-pointer ${
+                    activeIcon === "twitter" ? "text-purple-500" : "hover:text-purple-600"
+                  }`}
+                  onClick={() => setActiveIcon("twitter")}
+                >
+                  <FaTwitter size={16} />
+                </span>
+
+                <span
+                  className={`cursor-pointer ${
+                    activeIcon === "pinterest" ? "text-purple-500" : "hover:text-purple-600"
+                  }`}
+                  onClick={() => setActiveIcon("pinterest")}
+                >
+                  <LiaPinterestP size={16} />
+                </span>
               </div>
             </div>
           </div>
@@ -288,13 +334,13 @@ const ProductDetailsPage = () => {
       {/* Description */}
       <div className="container mx-auto px-4">
         <div>
-          <h3 className="text-[20px] font-bold text-[#1F1F1F]">Description</h3>
+          <h3 className="text-[20px] font-bold text-[#1F1F1F] py-3">Description</h3>
           <span className="text-[#1F1F1F] text-base">{product.description}</span>
         </div>
 
        
         {/* Additional Information */}
-        <div className="">
+        <div className="mt-6">
           <h3 className="text-[20px] font-bold text-[#1F1F1F] py-3">Additional information</h3>
           <div className="space-y-1 px-2">
             <div className="flex -ml-2 py-1">

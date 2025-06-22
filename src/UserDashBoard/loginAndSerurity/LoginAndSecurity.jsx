@@ -2,13 +2,14 @@ import axios from 'axios';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../hooks/UseAuth';
+
 
 
 const LoginAndSecurity = () => {
   const {user, loader} = useAuth();
   const navigate = useNavigate();
-
+console.log(user?.phoneNumber);
   // Delete account handler
   const handleDeleteAccount = async () => {
     try {
@@ -63,11 +64,12 @@ const LoginAndSecurity = () => {
           <div>
             <p className="text-base cursor-pointer font-medium text-[#1F1F1F]">Primary Mobile Number</p>
             {/* Assuming user.phone or user.mobileNumber */}
-            <p className="text-sm text-[#1F1F1F]">{user?.phone || 'Not added'}</p>
+            <p className="text-sm text-[#1F1F1F]">{user?.phoneNumber || 'Not added'}</p>
+            
           </div>
           <Link to='/handle-phone-number'>
             <button className="text-base cursor-pointer border border-[#B6B7BC] rounded-lg px-6 py-3 text-[#1F1F1F]">
-              {user.phone ? 'Edit' : 'Add'}
+              {user.phoneNumber ? 'Edit' : 'Add'}
             </button>
           </Link>
         </div>

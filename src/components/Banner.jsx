@@ -14,9 +14,12 @@ const fetchBanners = async () => {
   return data;
 };
 
-
 const Banner = () => {
-    const { data: banners = [], isLoading, isError } = useQuery({
+  const {
+    data: banners = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["banners"],
     queryFn: fetchBanners,
   });
@@ -24,38 +27,42 @@ const Banner = () => {
   const banner1 = banners[0];
   const banner2 = banners[1];
   const banner3 = banners[2];
-  
-   if (isLoading) return <p>Loading...</p>;
+
+  if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something went wrong!</p>;
 
   return (
     <section className="">
-      <div className="w-full mx-auto " >
+      <div className="w-full mx-auto ">
         <Swiper
           slidesPerView={1}
           spaceBetween={0}
           pagination={{ clickable: true, dynamicBullets: true }}
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          autoplay={{ delay: 200000, disableOnInteraction: false }}
           loop={true}
           modules={[Navigation, Autoplay, Pagination, EffectFade]}
           className="h-full"
         >
           {/* Slide 1 */}
           <SwiperSlide>
-            <div className="w-full mt-5 md:my-6">
-              <div className="w-full flex flex-col md:flex-row-reverse items-center justify-between ">
-                <div className="w-full h-[250px] md:h-[550px] mx-auto flex relative ">
-                  <img src={banner1.image} alt="Banner 1" className="w-full h-full object-cover" />
-                </div>
-                <div className=" md:w-1/2 text-center pt-8 md:text-left space-y-4 absolute">
-                  <p className="text-base text-[#D76A9D] font-semibold " >
+            <div className="relative w-full md:w-7xl lg:w-full h-[300px] md:h-[550px] ">
+              <img
+                src={banner1.image}
+                alt="Banner"
+                className="w-full h-full object-cover  "
+              />
+              <div className="absolute inset-0 flex items-center justify-center md:pl-80 px-4 md:px-20">
+                <div className="text-center md:text-left space-y-4 text-[#000000] max-w-[600px]">
+                  <p className="text-sm md:text-xl text-[#D76A9D] font-semibold drop-shadow">
                     {banner1.subtitle}
                   </p>
-                  <h2 className="md:w-[430px] w-[250px] text-base md:text-4xl font-bold text-[#000000]" >
+                  <h2 className="text-[18px] md:text-4xl font-extrabold drop-shadow">
                     {banner1.title}
                   </h2>
-                  <p className="text-[#8A8FB9] text-base font-semibold" >{banner1.description}</p>
-                  <button className="inline-block bg-[#C8A8E9] hover:bg-[#aa7bd8] text-white font-semibold  px-6 py-2 transition duration-300 cursor-pointer">
+                  <p className="text-sm md:text-base text-[#8A8FB9] font-medium drop-shadow">
+                    {banner1.description}
+                  </p>
+                  <button className="bg-[#C8A8E9] hover:bg-[#aa7bd8] text-[#1F1F1F] font-bold rounded-[10px] px-6 py-2 text-sm md:text-lg transition duration-300">
                     {banner1.buttonText}
                   </button>
                 </div>
@@ -65,20 +72,24 @@ const Banner = () => {
 
           {/* Slide 2 */}
           <SwiperSlide>
-            <div className="h-full w-full py-5" >
-              <div className=" mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
-                <div className="w-full  flex relative ">
-                  <img src={banner2.image} alt="Banner 2" className="w-full h-full object-cover" />
-                </div>
-                <div className="w-full mx-auto px-52 text-center md:text-left absolute">
-                  <p className="text-[16px] md:text-[96px] text-[#FFFFFF] font-medium" >
+            <div className="relative w-full h-[300px] md:h-[550px]">
+              {/* Background Image */}
+              <img
+                src={banner2.image}
+                alt="Banner"
+                className="w-full h-full object-cover"
+              />
+
+              {/* Overlay Content */}
+              <div className="absolute inset-0 flex items-center px-4 md:px-20">
+                <div className="text-white space-y-4">
+                  <h2 className="text-2xl md:text-6xl font-extrabold drop-shadow">
+                    {banner2.title}
+                  </h2>
+                  <p className="text-base md:text-xl font-semibold drop-shadow">
                     {banner2.subtitle}
                   </p>
-                  <p className="text-base md:text-[52px] text-[#ffffff] font-bold" >
-                    {banner2.title}
-                  </p>
-                  <p >{banner2.description}</p>
-                  <button className="inline-block bg-[#C8A8E9] hover:bg-[#aa7bd8] text-[#1F1F1F] text-2xl mt-5 font-bold rounded-[20px] px-6 py-2 transition duration-300 cursor-pointer">
+                  <button className="bg-[#C8A8E9] hover:bg-[#aa7bd8] text-[#1F1F1F] font-bold rounded-[10px] px-6 py-2 text-sm md:text-lg transition duration-300">
                     {banner2.buttonText}
                   </button>
                 </div>
@@ -88,20 +99,27 @@ const Banner = () => {
 
           {/* Slide 3 */}
           <SwiperSlide>
-            <div className="h-full w-full py-5" >
-              <div className=" mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
-                <div className="w-full  flex relative ">
-                  <img src={banner3.image} alt="Banner 2" className="w-full h-full object-cover" />
-                </div>
-                <div className="w-full mx-auto px-52 text-center md:text-left absolute">
-                  <p className="text-[16px] md:text-4xl md:w-[485px] text-[#151875] font-bold" >
+            <div className="relative w-full h-[300px] md:h-[550px]">
+              {/* Background Image */}
+              <img
+                src={banner3.image}
+                alt="Banner 3"
+                className="w-full h-full object-cover"
+              />
+
+              {/* Text Overlay */}
+              <div className="absolute inset-0 flex items-center justify-start md:justify-start px-4 md:px-20">
+                <div className="text-center md:text-left space-y-3 max-w-[500px]">
+                  <p className="text-[18px] md:text-4xl text-[#151875] font-bold">
                     {banner3.subtitle}
                   </p>
-                  <p className="text-base md:text-base text-[#FDF1F7] md:w-[460px] my-3 font-normal" >
+                  <p className="text-sm md:text-base text-[#FDF1F7] font-normal">
                     {banner3.title}
                   </p>
-                  <p className="text-base md:text-base text-[#FDF1F7] md:w-[460px] font-normal" >{banner3.description}</p>
-                  <button className="inline-block bg-[#82405F] hover:bg-[#aa7bd8] text-[#FFFFFF] text-[20px] mt-5 font-bold  px-6 py-2 transition duration-300 cursor-pointer">
+                  <p className="text-sm md:text-base text-[#FDF1F7] font-normal">
+                    {banner3.description}
+                  </p>
+                  <button className="bg-[#82405F] hover:bg-[#aa7bd8] text-white text-base md:text-[20px] font-bold px-6 py-2 mt-3 rounded transition duration-300">
                     {banner3.buttonText}
                   </button>
                 </div>

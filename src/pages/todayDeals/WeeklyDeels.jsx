@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { FaCartPlus, FaHeart as FaHeartRegular } from 'react-icons/fa';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import React, { useEffect, useState } from "react";
+import { FaRegHeart } from "react-icons/fa";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const fetchWeekly = async () => {
-  const { data } = await axios.get('/weekly.json');
+  const { data } = await axios.get("/weekly.json");
   return data;
 };
 
@@ -14,13 +14,28 @@ const calculateRemainingTime = (endDate) => {
   const minutes = Math.floor((totalMs / 1000 / 60) % 60);
   const hours = Math.floor((totalMs / (1000 * 60 * 60)) % 24);
   const days = Math.floor(totalMs / (1000 * 60 * 60 * 24));
-
   return { totalMs, days, hours, minutes, seconds };
+};
+
+// 🎨 Function to get badge color class based on label
+const getLabelColor = (label) => {
+  switch (label?.toLowerCase()) {
+    case "hot":
+      return "bg-[#C8A8E9]";
+    case "new":
+      return "bg-[#A5D6FE]";
+    case "sale":
+      return "bg-[#B6DC91]";
+    case "sold out":
+      return "bg-[#B6B7BC]";
+    default:
+      return "bg-yellow-500";
+  }
 };
 
 const WeeklyDeals = () => {
   const { data = [], isLoading, isError } = useQuery({
-    queryKey: ['big-brand'],
+    queryKey: ["big-brand"],
     queryFn: fetchWeekly,
   });
 
@@ -29,7 +44,7 @@ const WeeklyDeals = () => {
 
   useEffect(() => {
     if (data.length) {
-      const validDeals = data.filter(deal => {
+      const validDeals = data.filter((deal) => {
         const start = new Date(deal.startDate);
         const end = new Date(start);
         end.setDate(start.getDate() + 16);
@@ -47,7 +62,8 @@ const WeeklyDeals = () => {
 
       if (soonestEnd) {
         const interval = setInterval(() => {
-          const { totalMs, days, hours, minutes, seconds } = calculateRemainingTime(soonestEnd);
+          const { totalMs, days, hours, minutes, seconds } =
+            calculateRemainingTime(soonestEnd);
           if (totalMs <= 0) {
             clearInterval(interval);
             setCountdown(null);
@@ -65,45 +81,93 @@ const WeeklyDeals = () => {
   if (isError) return <p>Something went wrong!</p>;
 
   return (
-    <div className="bg-gray-100 py-10">
+    <div className="bg-gray-100 py-10 md:pb-36">
       <div className="container mx-auto px-4">
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6 flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-gray-800">Weekly Best Deals</h2>
+        {/* Header */}
+        <div className="rounded-lg md:p-4 sm:p-0 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#191C1F]">
+            Weekly Best Deals
+          </h2>
           {countdown ? (
-            <div className="bg-indigo-100 text-indigo-600 rounded-md px-3 py-1 text-sm font-medium">
-              Deals end in <span className="font-bold">{countdown}</span>
+            <div className="text-[#1F1F1F] rounded-md md:px-3 py-1 text-sm font-medium flex flex-wrap items-center">
+              <span className="mr-2">Deals end in</span>
+              <span className="text-[#1F1F1F] text-base md:text-[32px] px-4 bg-[#C8A8E9] font-medium rounded">
+                {countdown}
+              </span>
             </div>
           ) : (
             <div className="text-red-600 font-medium text-sm">Deals expired</div>
           )}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredDeals.map(deal => (
-            <div key={deal.id} className="bg-white rounded-lg shadow-md overflow-hidden relative">
-              {deal.discount && (
-                <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1">{deal.discount}</span>
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {filteredDeals?.map((deal) => (
+            <div
+              key={deal.id}
+              className="bg-white rounded-lg shadow-md overflow-hidden relative p-4  flex flex-col"
+            >
+              {/* Wishlist Icon */}
+              <button className="absolute top-2 right-2 bg-[#FDF1F7] text-gray-500 hover:text-pink-500 rounded-full w-10 h-10 flex items-center justify-center shadow-sm">
+                <FaRegHeart className="w-6 h-6" />
+              </button>
+
+              {/* Discount / Label Badge */}
+              {(deal.label || deal.discount) && (
+                <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
+                  {deal.label && (
+                    <span
+                      className={`text-white text-xs font-bold rounded-tl-2xl rounded-br-2xl px-4 py-2 ${getLabelColor(deal.label)}`}
+                    >
+                      {deal.label}
+                    </span>
+                  )}
+                  {deal.discount && (
+                    <span className="bg-[#FF9797] text-white text-xs font-bold rounded-tl-2xl rounded-br-2xl px-2 py-2 w-fit">
+                      {deal.discount}
+                    </span>
+                  )}
+                </div>
               )}
-              {deal.label && (
-                <span className="absolute top-2 left-2 bg-blue-500 text-white text-xs font-bold rounded-full px-2 py-1">{deal.label}</span>
-              )}
-              <img src={deal.imageUrl} alt={deal.title} className="w-full h-32 object-cover" />
-              <div className="p-4">
-                <h3 className="text-sm font-medium text-gray-700 truncate">{deal.title}</h3>
+
+              {/* Image */}
+              <div className="w-full h-[200px] flex items-center justify-center overflow-hidden">
+                <img
+                  src={deal.imageUrl}
+                  alt={deal.title}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+
+              {/* Content */}
+              <div className=" flex flex-col justify-between flex-1">
+                <h3 className="text-sm font-medium text-[#191C1F] mb-2 line-clamp-2">
+                  {deal.title}
+                </h3>
+
+                {/* Price */}
                 {deal.originalPrice && deal.discountedPrice ? (
-                  <div className="flex items-center text-sm text-gray-600 mb-2">
-                    <span className="line-through">${deal.originalPrice.toFixed(2)}</span>
-                    <span className="font-semibold text-red-600 ml-2">${deal.discountedPrice.toFixed(2)}</span>
+                  <div className="flex items-center text-sm mb-2">
+                    <span className="line-through text-gray-500 mr-2">
+                      ${deal.originalPrice.toFixed(2)}
+                    </span>
+                    <span className="font-semibold text-[#A8537B]">
+                      ${deal.discountedPrice.toFixed(2)}
+                    </span>
                   </div>
                 ) : (
-                  <p className="text-sm font-semibold text-gray-800">${deal.price ? deal.price.toFixed(2) : ''}</p>
+                  <p className="text-base font-semibold text-[#A8537B]">
+                    ${deal.price ? deal.price.toFixed(2) : ""}
+                  </p>
                 )}
-                <div className="flex items-center justify-between mt-2">
-                  <button className="bg-indigo-500 text-white rounded-md px-3 py-2 text-sm hover:bg-indigo-600 focus:outline-none flex items-center">
-                    <FaCartPlus className="mr-2" /> Add to Cart
+
+                {/* Buttons */}
+                <div className="flex justify-between gap-2 mt-3">
+                  <button className="flex-1 bg-[#E3AADD] text-[#1F1F1F] rounded-md px-3 py-2 cursor-pointer text-sm hover:bg-pink-300 transition">
+                    Add to Cart
                   </button>
-                  <button className="text-gray-500 hover:text-red-500 focus:outline-none">
-                    <FaHeartRegular />
+                  <button className="flex-1 border border-[#C8A8E9] text-[#1F1F1F] rounded-md px-3 py-2 cursor-pointer text-sm hover:bg-purple-100 transition">
+                    View
                   </button>
                 </div>
               </div>

@@ -30,8 +30,9 @@ const YourBrowsingHistory = () => {
         spaceBetween={10}
         breakpoints={{
           640: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1440: { slidesPerView: 4 }
         }}
         pagination={{ clickable: true, el: '.custom-swiper-pagination' }}
         modules={[Pagination]}
@@ -39,17 +40,17 @@ const YourBrowsingHistory = () => {
       >
         {data?.map((product, index) => (
           <SwiperSlide key={index}>
-            <div className="relative group bg-[#F8F8F8] hover:bg-[#FDF1F7] rounded-lg overflow-hidden cursor-pointer duration-600 border border-transparent hover:border-[#C8A8E9] transition-all ">
+            <div className="relative group bg-[#F8F8F8] hover:bg-[#FDF1F7] rounded-lg overflow-hidden duration-600 border border-transparent hover:border-[#C8A8E9] transition-all ">
               {/* 👇 Hover Icons */}
               <div className="absolute inset-0 flex items-center justify-center bg-opacity-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <div className="flex gap-4">
-                  <button className="bg-white p-4 rounded-full hover:bg-[#C8A8E9]">
+                  <button className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer">
                     <img src={favoriteIcon} alt="favoriteIcon" />
                   </button>
-                  <button className="bg-white p-4 rounded-full hover:bg-[#C8A8E9]">
+                  <button className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer">
                     <img src={cardIcon} alt="cardIcon" />
                   </button>
-                  <button className="bg-white p-4 rounded-full hover:bg-[#C8A8E9]">
+                  <button className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer">
                     <FaRegEye className="text-gray-700 text-lg" />
                   </button>
                 </div>
@@ -62,21 +63,26 @@ const YourBrowsingHistory = () => {
                   className="w-full h-52 object-cover bg-white rounded-lg mb-4 p-3"
                 />
 
-                <div className="flex items-center mb-2">
-                  {[1, 2, 3, 4, 5]?.map((star) => (
-                    <span key={star} className="text-[#FFC61C] text-base">
-                      {star <= product.rating ? '★' : '☆'}
-                    </span>
-                  ))}
-                  <span className="text-[#919191] ml-1">({product.rating})</span>
+                  <div className="flex items-center mb-2">
+                  <div className="flex items-center text-[#FFC61C] text-base">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span key={i}>
+                        {i < Math.round(product.rating) ? "★" : "☆"}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <span className="text-[#919191] ml-1 text-[12px]">
+                    ({product.reviews})
+                  </span>
                 </div>
 
-                <h3 className="font-medium text-[#1F1F1F] text-base mb-2 line-clamp-2 h-12">
+                <h3 className="font-normal text-[#1F1F1F] text-sm mb-2 line-clamp-2 h-12">
                   {product.name}
                 </h3>
 
                 <div className="flex items-center mb-2">
-                  <span className="text-[#3CA6FC] text-lg font-bold">
+                  <span className="text-[#3CA6FC] text-base font-semibold">
                     ${product.price}
                   </span>
                 </div>

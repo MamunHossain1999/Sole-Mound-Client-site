@@ -6,70 +6,78 @@
     "title": "Xbox Series S - 512GB SSD Console with Wireless Controller - EU Version ...",
     "originalPrice": 654.12,
     "discountedPrice": 642.12,
-    "startDate": "2025-04-21T00:00:00Z"
+    "startDate": "2025-07-01T00:00:00Z"
   },
   {
     "id": 2,
-    "label": "BEST",
+    "label": "Hot",
     "imageUrl": "https://i.ibb.co.com/Kp868PT1/Image-3.png",
     "title": "Bose Sport Earbuds - Wireless Earphones - Bluetooth in Ear ...",
     "price": 23.0,
-    "startDate": "2025-04-22T00:00:00Z"
+    "startDate": "2025-07-02T00:00:00Z"
   },
   {
     "id": 3,
+    "label": "Sold Out",
     "imageUrl": "https://i.ibb.co.com/scrDvpL/Image-4.png",
     "title": "Bose Sport Earbuds - Wireless Earphones - Bluetooth in Ear ...",
     "price": 23.0,
-    "startDate": "2025-04-23T00:00:00Z"
+    "startDate": "2025-07-03T00:00:00Z"
   },
   {
     "id": 4,
+    "label": "New",
     "imageUrl": "https://i.ibb.co.com/Kp868PT1/Image-3.png",
     "title": "Bose Sport Earbuds - Wireless Earphones - Bluetooth in Ear ...",
     "price": 23.0,
-    "startDate": "2025-04-24T00:00:00Z"
+    "startDate": "2025-07-05T00:00:00Z"
   },
   {
     "id": 5,
+    "label": "Sale",
     "imageUrl": "https://i.ibb.co.com/sBkwG0R/Image-2.png",
     "title": "Campbell ...",
     "price": 23.0,
-    "startDate": "2025-04-25T00:00:00Z"
+    "startDate": "2025-07-07T00:00:00Z"
   },
   {
     "id": 6,
+    "label": "New",
     "imageUrl": "https://i.ibb.co.com/spCZRnx7/Image-1.png",
     "title": "Bose Sport Earbuds - Wireless Earphones - Bluetooth in Ear ...",
     "price": 23.0,
-    "startDate": "2025-04-26T00:00:00Z"
+    "startDate": "2025-07-08T00:00:00Z"
   },
   {
     "id": 8,
+    "label": "Hot",
     "imageUrl": "https://i.ibb.co.com/Jj8c8Qzd/Image.png",
     "title": "Bose Sport Earbuds - Wireless Earphones - Bluetooth in Ear ...",
     "price": 23.0,
-    "startDate": "2025-04-27T00:00:00Z"
+    "startDate": "2025-07-10T00:00:00Z"
   },
   {
     "id": 9,
+    "label": "Sold Out",
     "imageUrl": "https://i.ibb.co.com/Jj8c8Qzd/Image.png",
     "title": "Bose Sport Earbuds - Wireless Earphones - Bluetooth in Ear ...",
     "price": 23.0,
-    "startDate": "2025-04-28T00:00:00Z"
+    "startDate": "2025-07-12T00:00:00Z"
   },
   {
     "id": 10,
+    "label": "Hot",
     "imageUrl": "https://i.ibb.co.com/Jj8c8Qzd/Image.png",
     "title": "Bose Sport Earbuds - Wireless Earphones - Bluetooth in Ear ...",
     "price": 23.0,
-    "startDate": "2025-04-29T00:00:00Z"
+    "startDate": "2025-07-14T00:00:00Z"
   },
   {
     "id": 11,
+    "label": "New",
     "imageUrl": "https://i.ibb.co.com/Kp868PT1/Image-3.png",
     "title": "Bose Sport Earbuds - Wireless Earphones - Bluetooth in Ear ...",
     "price": 23.0,
-    "startDate": "2025-04-30T00:00:00Z"
+    "startDate": "2025-07-17T00:00:00Z"
   }
 ]

@@ -533,8 +533,8 @@ const AllCategory = () => {
           {parentCategories?.map((parent) => (
             <div key={parent.name} className="relative group/submenu">
               <Link
-                to={`/category/${parent.name.toLowerCase().replace(/ /g, "-")}`}
-                className="flex justify-between items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                to={`/#/${parent.name.toLowerCase().replace(/ /g, "-")}`}
+                className="flex justify-between items-center w-full px-4 py-2 text-base text-[#000000]  hover:bg-gray-100"
               >
                 {parent.name}
                 {parent.sub && (
@@ -561,7 +561,7 @@ const AllCategory = () => {
                       <Link
                         key={sub.name}
                         to={sub.link}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        className="block px-4 py-2 text-base text-[#000000] hover:bg-gray-100"
                       >
                         {sub.name}
                       </Link>

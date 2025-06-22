@@ -21,13 +21,13 @@ const BestsellersSection = () => {
   const weeklyDeals = products?.filter((item) => item.section === "weeklydeals");
 
   return (
-    <div className="container mx-auto px-4 md:px-6 lg:px-0 py-6">
+    <div className="container mx-auto lg:px-0 ">
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Side - Bestsellers */}
-        <div className="w-full lg:w-1/2 bg-[#F5F5F5] rounded-xl p-4 md:p-6">
+        <div className="w-full lg:w-1/2 bg-[#F5F5F5] rounded-xl p-4 md:p-4 lg:p-6">
         {/* title */}
-            <div className="mb-4 md:mb-6">
-              <h2 className="text-xl md:text-2xl font-bold text-[#1F1F1F]">Bestsellers</h2>
+            <div className="mb-4">
+              <h2 className="text-base md:text-2xl font-bold text-[#1F1F1F]">Bestsellers</h2>
               <p className="text-sm md:text-base text-[#1F1F1F]">
                 Get discounts on popular items
               </p>
@@ -56,13 +56,13 @@ const BestsellersSection = () => {
         {/* Right Side - Top Brands and Weekly Deals */}
         <div className="w-full lg:w-1/2 flex flex-col gap-4 space-y-4">
           {/* Top Brands */}
-          <div className="bg-[#F5F5F5] rounded-xl p-4 md:p-6">
+          <div className="bg-[#F5F5F5] rounded-xl p-4 md:p-4 lg:p-6">
             {/* title */}
-            <div className="flex justify-between items-center">
-              <div className="text-xl md:text-2xl font-bold text-[#1F1F1F] mb-4">
+            <div className="flex justify-between items-center mb-4 ">
+              <div className="text-base md:text-2xl font-bold text-[#1F1F1F]">
                 Deals on Top Categories
               </div>
-              <div className="flex justify-end">
+              <div className="flex justify-end ">
                 <Link to='/'><p className="text-[#3CA6FC] font-normal text-sm">Discover more</p></Link>
               </div>
             </div>
@@ -85,10 +85,10 @@ const BestsellersSection = () => {
           </div>
 
           {/* Weekly Deals */}
-          <div className="bg-[#F5F5F5] rounded-xl p-4 md:p-6">
+          <div className="bg-[#F5F5F5] rounded-xl p-4 md:p-4 lg:p-6">
             {/* title */}
-            <div className="flex justify-between items-center">
-              <div className="text-xl md:text-2xl font-bold text-[#1F1F1F] mb-4">
+            <div className="flex justify-between items-center mb-4">
+              <div className="text-base md:text-2xl font-bold text-[#1F1F1F] ">
                 Weekly Deals
               </div>
               <div className="flex justify-end">

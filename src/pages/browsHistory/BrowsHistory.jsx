@@ -60,7 +60,7 @@ const handleSaveToWishlist = () => {
       {historyItems.length === 0 ? (
         <div className="text-center text-gray-500 my-10">No browsing history found.</div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 cursor-pointer mx-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 cursor-pointer mx-4">
           {historyItems?.map((item, index) => (
             <div
               key={index}

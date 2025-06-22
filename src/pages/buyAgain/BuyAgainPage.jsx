@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
+import { MdOutlineShoppingCart } from "react-icons/md";
 
 // Group orders by delivery date
 const groupByDate = (orders) => {
@@ -46,7 +46,7 @@ const filterOrdersByPeriod = (orders, period) => {
   });
 };
 
-// Fetch all orders and handle pagination manually after filtering
+// Fetch orders
 const fetchOrders = async () => {
   const res = await axios.get("/buyAgain.json");
   return res.data.orders;
@@ -81,22 +81,22 @@ export default function BuyAgainPage() {
   return (
     <div className="bg-white min-h-auto py-10">
       <div className="container mx-auto px-4 lg:px-24">
-        {/* Filter & Order Count */}
-        <div className="my-4 flex justify-between items-center">
+        {/* Filter & Header */}
+        <div className="my-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="bg-[#FDF1F7] rounded-lg px-4 py-3">
-            <p className="w-[140px] text-[#475156] font-semibold text-base justify-center flex items-center">
+            <p className="text-[#475156] font-semibold text-base">
               Your Orders ({filteredOrders.length})
             </p>
           </div>
 
-          <div className="relative text-[#1F1F1F]">
+          <div className="relative w-full sm:w-auto">
             <select
               value={filterPeriod}
               onChange={(e) => {
                 setFilterPeriod(e.target.value);
                 setCurrentPage(1);
               }}
-              className="bg-[#FDF1F7] rounded-lg px-5 py-3 text-[#475156] font-semibold text-base w-full appearance-none focus:outline-none focus:ring-0 pr-10 border border-[#E2E3E8]"
+              className="bg-[#FDF1F7] rounded-lg px-5 py-3 text-[#475156] font-semibold text-base w-full appearance-none focus:outline-none pr-10 border border-[#E2E3E8]"
             >
               <option value="Past 3 Months">Past 3 Months</option>
               <option value="Past 6 Months">Past 6 Months</option>
@@ -120,27 +120,23 @@ export default function BuyAgainPage() {
           </div>
         </div>
 
-        {/* Header for latest order */}
+        {/* Latest Order Summary */}
         {latestOrder && (
           <div className="bg-[#FDF1F7] p-5 rounded-md shadow-sm mb-6">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div className="flex flex-col md:flex-row gap-8 w-full justify-between">
                 <div>
                   <p className="text-[#475156] font-semibold text-base mb-1">
                     Orders Placed
                   </p>
                   <p className="text-[#505050] text-sm font-normal">
-                    {new Date(latestOrder.orderDate).toLocaleDateString(
-                      "en-US",
-                      {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      }
-                    )}
+                    {new Date(latestOrder.orderDate).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
                   </p>
                 </div>
-
                 <div>
                   <p className="text-[#475156] font-semibold text-base mb-1">
                     Total
@@ -149,7 +145,6 @@ export default function BuyAgainPage() {
                     ${latestOrder.total.toFixed(2)}
                   </p>
                 </div>
-
                 <div>
                   <p className="text-[#475156] font-semibold text-base mb-1">
                     Ship To
@@ -158,7 +153,6 @@ export default function BuyAgainPage() {
                     {latestOrder.shipTo || "N/A"}
                   </p>
                 </div>
-
                 <div className="flex flex-col mt-4 md:mt-0">
                   <p className="text-[#475156] font-semibold text-base mb-1">
                     Order #{latestOrder.orderNumber || "N/A"}
@@ -166,9 +160,7 @@ export default function BuyAgainPage() {
                   <button
                     className="text-[#3CA6FC] text-sm font-normal hover:underline"
                     onClick={() =>
-                      alert(
-                        `View details for order #${latestOrder.orderNumber}`
-                      )
+                      alert(`View details for order #${latestOrder.orderNumber}`)
                     }
                   >
                     View Order Details
@@ -180,7 +172,7 @@ export default function BuyAgainPage() {
         )}
 
         {/* Orders Section */}
-        <div className="p-4">
+        <div className="md:p-4">
           {Object.entries(groupedOrders).map(([date, dateOrders]) => (
             <div key={date} className="mb-8">
               <h3 className="text-2xl font-medium text-[#1F1F1F] mb-4">
@@ -191,35 +183,39 @@ export default function BuyAgainPage() {
                 order.items.map((item, itemIdx) => (
                   <div
                     key={`${orderIdx}-${itemIdx}`}
-                    className="max-w-6xl w-full mx-auto bg-[#FDF1F7] rounded-lg mb-4 p-4 flex justify-center items-center"
+                    className="max-w-6xl w-full mx-auto bg-[#FDF1F7] rounded-lg mb-4 p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
                   >
-                    <div className="flex-shrink-0 mr-4">
+                    {/* Image */}
+                    <div className="w-full sm:w-auto flex-shrink-0">
                       <img
                         src={item.imageUrl}
                         alt={item.name}
-                        className="w-40 h-35 object-cover text-black"
+                        className="w-full sm:w-32 h-auto object-contain"
                       />
                     </div>
 
-                    <div className="flex-grow">
+                    {/* Info */}
+                    <div className="flex-grow w-full md:w-[36px]">
                       <p className="text-sm text-[#475156] mb-1">{item.name}</p>
                       <p className="text-sm text-[#3CA6FC]">
                         Return or replace items: {item.returnEligible}
                       </p>
                     </div>
 
-                    <div className="flex flex-col items-end gap-8 ml-4">
-                      <button className="bg-[#C8A8E9] hover:bg-purple-400 rounded-lg px-3 py-2 text-sm flex items-center gap-2">
+                    {/* Buttons */}
+                    <div className="flex flex-col sm:items-end gap-4 sm:gap-8 w-full sm:w-auto">
+                      <button className="bg-[#C8A8E9] hover:bg-purple-300 rounded-lg px-3 py-2 cursor-pointer text-sm flex items-center justify-center gap-2 w-full sm:w-auto">
                         <span className="text-[#1F1F1F] text-base font-semibold">
                           Buy It Again
                         </span>
                         <RefreshCw className="h-4 w-4 text-[#1F1F1F]" />
                       </button>
-                      <button className="bg-white border border-[#B6B7BC] text-[#475156] rounded-lg px-3 py-2 text-sm flex items-center gap-2">
+
+                      <button className="bg-white border border-[#B6B7BC] text-[#475156] rounded-lg px-3 py-2 cursor-pointer text-sm flex items-center justify-center gap-2 w-full sm:w-auto">
                         <span className="text-[#1F1F1F] text-base font-semibold">
                           Add to Cart
                         </span>
-                        <ShoppingCart className="h-4 w-4" />
+                        <MdOutlineShoppingCart  className="h-4 w-4" />
                       </button>
                     </div>
                   </div>

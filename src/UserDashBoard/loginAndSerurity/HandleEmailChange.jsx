@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Mail } from "lucide-react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Cookies from "js-cookie";
+import useAuth from "../../hooks/UseAuth";
 
 const HandleEmailChange = () => {
   const { user } = useAuth();
