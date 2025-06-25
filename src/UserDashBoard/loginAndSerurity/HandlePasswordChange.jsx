@@ -72,8 +72,8 @@ const HandlePasswordChange = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-auto p-4 my-18">
-      <div className="w-[690px] mx-auto bg-white rounded-[15px] border border-[#B6B7BC] md:py-16 md:px-20">
+    <div className="flex justify-center items-center min-h-auto p-4 md:my-18">
+      <div className="w-full max-w-[690px] bg-white rounded-[15px] border border-[#B6B7BC] py-10 px-4 sm:px-8 md:py-16 md:px-20">
         <div className="mb-6">
           <h1 className="text-2xl font-medium text-[#262736]">Password</h1>
           <p className="text-[#919191] text-base font-normal mt-1">
@@ -163,16 +163,16 @@ const HandlePasswordChange = () => {
         </div>
 
         {/* Buttons */}
-        <div className="flex justify-between gap-15">
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
           <button
-            className="bg-white w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#B6B7BC] hover:border-purple-400 rounded-lg cursor-pointer"
+            className="bg-white w-full sm:w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#B6B7BC] hover:border-purple-400 rounded-lg cursor-pointer"
             onClick={handleCancel}
             disabled={loading}
           >
             Cancel
           </button>
           <button
-            className="bg-[#C8A8E9] w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#C8A8E9] hover:border-white rounded-lg cursor-pointer"
+            className="bg-[#C8A8E9] w-full sm:w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#C8A8E9] hover:border-white rounded-lg cursor-pointer"
             onClick={handleUpdate}
             disabled={loading}
           >

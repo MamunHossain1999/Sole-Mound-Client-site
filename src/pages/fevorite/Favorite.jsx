@@ -1,116 +1,128 @@
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { GoHeartFill } from "react-icons/go";
+import { MdOutlineShoppingCart } from "react-icons/md";
+import Pagination from "./Pagination";
 
-// import React from "react";
-// import { Heart, ShoppingCart } from "lucide-react";
+const favorite = async () => {
+  const { data } = await axios.get("/favorite.json");
+  return data;
+};
 
-// const products = [
-//   {
-//     id: 1,
-//     image: "https://via.placeholder.com/100",
-//     title:
-//       "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running, Triple Black",
-//     oldPrice: "$129.00",
-//     newPrice: "$99.00",
-//     inStock: true,
-//   },
-//   {
-//     id: 2,
-//     image: "https://via.placeholder.com/100",
-//     title:
-//       "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running, Triple Black",
-//     oldPrice: "$129.00",
-//     newPrice: "$99.00",
-//     inStock: false,
-//   },
-//   {
-//     id: 3,
-//     image: "https://via.placeholder.com/100",
-//     title:
-//       "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running, Triple Black",
-//     oldPrice: "$129.00",
-//     newPrice: "$99.00",
-//     inStock: true,
-//   },
-//   {
-//     id: 4,
-//     image: "https://via.placeholder.com/100",
-//     title:
-//       "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running, Triple Black",
-//     oldPrice: "$129.00",
-//     newPrice: "$99.00",
-//     inStock: false,
-//   },
-// ];
+const Favorite = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
 
-// const Favorite = () => {
-//   return (
-//     <div className="flex container mx-auto bg-gray-50">
-//       <aside className="w-64 p-6 border-r border-gray-300">
-//         <p className="mb-4 text-sm text-gray-600">Welcome, Anika. <span className="text-red-500 cursor-pointer">Sign out</span></p>
-//         <ul className="space-y-3 text-sm">
-//           <li className="font-semibold">My Account homepage</li>
-//           <li>Order History</li>
-//           <li>Login & Security</li>
-//           <li>Shopping Cart</li>
-//           <li className="text-pink-500">♡ Wishlist</li>
-//           <li>Cards & Address</li>
-//           <li>Browsing History</li>
-//           <li>Log-out</li>
-//         </ul>
-//       </aside>
+  const {
+    data = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["Favorite"],
+    queryFn: favorite,
+  });
 
-//       <main className="flex-1 p-6">
-//         <h2 className="text-lg font-semibold mb-4">All items ({products.length})</h2>
-//         <div className="space-y-4">
-//           {products.map((product) => (
-//             <div
-//               key={product.id}
-//               className="flex items-center p-4 bg-white rounded-lg shadow-sm border"
-//             >
-//               <img
-//                 src={product.image}
-//                 alt={product.title}
-//                 className="w-24 h-24 object-cover rounded-md"
-//               />
-//               <div className="ml-4 flex-1">
-//                 <p className="text-sm font-medium text-gray-700 mb-1">
-//                   {product.title}
-//                 </p>
-//                 <div className="flex items-center space-x-2">
-//                   <span className="text-gray-400 line-through">
-//                     {product.oldPrice}
-//                   </span>
-//                   <span className="text-pink-600 font-bold">
-//                     {product.newPrice}
-//                   </span>
-//                 </div>
-//                 <p
-//                   className={`text-sm mt-1 font-semibold ${
-//                     product.inStock ? "text-green-500" : "text-red-500"
-//                   }`}
-//                 >
-//                   {product.inStock ? "IN STOCK" : "OUT OF STOCK"}
-//                 </p>
-//               </div>
-//               <button
-//                 className={`flex items-center px-4 py-2 text-sm rounded-md ml-4 ${
-//                   product.inStock
-//                     ? "bg-violet-500 text-white"
-//                     : "bg-gray-200 text-gray-500 cursor-not-allowed"
-//                 }`}
-//                 disabled={!product.inStock}
-//               >
-//                 Add to Cart <ShoppingCart className="ml-2 w-4 h-4" />
-//               </button>
-//               <Heart className="ml-4 text-red-500" fill="red" />
-//             </div>
-//           ))}
-//         </div>
-//         <p className="mt-4 text-sm text-right text-gray-500 cursor-pointer">
-//           View More
-//         </p>
-//       </main>
-//     </div>
-//   );
-// }
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Something went wrong!</p>;
 
-// export default Favorite;
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const visibleProducts = data.slice(startIndex, startIndex + itemsPerPage);
+
+  const handleAddToCart = (product) => {
+    if (product.inStock) {
+      console.log(`Added to cart: ${product.title}`);
+    }
+  };
+
+  return (
+    <div className="container mx-auto px-4 md:px-6 py-8">
+      <main className="flex-1">
+        <h2 className="text-[20px] sm:text-[24px] text-[#505050] bg-[#FDF1F7] font-medium rounded-lg p-4 mb-4 text-center sm:text-left">
+          All items ({data.length})
+        </h2>
+
+        <div className="space-y-4">
+          {visibleProducts?.map((product) => (
+            <div
+              key={product.id}
+              className="flex flex-col sm:flex-row items-center p-4 py-4 bg-[#FDF1F7] rounded-lg"
+            >
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-full md:w-[100px] h-[140px] md:h-[120px] lg:w-[128px] lg:h-[140px] object-cover rounded-md"
+              />
+              <div className="mt-4 sm:mt-0 sm:ml-4 flex-1 text-left sm:text-left">
+                <p className="text-[16px] font-normal text-[#475156] mb-1">
+                  {product.title}
+                </p>
+                <div className="flex justify-start sm:justify-start items-center space-x-2">
+                  <span className="text-[#919191] line-through text-[14px]">
+                    {product.oldPrice}
+                  </span>
+                  <span className="text-[#1F1F1F] font-medium text-[16px]">
+                    {product.newPrice}
+                  </span>
+                </div>
+                <p
+                  className={`text-[16px] mt-1 font-normal ${
+                    product.inStock ? "text-[#22C55E]" : "text-[#FF1C1C]"
+                  }`}
+                >
+                  {product.inStock ? "IN STOCK" : "OUT OF STOCK"}
+                </p>
+              </div>
+
+              <div className="mt-4 sm:mt-0 w-full sm:w-auto flex flex-col sm:flex-col">
+                {/* Mobile view */}
+                <div className="flex w-full justify-between items-center sm:hidden">
+                  <GoHeartFill
+                    className="cursor-pointer text-[#FF1C1C]"
+                    size={26}
+                  />
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className="flex items-center justify-center px-4 py-2 text-[16px] border border-[#B6B7BC] rounded-md bg-[#FDF1F7] text-[#1F1F1F] hover:bg-[#C8A8E9]"
+                    disabled={!product.inStock}
+                  >
+                    Add to Cart
+                    <MdOutlineShoppingCart className="ml-2 w-6 h-6" />
+                  </button>
+                </div>
+
+                {/* Desktop view */}
+                <div className="hidden sm:flex flex-col items-end space-y-12">
+                  <GoHeartFill
+                    className="cursor-pointer text-[#FF1C1C]"
+                    size={26}
+                  />
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className="flex items-center justify-center px-4 py-2 text-[16px] border border-[#B6B7BC] rounded-md bg-[#FDF1F7] text-[#1F1F1F] hover:bg-[#C8A8E9]"
+                    disabled={!product.inStock}
+                  >
+                    Add to Cart
+                    <MdOutlineShoppingCart className="ml-2 w-6 h-6" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Pagination Component */}
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
+        )}
+      </main>
+    </div>
+  );
+};
+
+export default Favorite;

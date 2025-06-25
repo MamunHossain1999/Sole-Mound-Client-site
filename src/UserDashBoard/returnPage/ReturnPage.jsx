@@ -415,7 +415,7 @@ const ReturnPage = () => {
           <div className="w-full flex justify-center py-8 ">
             <button
               onClick={handleSubmit}
-              className="w-40 bg-[#C8A8E9] text-[#1F1F1F] text-base py-2 rounded hover:bg-purple-400 "
+              className="w-40 bg-[#C8A8E9] text-[#1F1F1F] text-base py-2 rounded hover:bg-purple-300 "
             >
               Confirm Return
             </button>
@@ -423,7 +423,7 @@ const ReturnPage = () => {
 
           <div className="w-full flex justify-center py-8">
             <Link to="/retrun-confirm">
-              <button className="w-40 bg-[#C8A8E9] text-[#1F1F1F] text-base py-2 rounded hover:bg-purple-400">
+              <button className="w-40 bg-[#C8A8E9] text-[#1F1F1F] text-base py-2 rounded hover:bg-purple-300">
                 Confirm
               </button>
             </Link>

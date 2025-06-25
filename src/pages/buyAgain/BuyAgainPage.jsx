@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import {
   RefreshCw,
-  ShoppingCart,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import Pagination from "./Pagination";
 
 // Group orders by delivery date
 const groupByDate = (orders) => {
@@ -226,39 +226,11 @@ export default function BuyAgainPage() {
         </div>
 
         {/* Pagination */}
-        <div className="max-w-6xl w-full mx-auto flex justify-end p-4">
-          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-            <button
-              onClick={() => setCurrentPage(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#C8A8E9] text-[#C8A8E9] flex items-center justify-center disabled:opacity-50"
-            >
-              <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
-            </button>
-
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentPage(index + 1)}
-                className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full text-xs sm:text-sm font-semibold ${
-                  currentPage === index + 1
-                    ? "bg-[#C8A8E9] text-white"
-                    : "text-[#1F1F1F] hover:bg-purple-100"
-                }`}
-              >
-                {String(index + 1).padStart(2, "0")}
-              </button>
-            ))}
-
-            <button
-              onClick={() => setCurrentPage(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#C8A8E9] text-[#C8A8E9] flex items-center justify-center disabled:opacity-50"
-            >
-              <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
-            </button>
-          </div>
-        </div>
+        <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        />
       </div>
     </div>
   );

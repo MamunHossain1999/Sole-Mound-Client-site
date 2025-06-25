@@ -54,7 +54,7 @@ const HandleEmailChange = () => {
   };
 
   return (
-    <div className="flex justify-center items-center pt-16">
+    <div className="flex justify-center items-center pt-6 md:pt-16 px-4 mb-6">
       <div className="w-[690px] bg-white rounded-[15px] border border-[#B6B7BC] p-8 relative">
         <div className="mb-6">
           <h1 className="text-2xl font-medium text-[#262736]">

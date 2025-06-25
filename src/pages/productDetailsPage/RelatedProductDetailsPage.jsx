@@ -23,8 +23,7 @@ const fetchFetured = async (id) => {
   if (!product) throw new Error("Product not found");
   return product;
 };
-
-const ProductDetailsPage = () => {
+const RelatedProductDetailsPage = () => {
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
@@ -407,5 +406,4 @@ const ProductDetailsPage = () => {
     </div>
   );
 };
-
-export default ProductDetailsPage;
+export default RelatedProductDetailsPage;

@@ -30,7 +30,7 @@
         "lines": ["101 Baker Street", "NY, United States"]
       },
       {
-        "icon": "Mail",
+        "icon": "Bell",
         "bgColor": "#FFB9B9",
         "textColor": "text-purple-500",
         "lines": ["Subscribe", "Receive our newsletter"]

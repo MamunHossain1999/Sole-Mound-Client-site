@@ -4,7 +4,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import useAuth from '../../hooks/UseAuth';
 
-
 const ChangeNameModal = () => {
   const { ManageProfile } = useAuth();
   const [name, setName] = useState("");
@@ -37,14 +36,14 @@ const ChangeNameModal = () => {
   };
 
   return (
-    <div className="w-[805px] mx-auto h-auto items-center justify-center pt-32">
-      <div className="px-6 py-8 border border-[#919191] rounded-[15px]">
+    <div className="w-full max-w-[805px] mx-auto h-auto flex items-center mb-6 justify-center pt-6 md:pt-20 px-4 sm:px-6">
+      <div className="w-full px-6 py-8 border border-[#919191] rounded-[15px] bg-white">
         <h2 className="text-[24px] font-medium text-[#1F1F1F] mb-2">Change your name</h2>
         <p className="text-sm font-normal text-[#505050] mb-4">
           To update the name on your Sole Mound account, enter the new name below and click the Save Changes button to confirm
         </p>
 
-        <div className="mb-5 rounded-lg ">
+        <div className="mb-5 rounded-lg">
           <label htmlFor="name" className="block text-[#1F1F1F] text-base font-semibold mb-1">
             Name
           </label>
@@ -52,22 +51,22 @@ const ChangeNameModal = () => {
             type="text"
             id="name"
             placeholder="Enter your name"
-            className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
+            className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
             value={name}
             onChange={(e) => setName(e.target.value)}
           /> 
         </div>
 
-        <div className="flex justify-between gap-15">
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
           <button
-            className="bg-white w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#B6B7BC] hover:border-purple-400 hover:border-1 rounded-[8px] cursor-pointer"
+            className="bg-white w-full sm:w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#B6B7BC] hover:border-purple-400 rounded-[8px] cursor-pointer"
             onClick={handleCancel}
             disabled={loading}
           >
             Cancel
           </button>
           <button
-            className="bg-[#C8A8E9] w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#C8A8E9] hover:border-white rounded-[8px] cursor-pointer"
+            className="bg-[#C8A8E9] w-full sm:w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#C8A8E9] hover:border-white rounded-[8px] cursor-pointer"
             onClick={handleUpdate}
             disabled={loading}
           >

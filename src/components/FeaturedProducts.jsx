@@ -87,7 +87,7 @@ const FeaturedProducts = () => {
 
                 <div className="flex space-x-2">
                   {/* View Details */}
-                  <Link to={`category-search-page/${product.id}`} className="flex-1">
+                  <Link to={`/product-details/${product.id}`} className="flex-1">
                     <button className="bg-white border h-[46px] text-[#1F1F1F] border-[#E3AADD] rounded-md px-2 py-2 text-sm md:text-base hover:bg-[#E3AADD] w-full cursor-pointer">
                       View Details
                     </button>

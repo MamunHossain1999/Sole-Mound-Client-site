@@ -1,42 +1,52 @@
 [
-    {
-      "id": 1,
-      "name": "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running . Triple Black",
-      "price": 250,
-      "quantity": 1,
-      "imageUrl": "https://i.ibb.co.com/Jj8c8Qzd/Image.png",
-      "couponsApplicable": true
-    },
-    {
-      "id": 2,
-      "name": "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running . Triple Black",
-      "price": 250,
-      "quantity": 1,
-      "imageUrl": "https://i.ibb.co.com/spCZRnx7/Image-1.png",
-      "couponsApplicable": true
-    },
-    {
-      "id": 3,
-      "name": "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running . Triple Black",
-      "price": 250,
-      "quantity": 1,
-      "imageUrl": "https://i.ibb.co.com/sBkwG0R/Image-2.png",
-      "couponsApplicable": true
-    },
-    {
-      "id": 4,
-      "name": "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running . Triple Black",
-      "price": 250,
-      "quantity": 1,
-      "imageUrl": "https://i.ibb.co.com/Kp868PT1/Image-3.png",
-      "couponsApplicable": true
-    },
-    {
-      "id": 5,
-      "name": "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running . Triple Black",
-      "price": 250,
-      "quantity": 1,
-      "imageUrl": "https://i.ibb.co.com/scrDvpL/Image-4.png",
-      "couponsApplicable": true
-    }
-  ]
+  {
+    "id": 1,
+    "name": "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running . Triple Black",
+    "price": 250,
+    "quantity": 1,
+    "size": "M",
+    "color": "Black",
+    "imageUrl": "https://i.ibb.co.com/Jj8c8Qzd/Image.png",
+    "couponsApplicable": true
+  },
+  {
+    "id": 2,
+    "name": "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running . Triple Black",
+    "price": 250,
+    "quantity": 1,
+    "size": "L",
+    "color": "Gray",
+    "imageUrl": "https://i.ibb.co.com/spCZRnx7/Image-1.png",
+    "couponsApplicable": true
+  },
+  {
+    "id": 3,
+    "name": "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running . Triple Black",
+    "price": 250,
+    "quantity": 1,
+    "size": "XL",
+    "color": "Blue",
+    "imageUrl": "https://i.ibb.co.com/sBkwG0R/Image-2.png",
+    "couponsApplicable": true
+  },
+  {
+    "id": 4,
+    "name": "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running . Triple Black",
+    "price": 250,
+    "quantity": 1,
+    "size": "S",
+    "color": "Red",
+    "imageUrl": "https://i.ibb.co.com/Kp868PT1/Image-3.png",
+    "couponsApplicable": true
+  },
+  {
+    "id": 5,
+    "name": "Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear Headphones for Workouts and Running . Triple Black",
+    "price": 250,
+    "quantity": 1,
+    "size": "M",
+    "color": "White",
+    "imageUrl": "https://i.ibb.co.com/scrDvpL/Image-4.png",
+    "couponsApplicable": true
+  }
+]

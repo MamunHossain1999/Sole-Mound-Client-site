@@ -6,11 +6,10 @@ import {
 import MainLayOut from "../Layout/MainLayOut";
 import Home from "../pages/homePage/Home";
 import BrowsHistory from "../pages/browsHistory/BrowsHistory";
-import ShoppingCart from "../components/ShoppingCard";
+import ShoppingCart from "../components/shoppingCart/ShoppingCard";
 import BuyAgain from "../pages/buyAgain/BuyAgainPage";
 import WeeklyDeals from "../pages/todayDeals/WeeklyDeels";
 import AccountPage from "../UserDashBoard/helloUsers/AccountPage";
-import WishList from "../UserDashBoard/wishlist/WishList";
 import OrderhistoryPage from "../UserDashBoard/orderHistoryPage/OrderhistoryPage";
 import OrderDetailsPage from "../UserDashBoard/orderDetailsPage/OrderDetailsPage";
 import LoginAndSecurity from "../UserDashBoard/loginAndSerurity/LoginAndSecurity";
@@ -19,8 +18,8 @@ import CardAndAddress from "../UserDashBoard/paymentOption/CardAndAddress";
 import AddNewCardModal from "../UserDashBoard/paymentOption/AddNewCardModal";
 import ReturnPage from "../UserDashBoard/returnPage/ReturnPage";
 import DashBoard from "../Layout/DashBoard";
-import CheckoutPage from "../components/CheckoutPage";
-import CheckOutOrderSuccessPage from "../components/CheckOutOrderSuccessPage";
+import CheckoutPage from "../components/shoppingCart/CheckoutPage";
+import CheckOutOrderSuccessPage from "../components/shoppingCart/CheckOutOrderSuccessPage";
 import GiftCardBalancePage from "../components/GiftCardBalancePage";
 import ReturnRequestConfirm from "../UserDashBoard/returnPage/ReturnRequestConfirm";
 import EmailVerificationForm from "../UserDashBoard/loginAndSerurity/EmailVerificationForm";
@@ -44,6 +43,8 @@ import HandleEmailChange from "../UserDashBoard/loginAndSerurity/HandleEmailChan
 import HandlePhoneNumber from "../UserDashBoard/loginAndSerurity/HandlePhoneNumber";
 import HandlePasswordChange from "../UserDashBoard/loginAndSerurity/HandlePasswordChange";
 import ChangeNameModal from "../UserDashBoard/loginAndSerurity/ChangeNameModal";
+import Favorite from "../pages/fevorite/Favorite";
+import RelatedProductDetailsPage from "../pages/productDetailsPage/RelatedProductDetailsPage";
 
 
 
@@ -79,7 +80,10 @@ const router = createBrowserRouter([
         path: '/weekly-deals', element:<WeeklyDeals/>
       },
       {
-        path: '/category-search-page/:id', element: <ProductDetailsPage/>
+        path: '/product-details/:id', element: <ProductDetailsPage/>
+      },
+      {
+        path: '/related-product-details/:id', element: <RelatedProductDetailsPage/>
       },
       {
         path: 'handle-change-name', element: <ChangeNameModal/>
@@ -94,7 +98,7 @@ const router = createBrowserRouter([
         path: 'handle-password-change', element: <HandlePasswordChange/>
       },
       {
-        path: '/wishlist', element: <WishList/>
+        path: '/wishlist', element: <Favorite/>
       },
       {
         path: '/return-page/:id', element: <ReturnPage/>
@@ -190,7 +194,7 @@ const router = createBrowserRouter([
         path: 'brows-history', element: <BrowsHistory/>
       },
       {
-        path: 'wishlist', element: <PrivateRoute><WishList/></PrivateRoute>
+        path: 'favorite', element: <PrivateRoute><Favorite/></PrivateRoute>
       },
       {
         path: 'order-history', element: <OrderhistoryPage/>

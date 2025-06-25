@@ -53,14 +53,15 @@ const EmailVerificationForm = () => {
   };
 
   return (
-    <div className="flex justify-center items-center pt-16">
-      <div className="w-[400px] bg-white rounded-[15px] border border-[#B6B7BC] p-8">
+    <div className="flex justify-center items-center px-4 mb-6 sm:px-6 pt-10 sm:pt-16 min-h-auto">
+      <div className="w-full max-w-[690px] bg-white rounded-[15px] border border-[#B6B7BC] py-10 px-4 sm:px-8 md:py-16 md:px-20">
         <h1 className="text-2xl font-medium text-[#262736] mb-6">
           Verify OTP to change email
         </h1>
 
-        <p className="mb-4 text-[#919191]">
-          We sent a 4-digit OTP to your current email. Please enter it below to confirm changing your email to <strong>{newEmail}</strong>.
+        <p className="mb-4 text-[#919191] text-sm sm:text-base">
+          We sent a 4-digit OTP to your current email. Please enter it below to confirm changing your email to{" "}
+          <strong>{newEmail}</strong>.
         </p>
 
         <input
@@ -68,7 +69,7 @@ const EmailVerificationForm = () => {
           maxLength={6}
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
-          className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md mb-6 text-center text-xl tracking-widest"
+          className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md mb-6 text-center text-xl tracking-widest focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
           placeholder="Enter OTP"
           disabled={loading}
         />
@@ -88,6 +89,5 @@ const EmailVerificationForm = () => {
     </div>
   );
 };
-
 
 export default EmailVerificationForm;

@@ -14,7 +14,7 @@ import privacyPolicy from '../../assets/dashboardAccoutImg/privacyPolicy.svg';
 
 export default function AccountPage() {
   return (
-    <div className="container mx-auto pb-18 px-4">
+    <div className="container mx-auto md:pb-18 px-4">
       <div className="flex justify-between items-center py-4">
         <h1 className="text-[28px] md:text-[32px] font-semibold text-[#1F1F1F]">Your Account</h1>
       </div>
@@ -22,7 +22,7 @@ export default function AccountPage() {
       <div className="flex flex-col md:flex-row gap-6">
         {/* Main Content */}
         <div className="flex-1 ">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-7">
+          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-7">
             <MenuCard 
               title="Your Order"
               description="View past orders or track an order you're waiting on."
@@ -55,7 +55,7 @@ export default function AccountPage() {
               title="Favorite"
               description="View and edit your delivery addresses and payment details."
               icon={favorite}
-              href="/dashboard/wishlist"
+              href="/dashboard/favorite"
             />
             
             <MenuCard 

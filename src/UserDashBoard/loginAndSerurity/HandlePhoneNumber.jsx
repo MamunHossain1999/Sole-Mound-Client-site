@@ -39,8 +39,6 @@ const HandlePhoneNumber = () => {
         }
       );
 
-      console.log('Response:', res.data);
-
       if (res.data.success) {
         toast.success('Phone number updated successfully!');
         navigate(-1);
@@ -56,8 +54,8 @@ const HandlePhoneNumber = () => {
   };
 
   return (
-    <div className="w-[805px] mx-auto h-auto items-center justify-center pt-32">
-      <div className="px-6 py-8 border border-[#919191] rounded-lg">
+    <div className="w-full max-w-[805px] mx-auto h-auto flex items-center justify-center mb-6 pt-6 md:pt-20 px-4 sm:px-6">
+      <div className="w-full px-6 py-8 border border-[#919191] rounded-lg bg-white">
         <h2 className="text-[24px] font-medium text-[#1F1F1F] mb-2">Add your Phone Number</h2>
         <p className="text-sm font-normal text-[#505050] mb-4">
           To update the phone number on your Sole Mound account, enter the new number below and click the Update button to confirm.
@@ -71,25 +69,22 @@ const HandlePhoneNumber = () => {
             type="tel"
             id="phone"
             placeholder="Enter your phone number"
-            className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
+            className="w-full px-3 py-3 border border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
             value={phoneNumber}
-            onChange={(e) => {
-              console.log('Phone input changed:', e.target.value);
-              setPhoneNumber(e.target.value);
-            }}
+            onChange={(e) => setPhoneNumber(e.target.value)}
           />
         </div>
 
-        <div className="flex justify-between gap-4">
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
           <button
-            className="bg-white w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#B6B7BC] hover:border-purple-400 rounded-lg cursor-pointer"
+            className="bg-white w-full sm:w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#B6B7BC] hover:border-purple-400 rounded-lg cursor-pointer"
             onClick={handleCancel}
             disabled={loading}
           >
             Cancel
           </button>
           <button
-            className="bg-[#C8A8E9] w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#C8A8E9] hover:border-white rounded-lg cursor-pointer"
+            className="bg-[#C8A8E9] w-full sm:w-1/2 text-[#1F1F1F] font-semibold py-2 px-4 border border-[#C8A8E9] hover:border-white rounded-lg cursor-pointer"
             onClick={handleUpdate}
             disabled={loading}
           >
