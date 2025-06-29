@@ -31,9 +31,8 @@
     ],
     "size": "2m",
     "colors": [
-      "#ff0000",
-      "#00ff00",
-      "#0000ff"
+      "#F2A3C8",
+      "#B6B7BC"
     ],
     "store": "TechZone",
     "memory": "N/A",
@@ -80,9 +79,8 @@
     ],
     "size": "3m",
     "colors": [
-      "#ff0000",
-      "#00ff00",
-      "#0000ff"
+      "#F2A3C8",
+      "#B6B7BC"
     ],
     "store": "DigitalHub",
     "memory": "N/A",
@@ -132,9 +130,8 @@
     ],
     "size": "1.5m",
     "colors": [
-      "#ff0000",
-      "#00ff00",
-      "#0000ff"
+      "#F2A3C8",
+      "#B6B7BC"
     ],
     "store": "ElectroMart",
     "memory": "N/A",
@@ -181,9 +178,8 @@
     ],
     "size": "2.5m",
     "colors": [
-      "#ff0000",
-      "#00ff00",
-      "#0000ff"
+      "#F2A3C8",
+      "#B6B7BC"
     ],
     "store": "GadgetStore",
     "memory": "N/A",
@@ -230,9 +226,8 @@
     ],
     "size": "3m",
     "colors": [
-      "#ff0000",
-      "#00ff00",
-      "#0000ff"
+      "#F2A3C8",
+      "#B6B7BC"
     ],
     "store": "DigitalHub",
     "memory": "N/A",
@@ -279,9 +274,8 @@
     ],
     "size": "2m",
     "colors": [
-      "#ff0000",
-      "#00ff00",
-      "#0000ff"
+      "#F2A3C8",
+      "#B6B7BC"
     ],
     "store": "TechZone",
     "memory": "N/A",
@@ -328,9 +322,8 @@
     ],
     "size": "3m",
     "colors": [
-      "#ff0000",
-      "#00ff00",
-      "#0000ff"
+      "#F2A3C8",
+      "#B6B7BC"
     ],
     "store": "DigitalHub",
     "memory": "N/A",
@@ -338,157 +331,155 @@
       "material": "Verified by Transparency Each item has a unique code that we verify before shipping. Learn more Report an issue with this product or seller",
       "node": "Note:Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for    use in your destination. Please check compatibility before purchasing."
     },
-  "shipping_information": {
-    "estimated_delivery": "2-4 business days",
-    "shipping_cost": 50,
-    "free_shipping_over": 4000
+    "shipping_information": {
+      "estimated_delivery": "2-4 business days",
+      "shipping_cost": 50,
+      "free_shipping_over": 4000
+    },
+    "lastUpdated": "2025-04-12T17:41:00+06:00"
   },
-  "lastUpdated": "2025-04-12T17:41:00+06:00"
-},
-{
-  "id": 8,
-  "brand": "Amazon Basics",
-  "name": "Standard HDMI Cable (Reliable Connection)",
-  "currentPrice": 2800,
-  "originalPrice": 3000,
-  "discount": 6.67,
-  "rating": 3.9,
-  "reviews": 650,
-  "stock": 680,
-  "images": [
-    "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
-    "https://i.ibb.co.com/GS7FTDC/Image-7.png",
-    "https://i.ibb.co.com/GS7FTDC/Image-7.png",
-    "https://i.ibb.co.com/GS7FTDC/Image-7.png",
-    "https://i.ibb.co.com/GS7FTDC/Image-7.png",
-    "https://i.ibb.co.com/GS7FTDC/Image-7.png",
-    "https://i.ibb.co.com/GS7FTDC/Image-7.png",
-    "https://i.ibb.co.com/GS7FTDC/Image-7.png",
-    "https://i.ibb.co.com/GS7FTDC/Image-7.png",
-    "https://i.ibb.co.com/GS7FTDC/Image-7.png"
-  ],
-  "category": "Visual Equipment",
-  "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione vel dolor eius possimus veritatis perferendis est consequatur alias fugit? Dolorum vitae deleniti corporis. Facilis laborum, odit saepe a illum aspernatur adipisci vitae minus quidem voluptatum ab quis consequatur aut numquam amet quibusdam itaque placeat. Saepe maiores vitae iste laboriosam facere?",
-  "features": [
-    "Supports 1080p resolution",
-    "Standard HDMI features",
-    "Durable and flexible",
-    "Lifetime warranty"
-  ],
-  "size": "1.5m",
-  "colors": [
-    "#ff0000",
-    "#00ff00",
-    "#0000ff"
-  ],
-  "store": "ElectroMart",
-  "memory": "N/A",
-  "additional_information": {
-    "material": "Verified by Transparency Each item has a unique code that we verify before shipping. Learn more Report an issue with this product or seller",
-    "node": "Note:Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for    use in your destination. Please check compatibility before purchasing."
+  {
+    "id": 8,
+    "brand": "Amazon Basics",
+    "name": "Standard HDMI Cable (Reliable Connection)",
+    "currentPrice": 2800,
+    "originalPrice": 3000,
+    "discount": 6.67,
+    "rating": 3.9,
+    "reviews": 650,
+    "stock": 680,
+    "images": [
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
+      "https://i.ibb.co.com/GS7FTDC/Image-7.png",
+      "https://i.ibb.co.com/GS7FTDC/Image-7.png",
+      "https://i.ibb.co.com/GS7FTDC/Image-7.png",
+      "https://i.ibb.co.com/GS7FTDC/Image-7.png",
+      "https://i.ibb.co.com/GS7FTDC/Image-7.png",
+      "https://i.ibb.co.com/GS7FTDC/Image-7.png",
+      "https://i.ibb.co.com/GS7FTDC/Image-7.png",
+      "https://i.ibb.co.com/GS7FTDC/Image-7.png",
+      "https://i.ibb.co.com/GS7FTDC/Image-7.png"
+    ],
+    "category": "Visual Equipment",
+    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione vel dolor eius possimus veritatis perferendis est consequatur alias fugit? Dolorum vitae deleniti corporis. Facilis laborum, odit saepe a illum aspernatur adipisci vitae minus quidem voluptatum ab quis consequatur aut numquam amet quibusdam itaque placeat. Saepe maiores vitae iste laboriosam facere?",
+    "features": [
+      "Supports 1080p resolution",
+      "Standard HDMI features",
+      "Durable and flexible",
+      "Lifetime warranty"
+    ],
+    "size": "1.5m",
+    "colors": [
+      "#F2A3C8",
+      "#B6B7BC"
+    ],
+    "store": "ElectroMart",
+    "memory": "N/A",
+    "additional_information": {
+      "material": "Verified by Transparency Each item has a unique code that we verify before shipping. Learn more Report an issue with this product or seller",
+      "node": "Note:Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for    use in your destination. Please check compatibility before purchasing."
+    },
+    "shipping_information": {
+      "estimated_delivery": "4-7 business days",
+      "shipping_cost": 40,
+      "free_shipping_over": 3500
+    },
+    "lastUpdated": "2025-04-12T17:41:00+06:00"
   },
-"shipping_information": {
-  "estimated_delivery": "4-7 business days",
-  "shipping_cost": 40,
-  "free_shipping_over": 3500
-},
-"lastUpdated": "2025-04-12T17:41:00+06:00"
-},
-{
-"id": 9,
-"brand": "Belkin",
-"name": "Slim High-Speed HDMI Cable (Space-Saving Design)",
-"currentPrice": 3700,
-"originalPrice": 4200,
-"discount": 11.9,
-"rating": 4.1,
-"reviews": 790,
-"stock": 400,
-"images": [
-  "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
-  "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
-  "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
-  "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
-  "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
-  "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
-  "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
-  "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
-  "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
-  "https://i.ibb.co.com/rGLGNsjw/Image-8.png"
-],
-"category": "Visual Equipment",
-"description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione vel dolor eius possimus veritatis perferendis est consequatur alias fugit? Dolorum vitae deleniti corporis. Facilis laborum, odit saepe a illum aspernatur adipisci vitae minus quidem voluptatum ab quis consequatur aut numquam amet quibusdam itaque placeat. Saepe maiores vitae iste laboriosam facere?",
-"features": [
-  "Supports 4K@60Hz",
-  "High-Speed data transfer",
-  "Low-profile connectors",
-  "Lightweight and portable"
-],
-"size": "2.5m",
-"colors": [
-  "#ff0000",
-  "#00ff00",
-  "#0000ff"
-],
-"store": "GadgetStore",
-"memory": "N/A",
-"additional_information": {
-  "material": "Verified by Transparency Each item has a unique code that we verify before shipping. Learn more Report an issue with this product or seller",
-  "node": "Note:Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for    use in your destination. Please check compatibility before purchasing."
-},
-"shipping_information": {
-  "estimated_delivery": "3-6 business days",
-  "shipping_cost": 70,
-  "free_shipping_over": 6000
-},
-"lastUpdated": "2025-04-12T17:41:00+06:00"
-},
-{
-"id": 10,
-"brand": "Cable Matters",
-"name": "Braided High-Speed HDMI Cable with Ethernet",
-"currentPrice": 3200,
-"originalPrice": 3800,
-"discount": 15.79,
-"rating": 4.2,
-"reviews": 880,
-"stock": 510,
-"images": [
-  "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
-  "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
-  "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
-  "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
-  "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
-  "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
-  "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
-  "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
-  "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
-  "https://i.ibb.co.com/20Tf0F4d/Image-6.png"
-],
-"category": "Visual Equipment",
-"description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione vel dolor eius possimus veritatis perferendis est consequatur alias fugit? Dolorum vitae deleniti corporis. Facilis laborum, odit saepe a illum aspernatur adipisci vitae minus quidem voluptatum ab quis consequatur aut numquam amet quibusdam itaque placeat. Saepe maiores vitae iste laboriosam facere?",
-"features": [
-  "Supports 4K@60Hz",
-  "High-Speed with Ethernet",
-  "Tangle-free braided design",
-  "Gold-plated connectors"
-],
-"size": "3m",
-"colors": [
-  "#F2A3C8",
-  "#B6B7BC"
-],
-"store": "DigitalHub",
-"memory": "N/A",
-"additional_information": {
-  "material": "Verified by Transparency Each item has a unique code that we verify before shipping. Learn more Report an issue with this product or seller",
-  "node": "Note:Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for    use in your destination. Please check compatibility before purchasing."
-},
-"shipping_information": {
-  "estimated_delivery": "2-5 business days",
-  "shipping_cost": 55,
-  "free_shipping_over": 4500
-},
-"lastUpdated": "2025-04-12T17:41:00+06:00"
-}
+  {
+    "id": 9,
+    "brand": "Belkin",
+    "name": "Slim High-Speed HDMI Cable (Space-Saving Design)",
+    "currentPrice": 3700,
+    "originalPrice": 4200,
+    "discount": 11.9,
+    "rating": 4.1,
+    "reviews": 790,
+    "stock": 400,
+    "images": [
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png",
+      "https://i.ibb.co.com/rGLGNsjw/Image-8.png"
+    ],
+    "category": "Visual Equipment",
+    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione vel dolor eius possimus veritatis perferendis est consequatur alias fugit? Dolorum vitae deleniti corporis. Facilis laborum, odit saepe a illum aspernatur adipisci vitae minus quidem voluptatum ab quis consequatur aut numquam amet quibusdam itaque placeat. Saepe maiores vitae iste laboriosam facere?",
+    "features": [
+      "Supports 4K@60Hz",
+      "High-Speed data transfer",
+      "Low-profile connectors",
+      "Lightweight and portable"
+    ],
+    "size": "2.5m",
+    "colors": [
+      "#F2A3C8",
+      "#B6B7BC"
+    ],
+    "store": "GadgetStore",
+    "memory": "N/A",
+    "additional_information": {
+      "material": "Verified by Transparency Each item has a unique code that we verify before shipping. Learn more Report an issue with this product or seller",
+      "node": "Note:Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for    use in your destination. Please check compatibility before purchasing."
+    },
+    "shipping_information": {
+      "estimated_delivery": "3-6 business days",
+      "shipping_cost": 70,
+      "free_shipping_over": 6000
+    },
+    "lastUpdated": "2025-04-12T17:41:00+06:00"
+  },
+  {
+    "id": 10,
+    "brand": "Cable Matters",
+    "name": "Braided High-Speed HDMI Cable with Ethernet",
+    "currentPrice": 3200,
+    "originalPrice": 3800,
+    "discount": 15.79,
+    "rating": 4.2,
+    "reviews": 880,
+    "stock": 510,
+    "images": [
+      "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
+      "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
+      "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
+      "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
+      "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
+      "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
+      "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
+      "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
+      "https://i.ibb.co.com/20Tf0F4d/Image-6.png",
+      "https://i.ibb.co.com/20Tf0F4d/Image-6.png"
+    ],
+    "category": "Visual Equipment",
+    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione vel dolor eius possimus veritatis perferendis est consequatur alias fugit? Dolorum vitae deleniti corporis. Facilis laborum, odit saepe a illum aspernatur adipisci vitae minus quidem voluptatum ab quis consequatur aut numquam amet quibusdam itaque placeat. Saepe maiores vitae iste laboriosam facere?",
+    "features": [
+      "Supports 4K@60Hz",
+      "High-Speed with Ethernet",
+      "Tangle-free braided design",
+      "Gold-plated connectors"
+    ],
+    "size": "3m",
+    "colors": [
+      "#F2A3C8",
+      "#B6B7BC"
+    ],
+    "store": "DigitalHub",
+    "memory": "N/A",
+    "additional_information": {
+      "material": "Verified by Transparency Each item has a unique code that we verify before shipping. Learn more Report an issue with this product or seller",
+      "node": "Note:Products with electrical plugs are designed for use in the US. Outlets and voltage differ internationally and this product may require an adapter or converter for    use in your destination. Please check compatibility before purchasing."
+    },
+    "shipping_information": {
+      "estimated_delivery": "2-5 business days",
+      "shipping_cost": 55,
+      "free_shipping_over": 4500
+    },
+    "lastUpdated": "2025-04-12T17:41:00+06:00"
+  }
 ]

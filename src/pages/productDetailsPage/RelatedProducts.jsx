@@ -74,7 +74,7 @@ const RelatedProducts = () => {
       >
         {relatedProducts?.map((product, index) => (
           <SwiperSlide key={index}>
-            <div className="mx-auto border hover:border-[#919191] transition-all duration-600">
+            <div className="mx-auto border border-[#919191] transition-all duration-600">
               <div className="p-4">
                 <img
                   src={product.images[0]}

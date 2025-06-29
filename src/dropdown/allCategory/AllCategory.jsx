@@ -492,7 +492,7 @@ const AllCategory = () => {
 
   return (
     <div className="relative inline-block text-left group">
-      <div>
+      <div className="bg-[#4B00811F]">
         <button
           type="button"
           className="inline-flex justify-center w-full py-2 text-base  items-center gap-0.5 font-semibold text-[#1F1F1F] bg-white rounded-md cursor-pointer hover:bg-gray-100"
