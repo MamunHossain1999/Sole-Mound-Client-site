@@ -4,6 +4,7 @@ import CategoryProductCard from "./CategoryProductCard";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { FiSearch, FiChevronDown } from "react-icons/fi";
+import PriceRangeFilter from "./PriceRangeFilter";
 
 // Fetch function
 const fetchCategoryProducts = async () => {
@@ -64,7 +65,6 @@ const colors = ["Black", "Yellow", "Red", "Green", "Silver", "Gold", "White"];
 const FilterSidebar = ({ filters, setFilters }) => {
   const [showAll, setShowAll] = useState(false);
   const visibleCategories = showAll ? categories : categories.slice(0, 10);
-
   const handleChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
@@ -108,7 +108,12 @@ const FilterSidebar = ({ filters, setFilters }) => {
 
       <hr className="text-[#E4E7E9]" />
 
-      {/* Price Filter */}
+      {/* Price Range Slider */}
+      <div className="w-full bg-white">
+        <PriceRangeFilter filters={filters} setFilters={setFilters} />
+      </div>
+
+      {/* Preset Price Ranges (Radio) */}
       <div>
         <h4 className="font-semibold text-[#191C1F] text-base py-5">
           Price Range
@@ -123,8 +128,10 @@ const FilterSidebar = ({ filters, setFilters }) => {
                 type="radio"
                 name="priceRange"
                 className="peer hidden"
-                onChange={() => handleChange("priceRange", range)}
-                checked={filters.priceRange?.label === range.label}
+                onChange={() =>
+                  setFilters((prev) => ({ ...prev, priceRange: range }))
+                }
+                checked={filters.priceRange.label === range.label}
               />
               <div className="w-4 h-4 rounded-full border border-[#C9CFD2] bg-white flex items-center justify-center peer-checked:bg-[#C8A8E9] peer-checked:border-[#C8A8E9]">
                 <div className="w-2 h-2 rounded-full bg-white peer-checked:block"></div>
@@ -275,7 +282,8 @@ const CategorySearchPage = () => {
         return a.priceValue - b.priceValue;
       if (sortOption === "Price: High to Low")
         return b.priceValue - a.priceValue;
-      if (sortOption === "Newest") return new Date(b.date) - new Date(a.date);
+      if (sortOption === "best Seller")
+        return new Date(b.date) - new Date(a.date);
       return 0;
     });
 

@@ -50,6 +50,7 @@ import RelatedProductDetailsPage from "../pages/productDetailsPage/RelatedProduc
 
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",

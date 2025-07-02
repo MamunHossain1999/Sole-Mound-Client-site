@@ -32,7 +32,7 @@ const YourBrowsingHistory = () => {
           640: { slidesPerView: 2 },
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
-          1440: { slidesPerView: 4 }
+          1440: { slidesPerView: 4.5 }
         }}
         pagination={{ clickable: true, el: '.custom-swiper-pagination' }}
         modules={[Pagination]}

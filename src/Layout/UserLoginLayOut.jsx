@@ -7,7 +7,7 @@ import UserLoginNavbar from "../components/loginNavbar/UserLoginNavbar";
 const UserLoginLayOut = () => {
   useEffect(() => {
     // Disable scroll on mount
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "auto";
     return () => {
       // Restore scroll on unmount
       document.body.style.overflow = "auto";

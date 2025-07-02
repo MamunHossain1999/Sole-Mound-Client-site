@@ -62,7 +62,7 @@ const Banner = () => {
                   <p className="text-sm md:text-base text-[#8A8FB9] font-medium drop-shadow">
                     {banner1.description}
                   </p>
-                  <button className="bg-[#C8A8E9] hover:bg-[#aa7bd8] text-[#1F1F1F] font-bold rounded-[10px] px-6 py-2 text-sm md:text-lg transition duration-300">
+                  <button className="bg-[#C8A8E9] hover:bg-[#aa7bd8] cursor-pointer text-[#1F1F1F] font-bold rounded-[10px] px-6 py-2 text-sm md:text-lg transition duration-300">
                     {banner1.buttonText}
                   </button>
                 </div>
@@ -89,7 +89,7 @@ const Banner = () => {
                   <p className="text-base md:text-xl font-semibold drop-shadow">
                     {banner2.subtitle}
                   </p>
-                  <button className="bg-[#C8A8E9] hover:bg-[#aa7bd8] text-[#1F1F1F] font-bold rounded-[10px] px-6 py-2 text-sm md:text-lg transition duration-300">
+                  <button className="bg-[#C8A8E9] hover:bg-[#aa7bd8] cursor-pointer text-[#1F1F1F] font-bold rounded-[10px] px-6 py-2 text-sm md:text-lg transition duration-300">
                     {banner2.buttonText}
                   </button>
                 </div>
@@ -119,7 +119,7 @@ const Banner = () => {
                   <p className="text-sm md:text-base text-[#FDF1F7] font-normal">
                     {banner3.description}
                   </p>
-                  <button className="bg-[#82405F] hover:bg-[#aa7bd8] text-white text-base md:text-[20px] font-bold px-6 py-2 mt-3 rounded transition duration-300">
+                  <button className="bg-[#82405F] hover:bg-[#aa7bd8] cursor-pointer text-white text-base md:text-[20px] font-bold px-6 py-2 mt-3 rounded transition duration-300">
                     {banner3.buttonText}
                   </button>
                 </div>
