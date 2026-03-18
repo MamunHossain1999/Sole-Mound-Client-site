@@ -1,0 +1,29 @@
+import React, { useEffect } from "react";
+import { Outlet } from "react-router-dom";
+
+import ScrollToTop from "../components/scrollTop/ScrollTop";
+import UserLoginNavbar from "@/components/loginNavbar/UserLoginNavbar";
+
+
+const UserLoginLayOut: React.FC = () => {
+  useEffect(() => {
+    // Disable scroll on mount
+    document.body.style.overflow = "auto";
+    return () => {
+      // Restore scroll on unmount
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
+  return (
+    <div className="overflow-hidden">
+      <ScrollToTop />
+      <UserLoginNavbar />
+      <div className="bg-white">
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+export default UserLoginLayOut;
