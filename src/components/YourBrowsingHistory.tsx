@@ -9,6 +9,9 @@ import cardIcon from "../assets/navbarIcon/Vector (4).png";
 import { FaRegEye } from "react-icons/fa";
 import { useGetHistoryQuery } from "@/Redux/api/historyApi";
 import { useGetAllReviewsQuery } from "@/Redux/api/reviewApi";
+import { Link } from "react-router-dom";
+import { useAddWishlistMutation } from "@/Redux/api/wishlistApi";
+import { toast } from "react-toastify";
 
 // ✅ Review Type
 interface Review {
@@ -20,6 +23,8 @@ interface Review {
 
 const YourBrowsingHistory: React.FC = () => {
   const { data = [], isLoading, isError } = useGetHistoryQuery();
+
+  const [addWishlist] = useAddWishlistMutation();
 
   const { data: reviewResponse } = useGetAllReviewsQuery();
   const reviews = reviewResponse?.data || [];
@@ -35,6 +40,16 @@ const YourBrowsingHistory: React.FC = () => {
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something went wrong!</p>;
 
+  const handleAddWishlist = async (productId: string) => {
+  try {
+    await addWishlist(productId).unwrap();
+    toast.success("Added to wishlist");
+  } catch (err) {
+    toast.error("Failed to add wishlist");
+  }
+};
+
+  // ✅ Get average rating for a product
   const getProductRating = (productId: string) => {
     const filtered = reviews?.filter(
       (r: Review) =>
@@ -82,15 +97,18 @@ const YourBrowsingHistory: React.FC = () => {
               {/* Hover Icons */}
               <div className="absolute inset-0 flex items-center justify-center bg-opacity-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <div className="flex gap-4">
-                  <button className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer">
+                  <button onClick={() => handleAddWishlist(item.product?._id)} className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer">
                     <img src={favoriteIcon} alt="favoriteIcon" />
                   </button>
                   <button className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer">
                     <img src={cardIcon} alt="cardIcon" />
                   </button>
-                  <button className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer">
-                    <FaRegEye className="text-gray-700 text-lg" />
-                  </button>
+                  <Link
+                    className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer"
+                    to={`/product-details/${item?.product?._id}`}
+                  >
+                    <FaRegEye className="text-gray-700 text-lg cursor-pointer" />
+                  </Link>
                 </div>
               </div>
 
