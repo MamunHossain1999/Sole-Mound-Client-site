@@ -15,6 +15,7 @@ import { VscCreditCard } from "react-icons/vsc";
 
 import { useGetProductByIdQuery } from "@/Redux/api/productApi";
 import { useGetAllReviewsQuery } from "@/Redux/api/reviewApi";
+import { useAddHistoryMutation } from "@/Redux/api/historyApi";
 
 // ✅ Product Type
 interface IProduct {
@@ -67,9 +68,23 @@ const ProductDetailsPage: React.FC = () => {
     skip: !id,
   }) as { data: IProduct | undefined; isLoading: boolean; isError: boolean };
 
+//   history and related products API
+const [addHistory] = useAddHistoryMutation();
+
+useEffect(() => {
+  if (!product?._id) return;
+
+  const viewed = sessionStorage.getItem("viewedProduct");
+
+  if (viewed !== product._id) {
+    addHistory(product._id); // ✅ correct
+    sessionStorage.setItem("viewedProduct", product._id);
+  }
+}, [product?._id, addHistory]);
+
+
   // ✅ Reviews API
   const { data: reviewsResponse } = useGetAllReviewsQuery();
-
   const reviewsData: Review[] = Array.isArray(reviewsResponse)
     ? reviewsResponse
     : reviewsResponse?.data || [];
@@ -89,8 +104,7 @@ const ProductDetailsPage: React.FC = () => {
 
   const ratingsAverage =
     ratingsCount > 0
-      ? productReviews.reduce((acc, r) => acc + r.rating, 0) /
-        ratingsCount
+      ? productReviews.reduce((acc, r) => acc + r.rating, 0) / ratingsCount
       : 0;
 
   const scrollThumbnails = (direction: "left" | "right"): void => {
@@ -174,9 +188,7 @@ const ProductDetailsPage: React.FC = () => {
                   key={i}
                   size={16}
                   fill={
-                    i < Math.round(ratingsAverage)
-                      ? "currentColor"
-                      : "none"
+                    i < Math.round(ratingsAverage) ? "currentColor" : "none"
                   }
                   stroke="currentColor"
                 />
@@ -205,6 +217,9 @@ const ProductDetailsPage: React.FC = () => {
               Availability:{" "}
               <span className="text-[#22C55E] font-medium">
                 {product.quantity > 0 ? "In Stock" : "Out of Stock"}
+                {" ("}
+                {product.quantity}
+                {")"}
               </span>
             </p>
 
@@ -223,6 +238,7 @@ const ProductDetailsPage: React.FC = () => {
 
           {/* Price */}
           <div className="mt-4 flex flex-wrap gap-2 items-center">
+            <span className="text-[#505050] text-lg">Price:</span>
             <span className="text-[#3CA6FC] text-base font-semibold">
               ${discountedPrice.toFixed(2)}
             </span>
