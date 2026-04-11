@@ -6,8 +6,6 @@ import paypal from "../assets/paypal.png";
 import mastercat from "../assets/mastercard.png";
 import american from "../assets/american.png";
 import footerImg from "../assets/subscribe-shape-1.png.png";
-import footer1 from "../assets/footer1.png";
-import footer2 from "../assets/footer2.png";
 import facebook from "../assets/fb.png";
 import linkedin from "../assets/linkedin.png";
 import twitter from "../assets/twiter.png";
@@ -41,13 +39,25 @@ const Footer: React.FC = () => {
             <div className="mt-2">
               <p className="mb-2 text-[16px]">Stay connected</p>
               <div className="flex gap-5">
-                <Link to="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <Link
+                  to="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={facebook} alt="Facebook" />
                 </Link>
-                <Link to="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <Link
+                  to="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={linkedin} alt="LinkedIn" />
                 </Link>
-                <Link to="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <Link
+                  to="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={twitter} alt="Twitter" />
                 </Link>
               </div>
@@ -56,7 +66,9 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="h-full flex flex-col">
-            <h3 className="font-semibold text-[16px] text-[#1F1F1F] mb-4">Quick Links</h3>
+            <h3 className="font-semibold text-[16px] text-[#1F1F1F] mb-4">
+              Quick Links
+            </h3>
             <ul className="space-y-2 flex-1">
               <li>
                 <Link to="/about" className="hover:text-[#A8537B] transition">
@@ -88,30 +100,47 @@ const Footer: React.FC = () => {
 
           {/* Categories */}
           <div className="h-full flex flex-col">
-            <h3 className="font-semibold text-[16px] text-[#1F1F1F] mb-4">Categories</h3>
+            <h3 className="font-semibold text-[16px] text-[#1F1F1F] mb-4">
+              Categories
+            </h3>
             <ul className="space-y-2 flex-1">
               <li>
-                <Link to="/category/electronics" className="hover:text-[#A8537B] transition">
+                <Link
+                  to="/category/electronics"
+                  className="hover:text-[#A8537B] transition"
+                >
                   Electronics
                 </Link>
               </li>
               <li>
-                <Link to="/category/fashion" className="hover:text-[#A8537B] transition">
+                <Link
+                  to="/category/fashion"
+                  className="hover:text-[#A8537B] transition"
+                >
                   Fashion
                 </Link>
               </li>
               <li>
-                <Link to="/category/home" className="hover:text-[#A8537B] transition">
+                <Link
+                  to="/category/home"
+                  className="hover:text-[#A8537B] transition"
+                >
                   Home & Garden
                 </Link>
               </li>
               <li>
-                <Link to="/category/sports" className="hover:text-[#A8537B] transition">
+                <Link
+                  to="/category/sports"
+                  className="hover:text-[#A8537B] transition"
+                >
                   Sports
                 </Link>
               </li>
               <li>
-                <Link to="/category/books" className="hover:text-[#A8537B] transition">
+                <Link
+                  to="/category/books"
+                  className="hover:text-[#A8537B] transition"
+                >
                   Books
                 </Link>
               </li>
@@ -119,31 +148,46 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Newsletter */}
-          <div className="h-full flex flex-col">
-            <h3 className="font-semibold text-[16px] text-[#1F1F1F] mb-4">Newsletter</h3>
-            <p className="mb-4 text-[16px]">
+          <div className="h-full flex flex-col w-full">
+            {/* Title */}
+            <h3 className="font-semibold text-[16px] text-[#1F1F1F] mb-3 sm:mb-4">
+              Newsletter
+            </h3>
+
+            {/* Text */}
+            <p className="mb-3 sm:mb-4 text-[14px] sm:text-[16px] text-gray-600">
               Subscribe to get special offers and updates
             </p>
+
+            {/* Input + Button */}
             <div className="flex flex-col sm:flex-row gap-2 mb-4">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#A8537B]"
+                className="w-full flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#A8537B] text-sm sm:text-base"
               />
-              <button className="bg-[#A8537B] hover:bg-[#914468] text-white px-4 py-2 rounded transition flex items-center gap-2">
+
+              <button className="w-full sm:w-auto bg-[#A8537B] hover:bg-[#914468] text-white px-4 py-2 rounded transition flex items-center justify-center gap-2 text-sm sm:text-base">
                 Subscribe
                 <FaArrowRightLong size={14} />
               </button>
             </div>
-            
+
             {/* Payment Methods */}
             <div className="mt-auto">
-              <p className="mb-2 text-[16px]">Payment Methods</p>
-              <div className="flex gap-2">
-                <img src={visa} alt="Visa" className="h-8" />
-                <img src={paypal} alt="PayPal" className="h-8" />
-                <img src={mastercat} alt="Mastercard" className="h-8" />
-                <img src={american} alt="American Express" className="h-8" />
+              <p className="mb-2 text-[14px] sm:text-[16px] font-medium">
+                Payment Methods
+              </p>
+
+              <div className="flex flex-wrap gap-2 items-center">
+                <img src={visa} alt="Visa" className="h-6 sm:h-8" />
+                <img src={paypal} alt="PayPal" className="h-6 sm:h-8" />
+                <img src={mastercat} alt="Mastercard" className="h-6 sm:h-8" />
+                <img
+                  src={american}
+                  alt="American Express"
+                  className="h-6 sm:h-8"
+                />
               </div>
             </div>
           </div>
