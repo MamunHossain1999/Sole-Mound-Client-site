@@ -164,15 +164,20 @@ const UserRegisterPage: React.FC = () => {
                 </div>
 
                 {/* Checkbox */}
-                <div className="flex items-start gap-2">
+                <div className="flex items-center relative">
                   <input
+                    id="remember-me"
                     type="checkbox"
-                    name="agree"
                     checked={formData.agree}
                     onChange={handleChange}
-                    disabled={isLoading}
+                    className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 appearance-none border-[#C8A8E9] rounded checked:bg-[#C8A8E9] checked:border-transparent"
                   />
-                  <p className="text-sm">I agree to Terms & Conditions</p>
+                  <span className="pointer-events-none absolute left-[5px] top-1 text-white text-xs font-bold peer-checked:block hidden">
+                    ✓
+                  </span>
+                  <label htmlFor="remember-me" className="ml-2 text-base text-[#505050]">
+                    I agree to Terms & Conditions
+                  </label>
                 </div>
               </div>
 

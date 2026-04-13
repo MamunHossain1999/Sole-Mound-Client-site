@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import ScrollToTop from '../components/scrollTop/ScrollTop';
 import { Outlet } from 'react-router-dom';
-
 import UserLoginNavbar from '../components/loginNavbar/UserLoginNavbar';
 
-const SellerLoginLayOut = () => {
-     useEffect(() => {
+const SellerRegisterLayOut: React.FC = () => {
+      useEffect(() => {
         // Disable scroll on mount
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = "auto";
         return () => {
           // Restore scroll on unmount
           document.body.style.overflow = "auto";
@@ -24,5 +23,4 @@ const SellerLoginLayOut = () => {
     );
 };
 
-
-export default SellerLoginLayOut;
+export default SellerRegisterLayOut;
