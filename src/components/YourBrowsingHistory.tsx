@@ -12,6 +12,7 @@ import { useGetAllReviewsQuery } from "@/Redux/api/reviewApi";
 import { Link } from "react-router-dom";
 import { useAddWishlistMutation } from "@/Redux/api/wishlistApi";
 import { toast } from "react-toastify";
+import { useAddCartMutation } from "@/Redux/api/cartApi";
 
 // ✅ Review Type
 interface Review {
@@ -25,8 +26,9 @@ const YourBrowsingHistory: React.FC = () => {
   const { data = [], isLoading, isError } = useGetHistoryQuery();
 
   const [addWishlist] = useAddWishlistMutation();
+  const [addCart] = useAddCartMutation();
 
-  const { data: reviewResponse } = useGetAllReviewsQuery();
+  const { data: reviewResponse, refetch } = useGetAllReviewsQuery();
   const reviews = reviewResponse?.data || [];
 
   const [historyItems, setHistoryItems] = useState<any[]>([]);
@@ -40,14 +42,27 @@ const YourBrowsingHistory: React.FC = () => {
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something went wrong!</p>;
 
+  // ✅ Add to wishlist
   const handleAddWishlist = async (productId: string) => {
-  try {
-    await addWishlist(productId).unwrap();
-    toast.success("Added to wishlist");
-  } catch (err) {
-    toast.error("Failed to add wishlist");
-  }
-};
+    try {
+      await addWishlist(productId).unwrap();
+      toast.success("Added to wishlist");
+    } catch (err) {
+      toast.error("Failed to add wishlist");
+    }
+  };
+  // ✅ Add to cart
+  const handleAddToCart = async (productId: string) => {
+    try {
+      await addCart({
+        productId,
+      }).unwrap();
+      refetch();
+      toast.success("Added to cart successfully!");
+    } catch (error) {
+      toast.error("Failed to add cart");
+    }
+  };
 
   // ✅ Get average rating for a product
   const getProductRating = (productId: string) => {
@@ -97,10 +112,16 @@ const YourBrowsingHistory: React.FC = () => {
               {/* Hover Icons */}
               <div className="absolute inset-0 flex items-center justify-center bg-opacity-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                 <div className="flex gap-4">
-                  <button onClick={() => handleAddWishlist(item.product?._id)} className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer">
+                  <button
+                    onClick={() => handleAddWishlist(item.product?._id)}
+                    className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer"
+                  >
                     <img src={favoriteIcon} alt="favoriteIcon" />
                   </button>
-                  <button className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer">
+                  <button
+                    onClick={() => handleAddToCart(item.product?._id)}
+                    className="bg-white p-4 rounded-full hover:bg-[#C8A8E9] cursor-pointer"
+                  >
                     <img src={cardIcon} alt="cardIcon" />
                   </button>
                   <Link
@@ -116,7 +137,7 @@ const YourBrowsingHistory: React.FC = () => {
                 <img
                   src={item?.product?.images?.[0]}
                   alt={item?.product?.name}
-                  className="w-full h-52 object-cover bg-white rounded-lg mb-4 p-3"
+                  className="w-full h-[250px] object-contain bg-white rounded-lg mb-4 p-3"
                 />
 
                 <div className="flex items-center mb-2">
@@ -134,9 +155,6 @@ const YourBrowsingHistory: React.FC = () => {
                       )
                     </span>
                   </div>
-                  <span className="text-[#919191] ml-1 text-[12px]">
-                    ({item.product?.reviews})
-                  </span>
                 </div>
 
                 <h3 className="font-normal text-[#1F1F1F] text-sm mb-2 line-clamp-2 h-12">

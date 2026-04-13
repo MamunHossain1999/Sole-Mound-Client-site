@@ -16,6 +16,8 @@ import { VscCreditCard } from "react-icons/vsc";
 import { useGetProductByIdQuery } from "@/Redux/api/productApi";
 import { useGetAllReviewsQuery } from "@/Redux/api/reviewApi";
 import { useAddHistoryMutation } from "@/Redux/api/historyApi";
+import { useAddCartMutation } from "@/Redux/api/cartApi";
+import { toast } from "react-toastify";
 
 // ✅ Product Type
 interface IProduct {
@@ -70,6 +72,7 @@ const ProductDetailsPage: React.FC = () => {
 
 //   history and related products API
 const [addHistory] = useAddHistoryMutation();
+const [addCart] = useAddCartMutation();
 
 useEffect(() => {
   if (!product?._id) return;
@@ -83,6 +86,19 @@ useEffect(() => {
 }, [product?._id, addHistory]);
 
 
+// handle add to cart
+  const handleAddToCart = async (productId: string) => {
+    try {
+      await addCart({
+        productId,
+        quantity: 1,
+      }).unwrap();
+
+      toast.success("Added to cart");
+    } catch {
+      toast.error("Failed to add");
+    }
+  };
   // ✅ Reviews API
   const { data: reviewsResponse } = useGetAllReviewsQuery();
   const reviewsData: Review[] = Array.isArray(reviewsResponse)
@@ -283,11 +299,11 @@ useEffect(() => {
 
           {/* Buttons */}
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
-            <button className="flex-1 bg-[#C8A8E9] text-white py-3 rounded-lg">
+            <button onClick={() => handleAddToCart(product._id)} className="flex-1 cursor-pointer bg-[#C8A8E9] text-white py-3 rounded-lg">
               Add to Cart
             </button>
 
-            <button className="flex-1 bg-[#A8537B] text-white py-3 rounded-lg">
+            <button className="flex-1 bg-[#A8537B] cursor-pointer text-white py-3 rounded-lg">
               Buy Now
             </button>
           </div>
@@ -309,6 +325,7 @@ useEffect(() => {
 
       {/* Related */}
       <div className="container mx-auto p-4 mt-8">
+        <h3 className="text-xl font-bold mb-4">Related Products</h3>
         <RelatedProducts
           category={product.category}
           currentProductId={product._id}

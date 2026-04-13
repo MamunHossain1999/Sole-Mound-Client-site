@@ -38,6 +38,7 @@ const ShoppingCart: React.FC = () => {
   if (isLoading) return <p>Loading...</p>;
 
   const cartItems: CartItem[] = data?.data?.items ?? [];
+  console.log(cartItems)
   // ❌ remove item
   const handleRemove = (productId: string) => {
     setDeleteId(productId);
@@ -98,10 +99,12 @@ const ShoppingCart: React.FC = () => {
     }
   };
 
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0,
-  );
+  const subtotal = cartItems.reduce((sum, item) => {
+  const price = item?.product?.price || 0;
+  const qty = item?.quantity || 0;
+
+  return sum + price * qty;
+}, 0);
 
   // total discount %
   const discount = cartItems.reduce(

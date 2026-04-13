@@ -8,6 +8,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useGetProductsQuery } from "@/Redux/api/productApi";
 import { useGetAllReviewsQuery } from "@/Redux/api/reviewApi";
+import { useAddCartMutation } from "@/Redux/api/cartApi";
+import { toast } from "react-toastify";
 
 interface Product {
   _id: string;
@@ -20,6 +22,7 @@ interface Product {
 
 const FeaturedProducts: React.FC = () => {
   const { data = [], isLoading, isError } = useGetProductsQuery();
+  const [addCart] = useAddCartMutation();
   const { data: reviewsResponse = [] } = useGetAllReviewsQuery();
   const reviewsData = Array.isArray(reviewsResponse)
     ? reviewsResponse
@@ -30,8 +33,17 @@ const FeaturedProducts: React.FC = () => {
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something went wrong!</p>;
 
-  const handleAddToCart = (product: Product) => {
-    console.log("Add to cart:", product);
+  const handleAddToCart = async (productId: string) => {
+    try {
+      await addCart({
+        productId,
+        quantity: 1,
+      }).unwrap();
+
+      toast.success("Added to cart");
+    } catch (error) {
+      toast.error("Failed to add to cart");
+    }
   };
 
   return (
@@ -104,7 +116,7 @@ const FeaturedProducts: React.FC = () => {
                         <span className="text-[#919191] line-through text-base ml-2">
                           ${product.price}
                         </span>
-                        <span className="text-[#FF1C1C] text-sm px-2 py-1 ml-2 rounded">
+                        <span className="text-[#FF1C1C] bg-amber-500 text-sm px-2 py-1 ml-2 rounded">
                           {product.discount}% OFF
                         </span>
                       </>
@@ -120,15 +132,13 @@ const FeaturedProducts: React.FC = () => {
                   <div className="flex space-x-2">
                     <Link
                       to={`/product-details/${product._id}`}
-                      className="flex-1"
+                      className="flex-1 bg-white border h-[46px] text-[#1F1F1F] border-[#E3AADD] rounded-md px-2 py-2 text-sm md:text-base hover:bg-[#E3AADD] w-full cursor-pointer flex items-center justify-center"
                     >
-                      <button className="bg-white border h-[46px] text-[#1F1F1F] border-[#E3AADD] rounded-md px-2 py-2 text-sm md:text-base hover:bg-[#E3AADD] w-full cursor-pointer">
-                        View Details
-                      </button>
+                      View Details
                     </Link>
 
                     <button
-                      onClick={() => handleAddToCart(product)}
+                      onClick={() => handleAddToCart(product._id)}
                       className="flex-1 border text-[#1F1F1F] h-[46px] border-[#E3AADD] rounded-md px-4 py-2 text-sm md:text-base bg-[#E3AADD] w-full cursor-pointer"
                     >
                       Add to Cart

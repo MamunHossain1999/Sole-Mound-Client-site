@@ -21,8 +21,11 @@ export interface DealProduct {
 }
 
 // ⏱ time calculator
-const calculateRemainingTime = (endDate: Date) => {
-  const totalMs = endDate.getTime() - new Date().getTime();
+const calculateRemainingTime = (endDate: Date | string) => {
+  const end = new Date(endDate);
+
+  const totalMs = end.getTime() - new Date().getTime();
+
   const seconds = Math.floor((totalMs / 1000) % 60);
   const minutes = Math.floor((totalMs / 1000 / 60) % 60);
   const hours = Math.floor((totalMs / (1000 * 60 * 60)) % 24);
@@ -48,7 +51,7 @@ const getLabelColor = (label?: string) => {
 };
 
 const WeeklyDeals = () => {
-  const { data, isLoading, isError } = useGetWeeklyDealsQuery();
+  const { data, isLoading, isError, } = useGetWeeklyDealsQuery();
   const [addCart] = useAddCartMutation();
   const [addWishlist] = useAddWishlistMutation();
 
@@ -79,49 +82,65 @@ const WeeklyDeals = () => {
     }
   };
 
-  useEffect(() => {
-    const deals: DealProduct[] = data ?? [];
+useEffect(() => {
+  const deals: DealProduct[] = data ?? [];
 
-    if (!deals.length) return;
+  if (!deals.length) {
+    setCountdown(null);
+    return;
+  }
 
-    const validDeals = deals.filter((deal) => {
-      if (!deal.startDate) return true;
+  const validDeals = deals.filter((deal) => {
+    if (!deal.startDate) return true;
+
+    const start = new Date(deal.startDate);
+    const end = new Date(start);
+    end.setDate(end.getDate() + 7);
+
+    return new Date() < end;
+  });
+
+  setFilteredDeals(validDeals);
+
+  const getSoonestEnd = () => {
+    let earliest: Date | null = null;
+
+    validDeals.forEach((deal) => {
+      if (!deal.startDate) return;
 
       const start = new Date(deal.startDate);
       const end = new Date(start);
-      end.setDate(start.getDate() + 16);
+      end.setDate(end.getDate() + 7);
 
-      return new Date() < end;
+      if (!earliest || end < earliest) {
+        earliest = end;
+      }
     });
 
-    setFilteredDeals(validDeals);
+    return earliest;
+  };
 
-    const soonestEnd = validDeals.reduce<Date | null>((earliest, deal) => {
-      if (!deal.startDate) return earliest;
+  const soonestEnd = getSoonestEnd();
 
-      const start = new Date(deal.startDate);
-      const end = new Date(start);
-      end.setDate(start.getDate() + 16);
+  if (!soonestEnd) {
+    setCountdown(null);
+    return;
+  }
 
-      return !earliest || end < earliest ? end : earliest;
-    }, null);
+  const interval = setInterval(() => {
+    const { totalMs, days, hours, minutes, seconds } =
+      calculateRemainingTime(soonestEnd);
 
-    if (!soonestEnd) return;
+    if (totalMs <= 0) {
+      setCountdown(null);
+      clearInterval(interval);
+    } else {
+      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+    }
+  }, 1000);
 
-    const interval = setInterval(() => {
-      const { totalMs, days, hours, minutes } =
-        calculateRemainingTime(soonestEnd);
-
-      if (totalMs <= 0) {
-        clearInterval(interval);
-        setCountdown(null);
-      } else {
-        setCountdown(`${days}d ${hours}h ${minutes}m`);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [data]);
+  return () => clearInterval(interval);
+}, [data]);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something went wrong!</p>;

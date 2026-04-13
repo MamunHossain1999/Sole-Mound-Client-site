@@ -21,8 +21,11 @@ export interface DealProduct {
 }
 
 // ⏱ time calculator
-const calculateRemainingTime = (endDate: Date) => {
-  const totalMs = endDate.getTime() - new Date().getTime();
+const calculateRemainingTime = (endDate: Date | string) => {
+  const end = new Date(endDate);
+
+  const totalMs = end.getTime() - new Date().getTime();
+
   const seconds = Math.floor((totalMs / 1000) % 60);
   const minutes = Math.floor((totalMs / 1000 / 60) % 60);
   const hours = Math.floor((totalMs / (1000 * 60 * 60)) % 24);
@@ -48,7 +51,7 @@ const getLabelColor = (label?: string) => {
 };
 
 const TodayDeals = () => {
-  const { data, isLoading, isError } = useGetTodayDealsQuery();
+  const { data, isLoading, isError, } = useGetTodayDealsQuery();
   const [addCart] = useAddCartMutation();
   const [addWishlist] = useAddWishlistMutation();
 
@@ -89,7 +92,7 @@ const TodayDeals = () => {
 
       const start = new Date(deal.startDate);
       const end = new Date(start);
-      end.setDate(start.getDate() + 16);
+      end.setDate(start.getDate() + 1);
 
       return new Date() < end;
     });
@@ -101,7 +104,7 @@ const TodayDeals = () => {
 
       const start = new Date(deal.startDate);
       const end = new Date(start);
-      end.setDate(start.getDate() + 16);
+      end.setDate(start.getDate() + 1);
 
       return !earliest || end < earliest ? end : earliest;
     }, null);
@@ -109,14 +112,14 @@ const TodayDeals = () => {
     if (!soonestEnd) return;
 
     const interval = setInterval(() => {
-      const { totalMs, days, hours, minutes } =
+      const { totalMs, days, hours, minutes, seconds } =
         calculateRemainingTime(soonestEnd);
 
       if (totalMs <= 0) {
         clearInterval(interval);
         setCountdown(null);
       } else {
-        setCountdown(`${days}d ${hours}h ${minutes}m`);
+        setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
       }
     }, 1000);
 

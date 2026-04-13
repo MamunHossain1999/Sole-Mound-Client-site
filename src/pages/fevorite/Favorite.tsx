@@ -134,7 +134,7 @@ const Favorite: React.FC = () => {
                     <button
                       onClick={() => handleAddToCart(item._id)}
                       disabled={qty === 0}
-                      className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
+                      className={`flex items-center cursor-pointer justify-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
                         qty > 0
                           ? "bg-[#A8537B] text-white hover:bg-[#914468]"
                           : "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -146,7 +146,7 @@ const Favorite: React.FC = () => {
 
                     <button
                       onClick={() => handleRemove(item.product._id)}
-                      className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition self-center"
+                      className="p-2 text-red-500 cursor-pointer hover:bg-red-50 rounded-lg transition self-center"
                     >
                       <GoHeartFill size={20} />
                     </button>
