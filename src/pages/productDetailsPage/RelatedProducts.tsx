@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { toast } from "react-toastify";
 import { useGetProductsQuery } from "@/Redux/api/productApi";
+import { useAddCartMutation } from "@/Redux/api/cartApi";
 
 // ✅ Product Type
 interface IProduct {
@@ -30,6 +31,7 @@ interface Props {
 const RelatedProducts: React.FC<Props> = ({ category, currentProductId }) => {
   // ✅ API
   const { data: products = [], isLoading, isError } = useGetProductsQuery();
+  const [addCart] = useAddCartMutation();
 
   // ✅ Filter related products
   const relatedProducts: IProduct[] = products.filter(
@@ -37,22 +39,16 @@ const RelatedProducts: React.FC<Props> = ({ category, currentProductId }) => {
   );
 
   // ✅ Add to cart
-  const handleAddToCart = async (product: IProduct) => {
+  const handleAddToCart = async (productId: string) => {
     try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/cart/add`,
-        {
-          productId: product._id,
-          quantity: 1,
-        },
-        { withCredentials: true },
-      );
+      await addCart({
+        productId,
+        quantity: 1,
+      }).unwrap();
 
-      if (res.status === 200 || res.status === 201) {
-        toast.success("Product added to cart!");
-      }
+      toast.success("Added to cart");
     } catch {
-      toast.error("Failed to add product to cart.");
+      toast.error("Failed to add");
     }
   };
 
@@ -151,7 +147,7 @@ const RelatedProducts: React.FC<Props> = ({ category, currentProductId }) => {
                     </Link>
 
                     <button
-                      onClick={() => handleAddToCart(product)}
+                      onClick={() => handleAddToCart(product._id)}
                       className="flex-1 border text-[#1F1F1F] h-[46px] border-[#E3AADD] rounded-md px-4 py-2 text-sm md:text-base bg-[#E3AADD] w-full cursor-pointer"
                     >
                       Add to Cart
