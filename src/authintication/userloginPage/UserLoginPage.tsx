@@ -136,16 +136,20 @@ const UserLoginPage: React.FC = () => {
 
               {/* Remember */}
               <div className="flex justify-between">
-                <div className="flex items-center">
+                <div className="flex items-center relative">
                   <input
+                    id="remember-me"
                     type="checkbox"
                     checked={rememberMe}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      setRememberMe(e.target.checked)
-                    }
-                    disabled={isLoading}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 appearance-none border-[#C8A8E9] rounded checked:bg-[#C8A8E9] checked:border-transparent"
                   />
-                  <span className="ml-2">Remember me</span>
+                  <span className="pointer-events-none absolute left-[5px] top-1 text-white text-xs font-bold peer-checked:block hidden">
+                    ✓
+                  </span>
+                  <label htmlFor="remember-me" className="ml-2 text-base text-[#505050]">
+                    Remember me
+                  </label>
                 </div>
 
                 <Link to="/auth/forgot-password" className="text-blue-500">
