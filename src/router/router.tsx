@@ -5,6 +5,9 @@ import SellerSignUp from "@/authintication/sellerLogin/SellerSignUp";
 import UserLoginPage from "@/authintication/userloginPage/UserLoginPage";
 import UserRegisterPage from "@/authintication/userloginPage/UserRegisterPage";
 import VerifyOtp from "@/authintication/VerifyOtp/VerifyOtp";
+
+import CheckOutOrderSuccessPage from "@/components/shoppingCart/CheckOutOrderSuccessPage";
+
 import CheckoutPage from "@/components/shoppingCart/CheckoutPage";
 import ShoppingCart from "@/components/shoppingCart/ShoppingCard";
 import YourBrowsingHistory from "@/components/YourBrowsingHistory";
@@ -22,9 +25,14 @@ import FaqPage from "@/pages/faqPage/FaqPage";
 import Favorite from "@/pages/fevorite/Favorite";
 import Home from "@/pages/homePage/Home";
 import ProductDetailsPage from "@/pages/productDetailsPage/ProductDetailsPage";
+import TrendingPage from "@/pages/tendingPage/TrendingPage";
 import TodayDeals from "@/pages/todayDeals/TodayDeels";
 import WeeklyDeals from "@/pages/todayDeals/WeeklyDeels";
 import AccountPage from "@/UserDashBoard/helloUsers/AccountPage";
+import ChangeNameModal from "@/UserDashBoard/loginAndSerurity/ChangeNameModal";
+import EmailVerificationForm from "@/UserDashBoard/loginAndSerurity/EmailVerificationForm";
+import HandleEmailChange from "@/UserDashBoard/loginAndSerurity/HandleEmailChange";
+import HandlePhoneNumber from "@/UserDashBoard/loginAndSerurity/HandlePhoneNumber";
 import LoginAndSecurity from "@/UserDashBoard/loginAndSerurity/LoginAndSecurity";
 import OrderDetailsPage from "@/UserDashBoard/orderDetailsPage/OrderDetailsPage";
 import OrderhistoryPage from "@/UserDashBoard/orderHistoryPage/OrderhistoryPage";
@@ -57,9 +65,10 @@ const router = createBrowserRouter([
         path: "/check-out-page",
         element: <CheckoutPage />,
       },
-      // {
-      //   path: '/check-out-order-success', element: <CheckOutOrderSuccessPage/>
-      // },
+      {
+        path: "/my-order-success",
+        element: <CheckOutOrderSuccessPage />,
+      },
       // {
       //   path: '/category-search-page', element: <CategorySearchPage/>
       // },
@@ -75,19 +84,27 @@ const router = createBrowserRouter([
         path: "/weekly-deals",
         element: <WeeklyDeals />,
       },
+      {
+        path: "/trending",
+        element: <TrendingPage />,
+      },
 
-      // {
-      //   path: 'handle-change-name', element: <ChangeNameModal/>
-      // },
-      // {
-      //   path: 'handle-email-change', element: <HandleEmailChange/>
-      // },
-      // {
-      //   path: 'handle-phone-number', element: <HandlePhoneNumber/>
-      // },
-      // {
-      //   path: 'handle-password-change', element: <HandlePasswordChange/>
-      // },
+      {
+        path: "handle-change-name",
+        element: <ChangeNameModal />,
+      },
+      {
+        path: "handle-email-change",
+        element: <HandleEmailChange />,
+      },
+      {
+        path: "/email-varify",
+        element: <EmailVerificationForm />,
+      },
+      {
+        path: "handle-phone-number",
+        element: <HandlePhoneNumber />,
+      },
       {
         path: "/wishlist",
         element: <Favorite />,
@@ -96,15 +113,17 @@ const router = createBrowserRouter([
         path: "/return-page/:id",
         element: <ReturnPage />,
       },
+      {
+        path: "/checkout-success",
+        element: <CheckOutOrderSuccessPage />,
+      },
       // {
       //   path: '/retrun-confirm', element: <ReturnRequestConfirm/>
       // },
       // {
       //   path: 'gift-card-balance-page', element: <GiftCardBalancePage/>
       // },
-      // {
-      //   path: '/email-varify' , element: <EmailVerificationForm/>
-      // },
+
       {
         path: "/faq",
         element: <FaqPage />,

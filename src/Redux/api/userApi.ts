@@ -1,3 +1,4 @@
+import { Phone } from "lucide-react";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const userApi = createApi({
@@ -24,6 +25,7 @@ export const userApi = createApi({
       {
         name?: string;
         email?: string;
+        phone?: string;
         password?: string;
         location?: string;
         bio?: string;
@@ -31,7 +33,7 @@ export const userApi = createApi({
       }
     >({
       query: (body) => ({
-        url: "/update-profile",
+        url: "/user/update-profile",
         method: "PUT",
         body,
       }),
