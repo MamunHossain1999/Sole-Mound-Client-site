@@ -5,14 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useUpdateProfileMutation } from "@/Redux/api/userApi";
 
-// ============================
-// TYPES
-// ============================
-interface UpdateProfileResponse {
-  success: boolean;
-  message?: string;
-}
-
 interface ApiError {
   data?: {
     message?: string;
