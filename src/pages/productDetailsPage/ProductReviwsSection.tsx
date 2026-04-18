@@ -123,7 +123,7 @@ const ProductReviewsSection: React.FC<Props> = ({ productId }) => {
 
       {/* Pagination */}
       <div className="flex justify-center mt-8 space-x-2">
-        {reviews.map((_, index) => (
+        {reviews?.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}

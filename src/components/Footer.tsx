@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
             </span>
             <p className="my-2 text-[16px]">01795920956</p>
             <p className="my-2 text-[16px]">Address</p>
-            <p className="my-2 text-[16px]">info@solemound.com</p>
+            <p className="my-2 text-[16px]">developermamun1999@gmail.com</p>
             <div className="mt-2">
               <p className="mb-2 text-[16px]">Stay connected</p>
               <div className="flex gap-5">

@@ -7,6 +7,9 @@ import { wishlistApi } from "./api/wishlistApi";
 import { cartApi } from "./api/cartApi";
 import { historyApi } from "./api/historyApi";
 import { dealApi } from './api/weeklyDealsApi';
+import { trendingApi } from "./api/trendingApi";
+import { paymentApi } from "./api/paymentApi";
+import { orderApi } from "./api/orderApi";
 
 
 
@@ -21,6 +24,9 @@ export const store = configureStore({
     [wishlistApi.reducerPath]: wishlistApi.reducer,
     [cartApi.reducerPath]: cartApi.reducer,
     [dealApi.reducerPath]: dealApi.reducer,
+    [trendingApi.reducerPath]: trendingApi.reducer,
+    [paymentApi.reducerPath]: paymentApi.reducer,
+    [orderApi.reducerPath]: orderApi.reducer,
 
 
   },
@@ -34,6 +40,9 @@ export const store = configureStore({
       cartApi.middleware,
       historyApi.middleware,
       dealApi.middleware,
+      trendingApi.middleware,
+      paymentApi.middleware,
+      orderApi.middleware,
     
     ),
 });

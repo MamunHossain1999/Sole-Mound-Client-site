@@ -1,7 +1,17 @@
-import React from "react";
+
 import { IoClose } from "react-icons/io5";
 
-const ConfirmDeleteModal = ({ isOpen, onCancel, onConfirm }) => {
+interface ConfirmDeleteModalProps {
+  isOpen: boolean;
+  onCancel: () => void;
+  onConfirm: () => void;
+}
+
+const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
+  isOpen,
+  onCancel,
+  onConfirm,
+}) => {
   if (!isOpen) return null;
 
   return (

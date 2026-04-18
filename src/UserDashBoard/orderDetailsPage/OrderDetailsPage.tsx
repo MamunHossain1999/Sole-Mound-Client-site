@@ -4,38 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 interface Product {
   id: string;
   name: string;
+  images: string[];
   image: string;
   category?: string;
   price: number;
   quantity: number;
 }
 
-interface Billing {
-  name?: string;
-  address?: string;
-  phone?: string;
-  email?: string;
-}
-
-interface Summary {
-  subtotal: number;
-  shipping: number;
-  tax: number;
-  total: number;
-}
-
-interface Order {
-  id: string;
-  status: string;
-  date: string;
-  products: Product[];
-  name?: string;
-  price?: number;
-  quantity?: number;
-  image?: string;
-  billing?: Billing;
-  summary?: Summary;
-}
 const OrderDetailsPage = () => {
   const { id } = useParams();
 
@@ -47,7 +22,6 @@ const OrderDetailsPage = () => {
     skip: !id,
   });
 
-  console.log("ORDER:", order);
   const [orderStatus, setOrderStatus] = useState(0);
   const navigate = useNavigate();
 
@@ -126,7 +100,7 @@ const OrderDetailsPage = () => {
               >
                 <div className="flex items-center w-full md:w-2/5 mb-4 md:mb-0">
                   <img
-                    src={product.image}
+                    src={product.images?.[0] || product.image}
                     alt={product.name}
                     className="w-24 h-24 mr-4 object-cover rounded-md"
                   />
@@ -222,6 +196,9 @@ const OrderDetailsPage = () => {
           </h3>
           <div className="p-4 space-y-2">
             <p className="font-[500] text-base text-[#1F1F1F]">
+              Email: {order.shipping?.email || "N/A"}
+            </p>
+            <p className="font-[500] text-base text-[#1F1F1F]">
               {order.shipping?.name}
             </p>
             <p className="text-[#919191]">{order.shipping?.address}</p>
@@ -252,6 +229,9 @@ const OrderDetailsPage = () => {
             Shipping Address
           </h3>
           <div className="p-4 space-y-2">
+            <p className="font-[500] text-base text-[#1F1F1F]">
+              Email: {order.shipping?.email || "N/A"}
+            </p>
             <p className="font-[500] text-base text-[#1F1F1F]">
               {order.shipping?.name}
             </p>

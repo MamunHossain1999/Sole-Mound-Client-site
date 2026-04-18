@@ -23,6 +23,7 @@ interface Review {
 }
 
 const YourBrowsingHistory: React.FC = () => {
+  
   const { data = [], isLoading, isError } = useGetHistoryQuery();
 
   const [addWishlist] = useAddWishlistMutation();
@@ -173,7 +174,7 @@ const YourBrowsingHistory: React.FC = () => {
       </Swiper>
 
       {/* Custom Pagination Container */}
-      <div className="custom-swiper-pagination mt-4 flex justify-center gap-2"></div>
+      <div className="custom-swiper-pagination my-4 flex justify-center gap-2"></div>
     </div>
   );
 };

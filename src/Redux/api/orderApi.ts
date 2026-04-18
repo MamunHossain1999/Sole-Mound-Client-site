@@ -15,16 +15,14 @@ export interface IOrderProduct {
 export interface IShippingAddress {
   fullName: string;
   phone: string;
+  email?: string;
+  postalCode: string;
   address: string;
   city: string;
   country: string;
 }
 
-export type OrderStatus =
-  | "pending"
-  | "processing"
-  | "completed"
-  | "cancelled";
+export type OrderStatus = "pending" | "processing" | "completed" | "cancelled";
 
 export type PaymentStatus = "unpaid" | "paid" | "failed";
 
@@ -35,6 +33,7 @@ export type PaymentStatus = "unpaid" | "paid" | "failed";
 export interface IOrder {
   _id: string;
   userId: string;
+
   products: IOrderProduct[];
   totalAmount: number;
   status: OrderStatus;
@@ -99,11 +98,13 @@ const formatOrder = (order: IOrder) => {
 
     shipping: {
       name: order.shippingAddress?.fullName,
+      email: order.shippingAddress?.email || "N/A",
+      postalCode: order.shippingAddress?.postalCode || "N/A",
+
       address: order.shippingAddress?.address,
       phone: order.shippingAddress?.phone,
       city: order.shippingAddress?.city,
       country: order.shippingAddress?.country,
-      cartInfo: order.cardInfo,
     },
 
     summary: {
@@ -130,11 +131,31 @@ export const orderApi = createApi({
   tagTypes: ["Order"],
 
   endpoints: (builder) => ({
-
     /* ================= CREATE ORDER ================= */
     createOrder: builder.mutation<ApiResponse<IOrder>, CreateOrderRequest>({
       query: (body) => ({
         url: "/order",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Order"],
+    }),
+
+    // return products with name and image for better UI display in order details page
+    returnOrder: builder.mutation<
+      ApiResponse<IOrder>,
+      {
+        returnId: string;
+        product: string;
+        price: number;
+        selectedReasons: string[];
+        shippingMethod: string;
+        refundMethod: string;
+        returnDate: string;
+      }
+    >({
+      query: ({ returnId, ...body }) => ({
+        url: `/order/${returnId}/return`,
         method: "POST",
         body,
       }),
@@ -154,8 +175,7 @@ export const orderApi = createApi({
     /* ================= GET SINGLE ORDER ================= */
     getOrderById: builder.query<any, string>({
       query: (id) => `/order/${id}`,
-      transformResponse: (res: ApiResponse<IOrder>) =>
-        formatOrder(res.data),
+      transformResponse: (res: ApiResponse<IOrder>) => formatOrder(res.data),
 
       providesTags: ["Order"],
       keepUnusedDataFor: 30,
@@ -188,10 +208,7 @@ export const orderApi = createApi({
     }),
 
     /* ================= DELETE ORDER ================= */
-    deleteOrder: builder.mutation<
-      ApiResponse<{ message: string }>,
-      string
-    >({
+    deleteOrder: builder.mutation<ApiResponse<{ message: string }>, string>({
       query: (id) => ({
         url: `/order/${id}`,
         method: "DELETE",
@@ -207,6 +224,7 @@ export const orderApi = createApi({
 
 export const {
   useCreateOrderMutation,
+  useReturnOrderMutation,
   useGetAllOrdersQuery,
   useGetOrderByIdQuery,
   useUpdateOrderStatusMutation,

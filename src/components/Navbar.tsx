@@ -239,7 +239,6 @@ const Navbar = () => {
         </div>
 
         <div className="flex gap-4">
-          <NavLink to="">Get the app</NavLink>
           <NavLink to="/seller/sign-up">Become a supplier</NavLink>
         </div>
       </div>

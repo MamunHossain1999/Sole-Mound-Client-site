@@ -18,7 +18,8 @@ const OrderhistoryPage = () => {
   const totalPages = Math.ceil(orders.length / ordersPerPage);
 
   if (isLoading) return <p className="text-center py-10">Loading...</p>;
-  if (isError) return <p className="text-center py-10">Something went wrong!</p>;
+  if (isError)
+    return <p className="text-center py-10">Something went wrong!</p>;
 
   const getStatusBadgeColor = (status: string) => {
     switch (status?.toLowerCase()) {
@@ -37,7 +38,6 @@ const OrderhistoryPage = () => {
 
   return (
     <div className="container mx-auto bg-white px-3 sm:px-6 py-4">
-
       <h2 className="text-lg sm:text-2xl font-medium text-[#1F1F1F] py-3">
         Order History
       </h2>
@@ -63,7 +63,7 @@ const OrderhistoryPage = () => {
               <div>
                 <span
                   className={`px-3 py-1 rounded-md text-sm font-medium ${getStatusBadgeColor(
-                    order.status
+                    order.status,
                   )}`}
                 >
                   {order.status}
@@ -74,9 +74,7 @@ const OrderhistoryPage = () => {
                 {new Date(order.date).toLocaleDateString()}
               </div>
 
-              <div className="text-sm text-gray-600">
-                ${order.price}
-              </div>
+              <div className="text-sm text-gray-600">${order.price}</div>
 
               <div className="relative flex justify-end">
                 <button
@@ -89,13 +87,15 @@ const OrderhistoryPage = () => {
 
                 {activeMenu === index && (
                   <div className="absolute z-50 right-0 top-8 w-32 bg-white border rounded shadow">
-                    <Link to={`/return-page/${order._id}`}>
+                    <Link to={`/dashboard/order-return-page/${order.id}`}>
                       <button className="w-full px-3 py-2 text-left text-red-500 hover:bg-gray-100">
                         Refund
                       </button>
                     </Link>
 
-                    <Link to={`/dashboard/order-details-page/${order._id || order.id}`}>
+                    <Link
+                      to={`/dashboard/order-details-page/${order.id}`}
+                    >
                       <button className="w-full px-3 py-2 text-left hover:bg-gray-100">
                         Details
                       </button>
@@ -110,19 +110,19 @@ const OrderhistoryPage = () => {
 
       {/* ================= MOBILE CARD ================= */}
       <div className="md:hidden space-y-4">
-        {currentOrders.map((order: any, index: number) => (
+        {currentOrders?.map((order: any, index: number) => (
           <div
             key={order._id}
             className="border rounded-lg p-4 shadow-sm bg-white"
           >
             <div className="flex justify-between items-center">
-              <p className="text-sm font-medium truncate w-[70%]">
-                {order.id}
-              </p>
+              <p className="text-sm font-medium truncate w-[70%]">{order.id}</p>
 
-              <button onClick={() =>
-                setActiveMenu(activeMenu === index ? null : index)
-              }>
+              <button
+                onClick={() =>
+                  setActiveMenu(activeMenu === index ? null : index)
+                }
+              >
                 <MoreVertical />
               </button>
             </div>
@@ -130,7 +130,7 @@ const OrderhistoryPage = () => {
             <div className="flex justify-between mt-2 text-sm">
               <span
                 className={`px-2 py-1 rounded text-xs ${getStatusBadgeColor(
-                  order.status
+                  order.status,
                 )}`}
               >
                 {order.status}
@@ -142,19 +142,16 @@ const OrderhistoryPage = () => {
             <p className="text-xs text-gray-500 mt-1">
               {new Date(order.date).toLocaleDateString()}
             </p>
-
-            {activeMenu === index && (
-              <div className="mt-3 border-t pt-2 space-y-2">
-                <Link to={`/return-page/${order._id}`}>
-                  <button className="text-red-500 w-full text-left">
+            {activeMenu === index && order?._id && (
+              <div className="mt-3 border-t bg-gray-950 pt-2 space-y-2">
+               <Link to={`/dashboard/order-return-page/${order.id}`}>
+                  <p className="text-red-500 w-full text-left">
                     Refund
-                  </button>
+                  </p>
                 </Link>
 
-                <Link to={`/dashboard/order-details-page/${order._id}`}>
-                  <button className="w-full text-left">
-                    Details
-                  </button>
+                <Link to={`/dashboard/order-details-page/${order.id}`}>
+                  <p className="w-full text-left">Details</p>
                 </Link>
               </div>
             )}

@@ -1,4 +1,4 @@
-import React from "react";
+
 import man from '../../assets/cartAdreesIng/deletePage.svg'
 
 const ConfirmDeleteCardModal = ({ onCancel, onConfirm }) => {

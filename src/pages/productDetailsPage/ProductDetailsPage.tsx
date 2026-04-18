@@ -5,7 +5,6 @@ import { Star } from "lucide-react";
 import ProductReviewsSection from "./ProductReviwsSection";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import RelatedProducts from "./RelatedProducts";
-
 import { useGetProductByIdQuery } from "@/Redux/api/productApi";
 import { useGetAllReviewsQuery } from "@/Redux/api/reviewApi";
 import { useAddHistoryMutation } from "@/Redux/api/historyApi";
@@ -69,6 +68,7 @@ const ProductDetailsPage: React.FC = () => {
   // Default Shipping Data (Fallback)
   const shippingAddress = {
     fullName: user?.name || "",
+    email: user?.email || "",
     phone: user?.phone || "",
     address: user?.address || "Unknown Address",
     city: user?.city || "",
@@ -304,7 +304,7 @@ const ProductDetailsPage: React.FC = () => {
           <div className="mt-6 flex items-center gap-3">
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className="w-10 h-10 border border-gray-300 rounded hover:bg-gray-100"
+              className="w-10 h-10 border cursor-pointer border-gray-300 rounded hover:bg-gray-100"
             >
               -
             </button>
@@ -318,7 +318,7 @@ const ProductDetailsPage: React.FC = () => {
             />
             <button
               onClick={() => setQuantity(quantity + 1)}
-              className="w-10 h-10 border border-gray-300 rounded hover:bg-gray-100"
+              className="w-10 h-10 border cursor-pointer border-gray-300 rounded hover:bg-gray-100"
             >
               +
             </button>
@@ -327,14 +327,14 @@ const ProductDetailsPage: React.FC = () => {
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
             <button
               onClick={() => handleAddToCart(product._id)}
-              className="flex-1 bg-[#C8A8E9] hover:bg-[#b38fd9] text-white py-4 rounded-lg font-semibold transition"
+              className="flex-1 bg-[#C8A8E9] cursor-pointer hover:bg-[#b38fd9] text-white py-4 rounded-lg font-semibold transition"
             >
               Add to Cart
             </button>
 
             <button
               onClick={handleBuyNow}
-              className="flex-1 bg-[#A8537B] hover:bg-[#8f3f5f] text-white py-4 rounded-lg font-semibold transition"
+              className="flex-1 bg-[#A8537B] cursor-pointer hover:bg-[#8f3f5f] text-white py-4 rounded-lg font-semibold transition"
             >
               Buy Now
             </button>

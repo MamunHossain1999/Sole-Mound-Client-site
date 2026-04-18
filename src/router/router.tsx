@@ -5,9 +5,7 @@ import SellerSignUp from "@/authintication/sellerLogin/SellerSignUp";
 import UserLoginPage from "@/authintication/userloginPage/UserLoginPage";
 import UserRegisterPage from "@/authintication/userloginPage/UserRegisterPage";
 import VerifyOtp from "@/authintication/VerifyOtp/VerifyOtp";
-
 import CheckOutOrderSuccessPage from "@/components/shoppingCart/CheckOutOrderSuccessPage";
-
 import CheckoutPage from "@/components/shoppingCart/CheckoutPage";
 import ShoppingCart from "@/components/shoppingCart/ShoppingCard";
 import YourBrowsingHistory from "@/components/YourBrowsingHistory";
@@ -38,6 +36,7 @@ import OrderDetailsPage from "@/UserDashBoard/orderDetailsPage/OrderDetailsPage"
 import OrderhistoryPage from "@/UserDashBoard/orderHistoryPage/OrderhistoryPage";
 import CardAndAddress from "@/UserDashBoard/paymentOption/CardAndAddress";
 import ReturnPage from "@/UserDashBoard/returnPage/ReturnPage";
+import ReturnRequestConfirm from "@/UserDashBoard/returnPage/ReturnRequestConfirm";
 import { createBrowserRouter } from "react-router";
 
 const router = createBrowserRouter([
@@ -110,16 +109,10 @@ const router = createBrowserRouter([
         element: <Favorite />,
       },
       {
-        path: "/return-page/:id",
-        element: <ReturnPage />,
-      },
-      {
         path: "/checkout-success",
         element: <CheckOutOrderSuccessPage />,
       },
-      // {
-      //   path: '/retrun-confirm', element: <ReturnRequestConfirm/>
-      // },
+
       // {
       //   path: 'gift-card-balance-page', element: <GiftCardBalancePage/>
       // },
@@ -223,6 +216,14 @@ const router = createBrowserRouter([
       {
         path: "order-details-page/:id",
         element: <OrderDetailsPage />,
+      },
+      {
+        path: "order-return-page/:id",
+        element: <ReturnPage />,
+      },
+      {
+        path: "returns/confirmation",
+        element: <ReturnRequestConfirm />,
       },
       {
         path: "login-and-security",
