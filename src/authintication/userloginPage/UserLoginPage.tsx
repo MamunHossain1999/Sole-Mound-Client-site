@@ -9,7 +9,6 @@ import bgOne from "../../assets/userlogin.png";
 import { Eye, EyeOff, Mail } from "lucide-react";
 import { useLoginUserMutation } from "@/Redux/api/authApi";
 
-
 const UserLoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -21,9 +20,7 @@ const UserLoginPage: React.FC = () => {
   // ✅ RTK Query hook
   const [loginUser, { isLoading }] = useLoginUserMutation();
 
-  const handleSubmit = async (
-    e: FormEvent<HTMLFormElement>
-  ): Promise<void> => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
     if (!email.trim() || !password.trim()) {
@@ -40,9 +37,6 @@ const UserLoginPage: React.FC = () => {
       const res = await loginUser({ email, password }).unwrap();
 
       console.log("Login response:", res);
-
-      // 👉 চাইলে এখানে user/token store করতে পারো
-      // localStorage.setItem("token", res.token);
 
       toast.success("Login successful!");
       navigate("/");
@@ -76,9 +70,7 @@ const UserLoginPage: React.FC = () => {
         <div className="flex flex-col md:flex-row max-w-7xl w-full space-x-28">
           {/* LEFT */}
           <div className="hidden lg:flex md:w-1/2 p-10 flex-col justify-center">
-            <h1 className="text-4xl font-bold text-[#EC75AD] mb-4">
-              Welcome!
-            </h1>
+            <h1 className="text-4xl font-bold text-[#EC75AD] mb-4">Welcome!</h1>
             <p className="text-2xl text-[#EC75AD]">
               Unlock exclusive perks when you log in
             </p>
@@ -125,11 +117,7 @@ const UserLoginPage: React.FC = () => {
                     className="absolute right-3 top-4 cursor-pointer"
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? (
-                      <EyeOff size={18} />
-                    ) : (
-                      <Eye size={18} />
-                    )}
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </div>
                 </div>
               </div>
@@ -147,7 +135,10 @@ const UserLoginPage: React.FC = () => {
                   <span className="pointer-events-none absolute left-[5px] top-1 text-white text-xs font-bold peer-checked:block hidden">
                     ✓
                   </span>
-                  <label htmlFor="remember-me" className="ml-2 text-base text-[#505050]">
+                  <label
+                    htmlFor="remember-me"
+                    className="ml-2 text-base text-[#505050]"
+                  >
                     Remember me
                   </label>
                 </div>

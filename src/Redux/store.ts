@@ -6,17 +6,16 @@ import { reviewApi } from "./api/reviewApi";
 import { wishlistApi } from "./api/wishlistApi";
 import { cartApi } from "./api/cartApi";
 import { historyApi } from "./api/historyApi";
-import { dealApi } from './api/weeklyDealsApi';
+import { dealApi } from "./api/weeklyDealsApi";
 import { trendingApi } from "./api/trendingApi";
 import { paymentApi } from "./api/paymentApi";
 import { orderApi } from "./api/orderApi";
-
-
-
+import { topCategoryApi } from "./api/topCategoryApi";
+import { bannerApi } from "./api/bannerApi";
 
 export const store = configureStore({
   reducer: {
-    [authApi.reducerPath]: authApi.reducer, 
+    [authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
     [historyApi.reducerPath]: historyApi.reducer,
@@ -27,8 +26,8 @@ export const store = configureStore({
     [trendingApi.reducerPath]: trendingApi.reducer,
     [paymentApi.reducerPath]: paymentApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
-
-
+    [topCategoryApi.reducerPath]: topCategoryApi.reducer,
+    [bannerApi.reducerPath]: bannerApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -43,7 +42,8 @@ export const store = configureStore({
       trendingApi.middleware,
       paymentApi.middleware,
       orderApi.middleware,
-    
+      topCategoryApi.middleware,
+      bannerApi.middleware,
     ),
 });
 

@@ -145,20 +145,6 @@ const DashBoard: React.FC = () => {
 
             <div>
               <NavLink
-                to="/dashboard/card-and-address"
-                className={({ isActive }) => getNavLinkClass(isActive)}
-              >
-                <img
-                  src={card}
-                  alt="Cards & Address"
-                  className={fullIconClass}
-                />
-                <span>Cards & Address</span>
-              </NavLink>
-            </div>
-
-            <div>
-              <NavLink
                 to="/dashboard/brows-history"
                 className={({ isActive }) => getNavLinkClass(isActive)}
               >

@@ -37,8 +37,10 @@ export const historyApi = createApi({
       query: () => "/history",
 
       transformResponse: (response: any) => {
-        return response.data; 
+        return response?.data ?? [];
       },
+
+      providesTags: ["History"],
     }),
 
     // 🔥 DELETE SINGLE HISTORY ITEM

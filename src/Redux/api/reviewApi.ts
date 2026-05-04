@@ -9,6 +9,7 @@ export interface IReview {
     email: string;
   };
   product: string;
+  productId:string;
   rating: number;
   comment?: string;
   createdAt: string;

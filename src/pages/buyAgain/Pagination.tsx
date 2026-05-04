@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+type PaginationProps = {
+  totalPages: number;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+};
 
-const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
+const Pagination = ({
+  totalPages,
+  currentPage,
+  setCurrentPage,
+}: PaginationProps) => {
   const [pageWindow, setPageWindow] = useState([1, Math.min(5, totalPages)]);
 
   // Auto update window when currentPage changes
   useEffect(() => {
     const maxVisible = 4;
-    const windowStart = Math.floor((currentPage - 1) / maxVisible) * maxVisible + 1;
+    const windowStart =
+      Math.floor((currentPage - 1) / maxVisible) * maxVisible + 1;
     const windowEnd = Math.min(windowStart + maxVisible - 1, totalPages);
     setPageWindow([windowStart, windowEnd]);
   }, [currentPage, totalPages]);
@@ -31,22 +41,24 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
           <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
 
-        {Array.from({ length: pageWindow[1] - pageWindow[0] + 1 }).map((_, idx) => {
-          const pageNum = pageWindow[0] + idx;
-          return (
-            <button
-              key={pageNum}
-              onClick={() => setCurrentPage(pageNum)}
-              className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full text-xs sm:text-sm font-semibold ${
-                currentPage === pageNum
-                  ? "bg-[#C8A8E9] text-white"
-                  : "text-[#1F1F1F] hover:bg-purple-100"
-              }`}
-            >
-              {String(pageNum).padStart(2, "0")}
-            </button>
-          );
-        })}
+        {Array.from({ length: pageWindow[1] - pageWindow[0] + 1 }).map(
+          (_, idx) => {
+            const pageNum = pageWindow[0] + idx;
+            return (
+              <button
+                key={pageNum}
+                onClick={() => setCurrentPage(pageNum)}
+                className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full text-xs sm:text-sm font-semibold ${
+                  currentPage === pageNum
+                    ? "bg-[#C8A8E9] text-white"
+                    : "text-[#1F1F1F] hover:bg-purple-100"
+                }`}
+              >
+                {String(pageNum).padStart(2, "0")}
+              </button>
+            );
+          },
+        )}
 
         <button
           onClick={handleNext}

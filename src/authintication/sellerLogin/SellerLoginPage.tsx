@@ -54,7 +54,7 @@ const SellerLoginPage: React.FC = () => {
         
         // আলাদা Seller App-এ যাওয়ার জন্য (full URL)
         setTimeout(() => {
-          window.location.href = "http://localhost:5174/";
+          window.location.href = "https://sole-mound-seller.vercel.app/";
         }, 1200);
       } 
       else {

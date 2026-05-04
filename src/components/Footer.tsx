@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/faq" className="hover:text-[#A8537B] transition">
+                <Link to="/faq-page" className="hover:text-[#A8537B] transition">
                   FAQ
                 </Link>
               </li>

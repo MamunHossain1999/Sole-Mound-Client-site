@@ -10,6 +10,7 @@ export interface IOrderProduct {
   price: number;
   name?: string;
   image?: string;
+  sku?: string; //
 }
 
 export interface IShippingAddress {
@@ -65,6 +66,17 @@ export interface UpdatePaymentStatusRequest {
   paymentStatus: PaymentStatus;
 }
 
+export interface IInvoice {
+  invoiceNo: string;
+  date: string;
+  customer: IShippingAddress;
+  items: IOrderProduct[];
+  subtotal: number;
+  status: OrderStatus;
+  paymentStatus: PaymentStatus;
+  shippingMethod: string;
+}
+
 /* =========================
    API RESPONSE WRAPPER
 ========================= */
@@ -80,17 +92,28 @@ interface ApiResponse<T> {
 ========================= */
 
 const formatOrder = (order: IOrder) => {
+  const firstProduct = order.products?.[0];
+
   return {
     id: order._id,
     status: order.status,
     date: new Date(order.createdAt).toLocaleDateString(),
 
-    products: order.products,
+    products: (order.products || []).map((p) => ({
+      productId: p.productId,
+      name: p.name || "N/A",
+      image: p.image || "",
+      price: p.price,
+      quantity: p.quantity,
+      sku: p.sku || "N/A",
+      total: (p.price || 0) * p.quantity,
+    })),
 
-    name: order.products?.[0]?.name,
-    price: order.products?.[0]?.price,
-    quantity: order.products?.[0]?.quantity,
-    image: order.products?.[0]?.image,
+    // ✅ SAFE FIRST PRODUCT
+    name: firstProduct?.name ?? "N/A",
+    price: firstProduct?.price ?? 0,
+    quantity: firstProduct?.quantity ?? 0,
+    image: firstProduct?.image ?? "",
 
     total: `$${order.totalAmount}`,
 
@@ -100,7 +123,6 @@ const formatOrder = (order: IOrder) => {
       name: order.shippingAddress?.fullName,
       email: order.shippingAddress?.email || "N/A",
       postalCode: order.shippingAddress?.postalCode || "N/A",
-
       address: order.shippingAddress?.address,
       phone: order.shippingAddress?.phone,
       city: order.shippingAddress?.city,
@@ -167,11 +189,8 @@ export const orderApi = createApi({
       query: () => "/orders",
       transformResponse: (res: ApiResponse<IOrder[]>) =>
         (res.data || []).map(formatOrder),
-
       providesTags: ["Order"],
-      keepUnusedDataFor: 30,
     }),
-
     /* ================= GET SINGLE ORDER ================= */
     getOrderById: builder.query<any, string>({
       query: (id) => `/order/${id}`,
@@ -190,6 +209,26 @@ export const orderApi = createApi({
         url: `/order/${id}/status`,
         method: "PATCH",
         body: { status },
+      }),
+      invalidatesTags: ["Order"],
+    }),
+
+    // get Invoice
+    getInvoice: builder.query<ApiResponse<IInvoice>, string>({
+      query: (id) => `/invoice/${id}`,
+
+      providesTags: ["Order"],
+    }),
+
+    // order comment
+    updateOrderComment: builder.mutation<
+      ApiResponse<IOrder>,
+      { id: string; comment: string }
+    >({
+      query: ({ id, comment }) => ({
+        url: `/orders/${id}/comment`,
+        method: "PATCH",
+        body: { comment },
       }),
       invalidatesTags: ["Order"],
     }),
@@ -230,4 +269,6 @@ export const {
   useUpdateOrderStatusMutation,
   useUpdatePaymentStatusMutation,
   useDeleteOrderMutation,
+  useGetInvoiceQuery,
+  useUpdateOrderCommentMutation,
 } = orderApi;

@@ -1,57 +1,87 @@
-// ContactUs.jsx
-import React, { useState } from 'react';
-import { ChevronRight } from 'lucide-react';
-import { useQuery } from '@tanstack/react-query';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
+import { useState, type ChangeEvent, type FormEvent} from "react";
+import { ChevronRight } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
-// Fetch FAQs
-const fetchFaqs = async () => {
-  const response = await axios('/faq.json'); // Update endpoint accordingly
+// ✅ FAQ type
+interface Faq {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+// ✅ Form data type
+interface FormDataType {
+  email: string;
+  subject: string;
+  message: string;
+}
+
+// ✅ Fetch FAQs
+const fetchFaqs = async (): Promise<Faq[]> => {
+  const response = await axios("/faq.json");
   return response.data;
 };
 
 const FaqPage = () => {
-  const [expandedFaq, setExpandedFaq] = useState(null);
-  const [formData, setFormData] = useState({ email: '', subject: '', message: '' });
+  // ✅ state types
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const [formData, setFormData] = useState<FormDataType>({
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-  const { data: faqs=[], isLoading, isError } = useQuery({
-    queryKey: ['faq'],
+  // ✅ useQuery type-safe
+  const { data: faqs = [], isLoading, isError } = useQuery<Faq[]>({
+    queryKey: ["faq"],
     queryFn: fetchFaqs,
   });
-console.log(faqs)
-  const toggleFaq = (id) => {
+
+  // ✅ toggle type
+  const toggleFaq = (id: number) => {
     setExpandedFaq(expandedFaq === id ? null : id);
   };
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  // ✅ change handler type
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  // ✅ submit handler type
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post('/contact', formData); // Update endpoint accordingly
-      toast.success('Message sent successfully!');
-      setFormData({ email: '', subject: '', message: '' }); // Reset form
+      await axios.post("/contact", formData);
+      toast.success("Message sent successfully!");
+      setFormData({ email: "", subject: "", message: "" });
     } catch (error) {
-      toast.error('Failed to send message. Please try again.');
+      toast.error("Failed to send message. Please try again.");
     }
   };
 
   return (
     <div className="min-h-screen bg-white">
-      
       {/* Header */}
       <div className="bg-[#FDF1F7] py-8 mb-8">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold text-[#101750]">FAQ</h1>
           <div className="flex items-center text-sm mt-1">
-            <a href="/" className="text-[#000000] text-base font-semibold">Home</a>
-            <span className="mx-2 text-gray-400">{'>'}</span>
-            <a href="#" className="text-[#000000] text-base font-semibold">Pages</a>
-            <span className="mx-2 text-gray-400">{'>'}</span>
+            <a href="/" className="text-[#000000] text-base font-semibold">
+              Home
+            </a>
+            <span className="mx-2 text-gray-400">{">"}</span>
+            <a href="#" className="text-[#000000] text-base font-semibold">
+              Pages
+            </a>
+            <span className="mx-2 text-gray-400">{">"}</span>
             <span className="text-[#FB2E86] text-base font-semibold">FAQ</span>
           </div>
         </div>
@@ -60,10 +90,11 @@ console.log(faqs)
       {/* Main Content */}
       <div className="container mx-auto px-4 pb-12">
         <div className="flex flex-col md:flex-row gap-8">
-          
           {/* FAQ Section */}
           <div className="w-full md:w-3/5">
-            <h2 className="text-2xl font-bold text-[#1F1F1F] mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-[#1F1F1F] mb-6">
+              Frequently Asked Questions
+            </h2>
 
             {isLoading ? (
               <p>Loading FAQs...</p>
@@ -72,18 +103,26 @@ console.log(faqs)
             ) : (
               <div className="space-y-3">
                 {faqs?.map((faq) => (
-                  <div key={faq.id} className="border border-[#919191] rounded overflow-hidden">
+                  <div
+                    key={faq.id}
+                    className="border border-[#919191] rounded overflow-hidden"
+                  >
                     <button
                       className={`w-full px-4 py-4 flex justify-between items-center ${
-                        expandedFaq === faq.id ? 'bg-[#C8A8E9]' : 'bg-white text-[#1F1F1F]'
+                        expandedFaq === faq.id
+                          ? "bg-[#C8A8E9]"
+                          : "bg-white text-[#1F1F1F]"
                       }`}
                       onClick={() => toggleFaq(faq.id)}
                     >
-                      <span className="font-medium text-left">{faq.question}</span>
+                      <span className="font-medium text-left">
+                        {faq.question}
+                      </span>
                       <span className="text-[#919191] font-normal text-4xl">
-                        {expandedFaq === faq.id ? '-' : '+'}
+                        {expandedFaq === faq.id ? "-" : "+"}
                       </span>
                     </button>
+
                     {expandedFaq === faq.id && (
                       <div className="px-4 py-3 bg-purple-50 border-t border-gray-200">
                         <p className="text-gray-700">{faq.answer}</p>
@@ -97,7 +136,9 @@ console.log(faqs)
 
           {/* Contact Form */}
           <div className="w-full md:w-2/5 bg-[#FDF1F7] p-6 rounded-lg mt-12">
-            <h3 className="font-semibold text-base text-[#191C1F] mb-2">Don't find your answer. Ask for support.</h3>
+            <h3 className="font-semibold text-base text-[#191C1F] mb-2">
+              Don't find your answer. Ask for support.
+            </h3>
             <p className="text-[#475156] font-normal text-sm mb-6">
               If you couldn't find the information you're looking for, our support team is here to help! You can reach us via:
             </p>
@@ -110,7 +151,7 @@ console.log(faqs)
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-[#F1DAFC] rounded-lg text-base text-[#77878F] focus:outline-none focus:border-[#BA24D5] bg-white autofill:bg-white"            
+                className="w-full p-3 border border-[#F1DAFC] rounded-lg text-base text-[#77878F] focus:outline-none focus:border-[#BA24D5] bg-white"
               />
 
               <input
@@ -120,7 +161,7 @@ console.log(faqs)
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-[#F1DAFC] rounded-lg text-base text-[#77878F] focus:outline-none focus:border-[#BA24D5] bg-white autofill:bg-white"
+                className="w-full p-3 border border-[#F1DAFC] rounded-lg text-base text-[#77878F] focus:outline-none focus:border-[#BA24D5] bg-white"
               />
 
               <textarea
@@ -144,5 +185,6 @@ console.log(faqs)
       </div>
     </div>
   );
-}
+};
+
 export default FaqPage;

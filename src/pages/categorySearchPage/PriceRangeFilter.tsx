@@ -1,64 +1,93 @@
-// import React from "react";
+import React from "react";
 
-// const PriceRangeFilter = ({ filters, setFilters }) => {
-//   const min = filters.priceRange.min;
-//   const max = filters.priceRange.max;
+type PriceRange = {
+  label: string;
+  min: number;
+  max: number;
+};
 
-//   const handleMinChange = (e) => {
-//     const newMin = Math.min(Number(e.target.value), max - 10);
-//     setFilters((prev) => ({
-//       ...prev,
-//       priceRange: { label: "Custom", min: newMin, max },
-//     }));
-//   };
+type Props = {
+  ranges: PriceRange[];
+  selectedRange: { min: number; max: number };
+  onRangeChange: (range: { min: number; max: number }) => void;
+};
 
-//   const handleMaxChange = (e) => {
-//     const newMax = Math.max(Number(e.target.value), min + 10);
-//     setFilters((prev) => ({
-//       ...prev,
-//       priceRange: { label: "Custom", min, max: newMax },
-//     }));
-//   };
+const PriceRangeFilter: React.FC<Props> = ({
+  ranges,
+  selectedRange,
+  onRangeChange,
+}) => {
+  const min = selectedRange.min;
+  const max = selectedRange.max;
 
-//   return (
-//     <div className="w-full p-4 bg-white rounded-md shadow-sm">
-//       <h3 className="text-sm font-semibold text-black mb-4">Custom Price Range</h3>
+  const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newMin = Math.min(Number(e.target.value), max - 10);
 
-//       <div className="relative w-full h-6 flex items-center mb-4">
-//         <input
-//           type="range"
-//           min={0}
-//           max={1000}
-//           value={min}
-//           onChange={handleMinChange}
-//           className="absolute w-full h-1 appearance-none bg-gray-200 rounded accent-purple-400 z-10"
-//         />
-//         <input
-//           type="range"
-//           min={0}
-//           max={1000}
-//           value={max}
-//           onChange={handleMaxChange}
-//           className="absolute w-full h-1 appearance-none bg-transparent accent-purple-400 z-10"
-//         />
-//       </div>
+    onRangeChange({
+      min: newMin,
+      max,
+    });
+  };
 
-//       <div className="flex gap-4">
-//         <button
-//           type="button"
-//           className="w-full border border-[#919191] text-sm text-[#77878F] rounded-[4px] font-semibold px-4 py-2 bg-white"
-//         >
-//           $ {min}
-//         </button>
-//         <button
-//           type="button"
-//           className="w-full border border-[#919191] text-sm text-[#77878F] rounded-[4px] font-semibold px-4 py-2 bg-white"
-//         >
-//           $ {max}
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
+  const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newMax = Math.max(Number(e.target.value), min + 10);
 
-// export default PriceRangeFilter;
+    onRangeChange({
+      min,
+      max: newMax,
+    });
+  };
+
+  return (
+    <div className="w-full p-4 bg-white rounded-md shadow-sm">
+      <h3 className="text-sm font-semibold text-black mb-4">
+        Price Range
+      </h3>
+
+      <div className="relative w-full h-6 flex items-center mb-4">
+        <input
+          type="range"
+          min={0}
+          max={1000}
+          value={min}
+          onChange={handleMinChange}
+          className="absolute w-full h-1 appearance-none bg-gray-200 rounded z-10"
+        />
+
+        <input
+          type="range"
+          min={0}
+          max={1000}
+          value={max}
+          onChange={handleMaxChange}
+          className="absolute w-full h-1 appearance-none bg-transparent z-10"
+        />
+      </div>
+
+      <div className="flex gap-4">
+        <button className="w-full border text-sm px-4 py-2">
+          $ {min}
+        </button>
+
+        <button className="w-full border text-sm px-4 py-2">
+          $ {max}
+        </button>
+      </div>
+
+      {/* optional quick ranges */}
+      <div className="mt-3 space-y-1">
+        {ranges.map((r) => (
+          <button
+            key={r.label}
+            onClick={() => onRangeChange({ min: r.min, max: r.max })}
+            className="text-sm text-blue-500 block"
+          >
+            {r.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default PriceRangeFilter;

@@ -1,44 +1,75 @@
-import React from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import contactLogo from "../../assets/contactPage/Group 124 (1).png";
 import { toast } from "react-toastify";
-
 import { Mail, MapPin, Phone, Bell } from "lucide-react";
+import type { FormEvent, JSX } from "react";
 
-const iconMap = {
+
+// ✅ Types
+interface InfoAboutUs {
+  title: string;
+  description: string;
+  colors: string[];
+}
+
+interface GetInTouch {
+  title: string;
+  description: string;
+  fields: string[];
+}
+
+interface ContactWay {
+  icon: "Phone" | "Mail" | "MapPin" | "Bell";
+  bgColor: string;
+  lines: string[];
+}
+
+interface ContactData {
+  infoAboutUs: InfoAboutUs;
+  getInTouch: GetInTouch;
+  contactWays: ContactWay[];
+}
+
+// ✅ iconMap টাইপ করা
+const iconMap: Record<ContactWay["icon"], JSX.Element> = {
   Phone: <Phone className="h-5 w-5 text-pink-500" />,
   Mail: <Mail className="h-5 w-5 text-blue-500" />,
   MapPin: <MapPin className="h-5 w-5 text-yellow-500" />,
   Bell: <Bell className="h-5 w-5 " />,
 };
 
-const fetchContactData = async () => {
+// ✅ fetch function টাইপসহ
+const fetchContactData = async (): Promise<ContactData> => {
   const res = await axios.get("/contactData.json");
   return res.data;
 };
 
 const ContactUs = () => {
-  const { data = [], isLoading } = useQuery({
+  // ✅ useQuery টাইপ safe
+  const { data, isLoading } = useQuery<ContactData>({
     queryKey: ["contactData"],
     queryFn: fetchContactData,
   });
 
-  // send mail
-  const handleSubmit = async (e) => {
+  // ✅ form event টাইপ safe
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const form = e.currentTarget;
+
     const formData = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      subject: e.target.subject.value,
-      message: e.target.message.value,
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      subject: (form.elements.namedItem("subject") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
     };
 
     try {
       const res = await axios.post("/api/contact", formData);
       if (res.status === 200) {
         toast.success("Message sent successfully!");
+        form.reset(); // optional UX improvement
       }
     } catch (error) {
       toast.error("Failed to send message. Please try again.");
@@ -63,7 +94,7 @@ const ContactUs = () => {
             </a>
             <span className="mx-2 text-gray-400">{">"}</span>
             <span className="text-[#FB2E86] text-base font-semibold">
-              Contact Us{" "}
+              Contact Us
             </span>
           </div>
         </div>
@@ -74,13 +105,12 @@ const ContactUs = () => {
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Left Column */}
           <div className="w-full lg:w-1/2 space-y-8">
-            {/* Info About Us */}
             <div>
               <h2 className="text-2xl font-bold text-[#1F1F1F] mb-4">
-                {data.infoAboutUs.title}
+                {data?.infoAboutUs?.title}
               </h2>
               <p className="text-[#505050] text-base font-normal mb-6">
-                {data.infoAboutUs.description}
+                {data?.infoAboutUs?.description}
               </p>
               <div className="flex space-x-4">
                 {data?.infoAboutUs?.colors?.map((color, i) => (
@@ -93,38 +123,36 @@ const ContactUs = () => {
               </div>
             </div>
 
-            {/* Get in Touch */}
             <div>
               <h2 className="text-2xl font-bold text-[#1F1F1F] mb-4">
-                {data.getInTouch.title}
+                {data?.getInTouch?.title}
               </h2>
               <p className="text-[#505050] font-semibold text-base mb-6">
-                {data.getInTouch.description}
+                {data?.getInTouch?.description}
               </p>
 
-              {/* send mail */}
               <form onSubmit={handleSubmit}>
                 <div className="space-y-4">
                   <div className="flex gap-4 text-[#505050]">
                     <input
                       name="name"
-                      placeholder={data.getInTouch.fields[0]}
-                     className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
+                      placeholder={data?.getInTouch?.fields?.[0]}
+                      className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                     />
                     <input
                       name="email"
-                      placeholder={data.getInTouch.fields[1]}
+                      placeholder={data?.getInTouch?.fields?.[1]}
                       className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                     />
                   </div>
                   <input
                     name="subject"
-                    placeholder={data.getInTouch.fields[2]}
+                    placeholder={data?.getInTouch?.fields?.[2]}
                     className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                   />
                   <textarea
                     name="message"
-                    placeholder={data.getInTouch.fields[3]}
+                    placeholder={data?.getInTouch?.fields?.[3]}
                     className="w-full px-3 py-3 border cursor-pointer border-[#B6B7BC] rounded-md text-[#505050] text-sm focus:outline-none focus:ring-1 focus:ring-purple-300 focus:border-purple-400"
                   />
                   <button
@@ -137,9 +165,9 @@ const ContactUs = () => {
               </form>
             </div>
           </div>
+
           {/* Right Column */}
           <div className="w-full lg:w-1/2">
-            {/* Contact Way */}
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-[#1F1F1F] mb-4">
                 Contact Way
@@ -165,7 +193,6 @@ const ContactUs = () => {
               </div>
             </div>
 
-            {/* Image */}
             <div className="flex py-6">
               <img
                 src={contactLogo}

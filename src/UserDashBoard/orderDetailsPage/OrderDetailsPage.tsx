@@ -1,6 +1,11 @@
-import { useGetOrderByIdQuery } from "@/Redux/api/orderApi";
+import {
+  useGetOrderByIdQuery,
+  useUpdateOrderCommentMutation,
+  useUpdateOrderStatusMutation,
+} from "@/Redux/api/orderApi";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 interface Product {
   id: string;
   name: string;
@@ -12,6 +17,7 @@ interface Product {
 }
 
 const OrderDetailsPage = () => {
+  const [commentText, setCommentText] = useState("");
   const { id } = useParams();
 
   const {
@@ -22,8 +28,46 @@ const OrderDetailsPage = () => {
     skip: !id,
   });
 
-  const [orderStatus, setOrderStatus] = useState(0);
+  const [updateOrderComment] = useUpdateOrderCommentMutation();
+
+  const [updateOrderStatus] = useUpdateOrderStatusMutation();
+
+  const handleCancel = async () => {
+    if (!id) return;
+
+    try {
+      await updateOrderStatus({
+        id,
+        status: "cancelled",
+      }).unwrap();
+
+      toast.success("Order cancelled successfully");
+      navigate(-1);
+    } catch (err) {
+      console.log(err);
+      toast.error("Cancel failed");
+    }
+  };
+  const [, setOrderStatus] = useState(0);
   const navigate = useNavigate();
+
+  // commnet
+  const handleCommentUpdate = async () => {
+    if (!id || !commentText) return;
+
+    try {
+      await updateOrderComment({
+        id,
+        comment: commentText,
+      }).unwrap();
+
+      toast.success("Comment updated successfully");
+      setCommentText("");
+    } catch (error) {
+      console.log("Error:", error);
+      toast.error("Failed to update comment");
+    }
+  };
 
   useEffect(() => {
     if (order) {
@@ -46,12 +90,15 @@ const OrderDetailsPage = () => {
   if (!order) return <p>No order found with ID: {id}</p>;
 
   const steps = [
-    { name: "Order Placed", icon: "📦" },
-    { name: "Payment Confirm", icon: "💳" },
-    { name: "On The Road", icon: "🚚" },
-    { name: "Delivered", icon: "📬" },
+    { key: "pending", name: "Order Placed", icon: "📦" },
+    { key: "payment", name: "Payment Confirmed", icon: "💳" },
+    { key: "processing", name: "Processing", icon: "⚙️" },
+    { key: "on_the_way", name: "On The Way", icon: "🚚" },
+    { key: "completed", name: "Delivered", icon: "📬" },
   ];
+  const currentStatus = order?.status || "pending";
 
+  const currentIndex = steps.findIndex((s) => s.key === currentStatus);
   // ✅ products fix
   const products = order.products || [];
   // ✅ total fix
@@ -79,7 +126,9 @@ const OrderDetailsPage = () => {
             {products.date || "N/A"}
           </p>
         </div>
-        <div className="text-[32px] font-bold text-[#3CA6FC]">$ {total}</div>
+        <div className="text-[32px] font-bold text-[#3CA6FC]">
+          $ {total.toFixed(2)}
+        </div>
       </div>
 
       {/* Products Section */}
@@ -115,7 +164,7 @@ const OrderDetailsPage = () => {
                 </div>
 
                 <div className="w-full md:w-1/5 text-center text-[#475156] font-semibold text-base mb-2 md:mb-0">
-                  ${product.price}
+                  ${product.price.toFixed(2)}
                 </div>
 
                 <div className="w-full md:w-1/5 text-center text-[#475156] font-semibold text-base mb-2 md:mb-0">
@@ -123,7 +172,7 @@ const OrderDetailsPage = () => {
                 </div>
 
                 <div className="w-full md:w-1/5 text-right text-[#475156] font-semibold text-base">
-                  ${product.price * product.quantity}
+                  ${(product.price * product.quantity).toFixed(2)}
                 </div>
               </div>
             ))}
@@ -132,58 +181,69 @@ const OrderDetailsPage = () => {
       </div>
 
       {/* Order Tracking Section */}
-      <div className="mb-10 ">
+      <div className="mb-10">
+        {/* Expected date */}
         <p className="text-base text-[#191C1F] mb-4">
           Order expected arrival{" "}
-          <span className="font-bold">{order.date || "N/A"}</span>
+          <span className="font-bold">{order?.date || "N/A"}</span>
         </p>
 
+        {/* Progress Bar */}
         <div className="relative mb-6">
           {/* Background Line */}
-          <div className="absolute top-1/2 transform -translate-y-1/2 w-full h-3 bg-[#F1DAFC] rounded"></div>
+          <div className="absolute top-1/2 -translate-y-1/2 w-full h-3 bg-[#F1DAFC] rounded"></div>
 
-          {/* Progress Line */}
+          {/* Active Progress */}
           <div
-            className="absolute top-1/2 transform -translate-y-1/2 h-3 bg-[#E3AADD] rounded transition-all duration-300"
-            style={{ width: `${(orderStatus / (steps.length - 1)) * 100}%` }}
+            className="absolute top-1/2 -translate-y-1/2 h-3 bg-[#E3AADD] rounded transition-all duration-300"
+            style={{
+              width: `${(currentIndex / (steps.length - 1)) * 100}%`,
+            }}
           ></div>
 
-          {/* Step Circles */}
+          {/* Circles */}
           <div className="relative flex justify-between">
-            {steps?.map((_step, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div
-                  className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${
-                    index < orderStatus
-                      ? "bg-[#E3AADD] border-[#E3AADD] text-white"
-                      : index === orderStatus
+            {steps.map((step, index) => {
+              const isActive = index <= currentIndex;
+
+              return (
+                <div key={step.key} className="flex flex-col items-center">
+                  <div
+                    className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${
+                      isActive
                         ? "bg-[#E3AADD] border-[#E3AADD] text-white"
                         : "bg-white border-[#E3AADD] text-gray-400"
-                  }`}
-                >
-                  {index < orderStatus ? "✓" : ""}
+                    }`}
+                  >
+                    {isActive ? "✓" : ""}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
-        {/* Step Icons & Labels */}
+        {/* Labels */}
         <div className="flex justify-between">
-          {steps?.map((step) => (
-            <div key={step.name} className="flex flex-col items-center ">
-              <div className="mb-2 text-3xl">{step.icon}</div>
-              <p
-                className={`text-base text-center ${
-                  steps.indexOf(step) <= orderStatus
-                    ? "text-black font-semibold"
-                    : "text-gray-400"
-                }`}
+          {steps.map((step, index) => {
+            const isActive = index <= currentIndex;
+
+            return (
+              <div
+                key={step.key}
+                className="flex flex-col items-center text-center"
               >
-                {step.name}
-              </p>
-            </div>
-          ))}
+                <div className="mb-2 text-3xl">{step.icon}</div>
+                <p
+                  className={`text-base ${
+                    isActive ? "text-black font-semibold" : "text-gray-400"
+                  }`}
+                >
+                  {step.name}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -267,7 +327,10 @@ const OrderDetailsPage = () => {
           <div className="flex justify-between">
             <span>Subtotal</span>
             <span>
-              ${order.summary?.subtotal || products.price * products.quantity}
+              $
+              {Number(
+                order.summary?.subtotal ?? products.price * products.quantity,
+              ).toFixed(2)}
             </span>
           </div>
           <div className="flex justify-between">
@@ -281,19 +344,52 @@ const OrderDetailsPage = () => {
           <div className="flex justify-between font-bold border-t pt-2">
             <span>Total</span>
             <span>
-              ${order.summary?.total || products.price * products.quantity}
+              $
+              {(
+                order.summary?.total ?? products.price * products.quantity
+              ).toFixed(2)}
             </span>
           </div>
         </div>
       </div>
 
-      <div className="flex justify-end mb-8">
-        <button
-          className="border px-4 py-2 text-[#1F1F1F] font-semibold text-base rounded-lg cursor-pointer"
-          onClick={() => navigate(-1)}
-        >
-          Cancel
-        </button>
+      <div className="flex flex-col md:flex-row justify-between gap-6 mb-8">
+        {/* ================= COMMENT BOX ================= */}
+        <div className="w-full md:w-[400px] border border-gray-200 rounded-xl p-5 shadow-sm bg-white">
+          <h3 className="font-semibold text-lg text-gray-800 mb-3">
+            Add Comment
+          </h3>
+
+          <textarea
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
+            className="w-full border border-gray-300 focus:border-blue-400 focus:ring-1 focus:ring-blue-200 outline-none p-3 rounded-lg resize-none h-28"
+            placeholder="Write your comment..."
+          />
+
+          <button
+            onClick={handleCommentUpdate}
+            className="mt-3 w-full bg-[#E3AADD] hover:bg-[#cf8fca] cursor-pointer text-white font-medium py-2 rounded-lg transition"
+          >
+            Save Comment
+          </button>
+        </div>
+
+        {/* ================= CANCEL BUTTON ================= */}
+        <div className="flex items-end">
+          <button
+            onClick={handleCancel}
+            disabled={order.status !== "payment"}
+            className={`px-6 py-3 font-semibold text-base rounded-lg transition shadow-sm
+        ${
+          order.status !== "payment"
+            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+            : "bg-red-50 text-red-600 hover:bg-red-100 cursor-pointer"
+        }`}
+          >
+            Cancel Order
+          </button>
+        </div>
       </div>
     </div>
   );

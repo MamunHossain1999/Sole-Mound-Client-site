@@ -10,7 +10,7 @@ import {
 const TrendingPage = () => {
   const { data=[], isLoading, isError } = useGetTrendingProductsQuery();
 
-  console.log(data)
+
   const [addWishlist] = useAddWishlistCountMutation();
 
   // ❌ removed: addView from trending page (wrong place)
@@ -78,7 +78,7 @@ const TrendingPage = () => {
               {/* View Button */}
               <Link
                 to={`/product-details/${product._id}`}
-                className="block mt-3 bg-[#E3AADD] text-white text-center py-2 rounded hover:bg-purple-400 transition"
+                className="block mt-3 bg-[#E3AADD] text-white text-center py-2 rounded hover:bg-purple-300 transition"
               >
                 View Details
               </Link>

@@ -5,6 +5,7 @@ import SellerSignUp from "@/authintication/sellerLogin/SellerSignUp";
 import UserLoginPage from "@/authintication/userloginPage/UserLoginPage";
 import UserRegisterPage from "@/authintication/userloginPage/UserRegisterPage";
 import VerifyOtp from "@/authintication/VerifyOtp/VerifyOtp";
+import BestSellerPage from "@/components/bestSellers/BestSellerPage";
 import CheckOutOrderSuccessPage from "@/components/shoppingCart/CheckOutOrderSuccessPage";
 import CheckoutPage from "@/components/shoppingCart/CheckoutPage";
 import ShoppingCart from "@/components/shoppingCart/ShoppingCard";
@@ -18,6 +19,7 @@ import UserSignUpLayOut from "@/Layout/UserSignUpLayOut";
 import AboutUsPage from "@/pages/aboutUsPage/AboutUsPage";
 import BrowsHistory from "@/pages/browsHistory/BrowsHistory";
 import BuyAgainPage from "@/pages/buyAgain/BuyAgainPage";
+import CategorySearchPage from "@/pages/categorySearchPage/CategorySearchPage";
 import ContactUs from "@/pages/contactUsPage/ContactUs";
 import FaqPage from "@/pages/faqPage/FaqPage";
 import Favorite from "@/pages/fevorite/Favorite";
@@ -34,7 +36,6 @@ import HandlePhoneNumber from "@/UserDashBoard/loginAndSerurity/HandlePhoneNumbe
 import LoginAndSecurity from "@/UserDashBoard/loginAndSerurity/LoginAndSecurity";
 import OrderDetailsPage from "@/UserDashBoard/orderDetailsPage/OrderDetailsPage";
 import OrderhistoryPage from "@/UserDashBoard/orderHistoryPage/OrderhistoryPage";
-import CardAndAddress from "@/UserDashBoard/paymentOption/CardAndAddress";
 import ReturnPage from "@/UserDashBoard/returnPage/ReturnPage";
 import ReturnRequestConfirm from "@/UserDashBoard/returnPage/ReturnRequestConfirm";
 import { createBrowserRouter } from "react-router";
@@ -68,9 +69,10 @@ const router = createBrowserRouter([
         path: "/my-order-success",
         element: <CheckOutOrderSuccessPage />,
       },
-      // {
-      //   path: '/category-search-page', element: <CategorySearchPage/>
-      // },
+      {
+        path: "/category-search-page",
+        element: <CategorySearchPage />,
+      },
       {
         path: "/buy-again",
         element: <BuyAgainPage />,
@@ -87,7 +89,10 @@ const router = createBrowserRouter([
         path: "/trending",
         element: <TrendingPage />,
       },
-
+      {
+        path: "/best-seller",
+        element: <BestSellerPage />,
+      },
       {
         path: "handle-change-name",
         element: <ChangeNameModal />,
@@ -118,7 +123,7 @@ const router = createBrowserRouter([
       // },
 
       {
-        path: "/faq",
+        path: "/faq-page",
         element: <FaqPage />,
       },
       {
@@ -229,13 +234,6 @@ const router = createBrowserRouter([
         path: "login-and-security",
         element: <LoginAndSecurity />,
       },
-      {
-        path: "card-and-address",
-        element: <CardAndAddress />,
-      },
-      // {
-      //   path: 'add-new-card', element: <AddNewCardModal/>
-      // }
     ],
   },
 ]);

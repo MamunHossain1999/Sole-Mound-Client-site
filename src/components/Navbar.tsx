@@ -75,26 +75,6 @@ const Navbar = () => {
 
   const items = (
     <>
-      {/* Language */}
-      <div className="relative">
-        <button
-          onClick={toggleDropdown}
-          className="flex items-center gap-1 text-[#505050]"
-        >
-          <p>
-            <div>EN / </div>
-            <span>USD</span>
-          </p>
-          <MdKeyboardArrowDown />
-        </button>
-
-        {showDropdown && (
-          <div className="absolute right-0 mt-2 z-50">
-            <LanguageAndDoller />
-          </div>
-        )}
-      </div>
-
       {/* User */}
       <div className="text-center">
         <NavLink to="/dashboard/account-page" className={navLinkStyle}>
@@ -226,9 +206,6 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/trending" className={textLinkStyle}>
             Trending
-          </NavLink>
-          <NavLink to="/shop" className={textLinkStyle}>
-            Black Friday
           </NavLink>
           <NavLink to="/buy-again" className={textLinkStyle}>
             Buy Again

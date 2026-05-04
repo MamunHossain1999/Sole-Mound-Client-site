@@ -4,12 +4,12 @@ import { GoHeart, GoTrash } from "react-icons/go";
 import { toast } from "react-toastify";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import {
-  useAddCartMutation,
   useClearCartMutation,
   useGetCartQuery,
   useRemoveCartMutation,
   useUpdateCartQuantityMutation,
 } from "@/Redux/api/cartApi";
+import { useAddWishlistMutation } from "@/Redux/api/wishlistApi";
 
 // Cart item type
 type CartItem = {
@@ -31,14 +31,14 @@ const ShoppingCart: React.FC = () => {
 
   const { data, isLoading, isError, refetch } = useGetCartQuery();
   const [updateCartQuantity] = useUpdateCartQuantityMutation();
-  const [addCart] = useAddCartMutation();
+  const [addWishlist] = useAddWishlistMutation();
   const [removeCart] = useRemoveCartMutation();
   const [clearCart] = useClearCartMutation();
 
   if (isLoading) return <p>Loading...</p>;
 
   const cartItems: CartItem[] = data?.data?.items ?? [];
-  console.log(cartItems)
+
   // ❌ remove item
   const handleRemove = (productId: string) => {
     setDeleteId(productId);
@@ -86,25 +86,21 @@ const ShoppingCart: React.FC = () => {
     }
   };
 
-  const handleAddToCart = async (productId: string) => {
+  const handleAddWishlist = async (productId: string) => {
     try {
-      await addCart({
-        productId,
-        quantity: 1,
-      }).unwrap();
-
-      toast.success("Added to cart");
-    } catch {
-      toast.error("Failed to add");
+      await addWishlist(productId).unwrap();
+      toast.success("Added to wishlist");
+    } catch (err) {
+      toast.error("Failed to add wishlist");
     }
   };
 
   const subtotal = cartItems.reduce((sum, item) => {
-  const price = item?.product?.price || 0;
-  const qty = item?.quantity || 0;
+    const price = item?.product?.price || 0;
+    const qty = item?.quantity || 0;
 
-  return sum + price * qty;
-}, 0);
+    return sum + price * qty;
+  }, 0);
 
   // total discount %
   const discount = cartItems.reduce(
@@ -185,7 +181,7 @@ const ShoppingCart: React.FC = () => {
 
                     <button
                       className="text-[#505050] cursor-pointer"
-                      onClick={() => handleAddToCart(item.product._id)}
+                      onClick={() => handleAddWishlist(item.product._id)}
                     >
                       <GoHeart className="w-[24px] h-[24px]" />
                     </button>
