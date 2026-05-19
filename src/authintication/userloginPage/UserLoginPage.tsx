@@ -5,7 +5,7 @@ import google from "../../assets/loginImg/google.png";
 import facebook from "../../assets/loginImg/facebook.png";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import bgOne from "../../assets/userlogin.png";
+import bgOne from "../../assets/userLogin.png";
 import { Eye, EyeOff, Mail } from "lucide-react";
 import { useLoginUserMutation } from "@/Redux/api/authApi";
 
