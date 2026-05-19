@@ -170,12 +170,12 @@ const UserRegisterPage: React.FC = () => {
                     type="checkbox"
                     checked={formData.agree}
                     onChange={handleChange}
-                    className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 appearance-none border-[#C8A8E9] rounded checked:bg-[#C8A8E9] checked:border-transparent"
+                    className="peer h-5 w-5 text-purple-600 cursor-pointer focus:ring-purple-500 border-2 appearance-none border-[#C8A8E9] rounded checked:bg-[#C8A8E9] checked:border-transparent"
                   />
                   <span className="pointer-events-none absolute left-[5px] top-1 text-white text-xs font-bold peer-checked:block hidden">
                     ✓
                   </span>
-                  <label htmlFor="remember-me" className="ml-2 text-base text-[#505050]">
+                  <label htmlFor="remember-me" className="ml-2 text-base cursor-pointer text-[#505050]">
                     I agree to Terms & Conditions
                   </label>
                 </div>
@@ -195,7 +195,7 @@ const UserRegisterPage: React.FC = () => {
                       key={item.name}
                       type="button"
                       onClick={() => handleSocialLogin(item.name)}
-                      className="w-full flex items-center justify-center py-3 border rounded-md"
+                      className="w-full flex cursor-pointer items-center justify-center py-3 border rounded-md"
                       disabled={isLoading}
                     >
                       <img src={item.img} className="w-5 h-5 mr-2" />
@@ -211,7 +211,7 @@ const UserRegisterPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[#C8A8E9] py-3 rounded-md font-semibold disabled:opacity-50"
+                className="w-full bg-[#C8A8E9] cursor-pointer py-3 rounded-md font-semibold disabled:opacity-50"
               >
                 {isLoading ? "Signing Up..." : "Sign Up"}
               </button>

@@ -387,7 +387,7 @@ const SellerSignUp: React.FC = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full md:w-3/5 px-3 bg-[#C8A8E9] hover:bg-purple-300 text-sm font-medium text-[#1F1F1F] py-3 rounded disabled:opacity-50"
+                className="w-full md:w-3/5 px-3 cursor-pointer bg-[#C8A8E9] hover:bg-purple-300 text-sm font-medium text-[#1F1F1F] py-3 rounded disabled:opacity-50"
               >
                 {isLoading ? "Creating Account..." : "Create an account"}
               </button>

@@ -137,7 +137,7 @@ const UserLoginPage: React.FC = () => {
                   </span>
                   <label
                     htmlFor="remember-me"
-                    className="ml-2 text-base text-[#505050]"
+                    className="ml-2 text-base cursor-pointer text-[#505050]"
                   >
                     Remember me
                   </label>
@@ -152,7 +152,7 @@ const UserLoginPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3 bg-[#C8A8E9] rounded-md font-semibold disabled:opacity-50"
+                className="w-full py-3 bg-[#C8A8E9] cursor-pointer rounded-md font-semibold disabled:opacity-50"
               >
                 {isLoading ? "Logging in..." : "Log In"}
               </button>

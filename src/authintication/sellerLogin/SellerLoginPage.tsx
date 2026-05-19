@@ -145,12 +145,12 @@ const SellerLoginPage: React.FC = () => {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 appearance-none border-[#C8A8E9] rounded checked:bg-[#C8A8E9] checked:border-transparent"
+                    className="peer h-5 w-5 text-purple-600 focus:ring-purple-500 border-2 cursor-pointer  appearance-none border-[#C8A8E9] rounded checked:bg-[#C8A8E9] checked:border-transparent"
                   />
-                  <span className="pointer-events-none absolute left-[5px] top-1 text-white text-xs font-bold peer-checked:block hidden">
+                  <span className="pointer-events-none absolute left-[5px] top-1 text-white text-xs font-bold cursor-pointer  peer-checked:block hidden">
                     ✓
                   </span>
-                  <label htmlFor="remember-me" className="ml-2 text-base text-[#505050]">
+                  <label htmlFor="remember-me" className="ml-2 cursor-pointer  text-base text-[#505050]">
                     Remember me
                   </label>
                 </div>
@@ -164,7 +164,7 @@ const SellerLoginPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full flex justify-center py-3 px-4 rounded-md text-base font-semibold text-[#1F1F1F] bg-[#C8A8E9] hover:bg-purple-600 hover:text-white focus:outline-none focus:ring-purple-400 disabled:opacity-50 transition-all"
+                  className="w-full flex justify-center py-3 px-4 rounded-md text-base font-semibold text-[#1F1F1F] bg-[#C8A8E9] hover:bg-purple-300 cursor-pointer hover:text-white focus:outline-none focus:ring-purple-400 disabled:opacity-50 transition-all"
                 >
                   {isLoading ? "Logging in..." : "Log In"}
                 </button>

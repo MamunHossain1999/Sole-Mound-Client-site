@@ -28,6 +28,7 @@ import ProductDetailsPage from "@/pages/productDetailsPage/ProductDetailsPage";
 import TrendingPage from "@/pages/tendingPage/TrendingPage";
 import TodayDeals from "@/pages/todayDeals/TodayDeels";
 import WeeklyDeals from "@/pages/todayDeals/WeeklyDeels";
+import PrivateRoute from "@/protectedRoute/PrivateRoute";
 import AccountPage from "@/UserDashBoard/helloUsers/AccountPage";
 import ChangeNameModal from "@/UserDashBoard/loginAndSerurity/ChangeNameModal";
 import EmailVerificationForm from "@/UserDashBoard/loginAndSerurity/EmailVerificationForm";
@@ -44,96 +45,99 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayOut />,
+
     children: [
       {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/product-details/:id",
-        element: <ProductDetailsPage />,
-      },
-      {
         path: "/brows-history",
-        element: <YourBrowsingHistory />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <YourBrowsingHistory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/shopping-card",
-        element: <ShoppingCart />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <ShoppingCart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/check-out-page",
-        element: <CheckoutPage />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <CheckoutPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-order-success",
-        element: <CheckOutOrderSuccessPage />,
-      },
-      {
-        path: "/category-search-page",
-        element: <CategorySearchPage />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <CheckOutOrderSuccessPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/buy-again",
-        element: <BuyAgainPage />,
-      },
-      {
-        path: "/today-deals",
-        element: <TodayDeals />,
-      },
-      {
-        path: "/weekly-deals",
-        element: <WeeklyDeals />,
-      },
-      {
-        path: "/trending",
-        element: <TrendingPage />,
-      },
-      {
-        path: "/best-seller",
-        element: <BestSellerPage />,
-      },
-      {
-        path: "handle-change-name",
-        element: <ChangeNameModal />,
-      },
-      {
-        path: "handle-email-change",
-        element: <HandleEmailChange />,
-      },
-      {
-        path: "/email-varify",
-        element: <EmailVerificationForm />,
-      },
-      {
-        path: "handle-phone-number",
-        element: <HandlePhoneNumber />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <BuyAgainPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/wishlist",
-        element: <Favorite />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <Favorite />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/handle-change-name",
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <ChangeNameModal />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/handle-email-change",
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <HandleEmailChange />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/handle-phone-number",
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <HandlePhoneNumber />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/checkout-success",
-        element: <CheckOutOrderSuccessPage />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <CheckOutOrderSuccessPage />
+          </PrivateRoute>
+        ),
       },
-
-      // {
-      //   path: 'gift-card-balance-page', element: <GiftCardBalancePage/>
-      // },
-
-      {
-        path: "/faq-page",
-        element: <FaqPage />,
-      },
-      {
-        path: "/contact",
-        element: <ContactUs />,
-      },
-      {
-        path: "/about",
-        element: <AboutUsPage />,
-      },
+      { path: "/", element: <Home /> },
+      { path: "/product-details/:id", element: <ProductDetailsPage /> },
+      { path: "/today-deals", element: <TodayDeals /> },
+      { path: "/weekly-deals", element: <WeeklyDeals /> },
+      { path: "/trending", element: <TrendingPage /> },
+      { path: "/best-seller", element: <BestSellerPage /> },
+      { path: "/category-search-page", element: <CategorySearchPage /> },
+      { path: "/email-varify", element: <EmailVerificationForm /> },
+      { path: "/faq-page", element: <FaqPage /> },
+      { path: "/contact", element: <ContactUs /> },
+      { path: "/about", element: <AboutUsPage /> },
     ],
   },
 
@@ -170,6 +174,10 @@ const router = createBrowserRouter([
         path: "sign-up",
         element: <UserRegisterPage />,
       },
+      {
+        path: "login-page",
+        element: <UserLoginPage />,
+      },
     ],
   },
 
@@ -200,39 +208,76 @@ const router = createBrowserRouter([
   // dashboard
   {
     path: "/dashboard",
-    element: <DashBoard />,
+    element: (
+      <PrivateRoute allowedRoles={["customer", "seller", "admin"]}>
+        <DashBoard />
+      </PrivateRoute>
+    ),
+
     children: [
       {
         path: "account-page",
-        element: <AccountPage />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <AccountPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "brows-history",
-        element: <BrowsHistory />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <BrowsHistory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "favorite",
-        element: <Favorite />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <Favorite />
+          </PrivateRoute>
+        ),
       },
       {
         path: "order-history",
-        element: <OrderhistoryPage />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <OrderhistoryPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "order-details-page/:id",
-        element: <OrderDetailsPage />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <OrderDetailsPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "order-return-page/:id",
-        element: <ReturnPage />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <ReturnPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "returns/confirmation",
-        element: <ReturnRequestConfirm />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <ReturnRequestConfirm />
+          </PrivateRoute>
+        ),
       },
       {
         path: "login-and-security",
-        element: <LoginAndSecurity />,
+        element: (
+          <PrivateRoute allowedRoles={["customer", "admin", "seller"]}>
+            <LoginAndSecurity />
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -68,6 +68,8 @@ const Favorite: React.FC = () => {
 
         <div className="space-y-4">
           {visibleProducts.map((item) => {
+            if (!item.product) return null;
+
             const product = item.product;
             const qty = product.quantity ?? 0;
 
