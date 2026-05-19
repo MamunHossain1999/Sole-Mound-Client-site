@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import logo from "../../assets/navbarIcon/logo 3.png";
+import logo from "../../assets/navbarIcon/logo.png";
 
 interface NavbarTitle {
   text: string;

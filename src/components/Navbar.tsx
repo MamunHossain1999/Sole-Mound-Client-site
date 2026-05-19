@@ -1,12 +1,11 @@
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../assets/navbarIcon/Logo 3.png";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import logo from "../assets/navbarIcon/Logo.png";
 import AllCategory from "../dropdown/allCategory/AllCategory";
-import userIcon from "../assets/navbarIcon/Vector (2).png";
-import favoriteIcon from "../assets/navbarIcon/Vector (3).png";
-import cardIcon from "../assets/navbarIcon/Vector (4).png";
-import LanguageAndDoller from "./languageAndDoller/LanguageAndDoller";
+import userIcon from "../assets/navbarIcon/Vector(2).png";
+import favoriteIcon from "../assets/navbarIcon/Vector(3).png";
+import cardIcon from "../assets/navbarIcon/Vector(4).png";
 import { useGetProfileQuery } from "@/Redux/api/userApi";
 import { useEffect, useMemo, useState } from "react";
 import { useGetCartQuery } from "@/Redux/api/cartApi";
