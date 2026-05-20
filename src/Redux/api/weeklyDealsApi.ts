@@ -16,7 +16,7 @@ export interface DealsResponse {
 export const dealApi = createApi({
   reducerPath: "dealApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://https://sole-mound-server.vercel.app/api",
+    baseUrl: "https://sole-mound-server.vercel.app/api",
     credentials: "include",
   }),
   endpoints: (builder) => ({

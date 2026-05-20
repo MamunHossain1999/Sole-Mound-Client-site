@@ -28,7 +28,6 @@ const FeaturedProducts: React.FC = () => {
     ? reviewsResponse
     : reviewsResponse?.data || [];
 
-
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something went wrong!</p>;
 

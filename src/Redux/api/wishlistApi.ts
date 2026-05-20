@@ -26,7 +26,7 @@ export const wishlistApi = createApi({
   reducerPath: "wishlistApi",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://https://sole-mound-server.vercel.app/api",
+    baseUrl: "https://sole-mound-server.vercel.app/api",
     credentials: "include",
   }),
 

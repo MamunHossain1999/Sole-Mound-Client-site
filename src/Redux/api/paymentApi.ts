@@ -22,7 +22,7 @@ export const paymentApi = createApi({
   reducerPath: "paymentApi",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://https://sole-mound-server.vercel.app/api",
+    baseUrl: "https://sole-mound-server.vercel.app/api",
     credentials: "include",
  
   }),
