@@ -35,7 +35,7 @@ interface ApiResponse<T> {
 export const reviewApi = createApi({
   reducerPath: "reviewApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "http://https://sole-mound-server.vercel.app/api",
     credentials: "include",
   }),
   tagTypes: ["Reviews"],

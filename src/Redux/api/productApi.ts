@@ -23,7 +23,7 @@ export interface IProductPayload {
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "http://https://sole-mound-server.vercel.app/api",
     credentials: "include",
   }),
   tagTypes: ["Products"],

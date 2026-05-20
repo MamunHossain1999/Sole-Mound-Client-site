@@ -1,7 +1,7 @@
 import  axios  from 'axios';
 
 
-const API_URL = "localhost:5000/api"; // আপনার backend URL
+const API_URL = "https://sole-mound-server.vercel.app/api"; // আপনার backend URL
 
 export const api = axios.create({
   baseURL: API_URL,

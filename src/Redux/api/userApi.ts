@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api", // আপনার সার্ভার URL
+    baseUrl: "http://https://sole-mound-server.vercel.app/api", // আপনার সার্ভার URL
     credentials: "include", // cookie পাঠানোর জন্য
   }),
   tagTypes: ["User"],

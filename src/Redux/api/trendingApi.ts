@@ -19,7 +19,7 @@ export interface TrendingProduct {
 export const trendingApi = createApi({
   reducerPath: "trendingApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api", 
+    baseUrl: "http://https://sole-mound-server.vercel.app/api", 
     credentials: "include", // 🔐 auth cookie
   }),
 

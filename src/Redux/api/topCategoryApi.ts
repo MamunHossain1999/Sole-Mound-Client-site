@@ -22,7 +22,7 @@ export interface TopCategory {
 export const topCategoryApi = createApi({
   reducerPath: "topCategoryApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api", 
+    baseUrl: "http://https://sole-mound-server.vercel.app/api", 
     credentials: "include", // 🔐 auth cookie
   }),
 

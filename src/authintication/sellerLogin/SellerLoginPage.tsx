@@ -51,17 +51,15 @@ const SellerLoginPage: React.FC = () => {
       // Role অনুসারে Redirect
       if (user?.role === "seller" || user?.role === "both") {
         toast.info("Redirecting to Seller Dashboard...");
-        
+
         // আলাদা Seller App-এ যাওয়ার জন্য (full URL)
         setTimeout(() => {
           window.location.href = "https://sole-mound-seller.vercel.app/";
         }, 1200);
-      } 
-      else {
+      } else {
         // যদি কোনো কারণে customer role আসে
         navigate("/", { replace: true });
       }
-
     } catch (error: any) {
       console.error("Login failed:", error);
 
@@ -82,14 +80,46 @@ const SellerLoginPage: React.FC = () => {
   return (
     <div className="relative bg-gradient-to-b from-[#FAE6F0] to-[#FDF6FA] min-h-screen">
       {/* Background Images */}
-      <img src={bgOne} alt="bg" className="absolute top-5 left-5 w-[120.68px] h-[109.72px]" />
-      <img src={bgTwo} alt="bg" className="absolute top-40 left-95 w-[110px] h-[103px]" />
-      <img src={bgThree} alt="bg" className="absolute top-25 left-1/2 w-[127px] h-[108px]" />
-      <img src={bgFour} alt="bg" className="absolute top-10 right-40 w-[278px] h-[220px]" />
-      <img src={bgFive} alt="bg" className="absolute top-3/5 left-0 w-[145px] h-[124px]" />
-      <img src={bgSix} alt="bg" className="absolute top-1/2 left-[20%] w-[290px] h-[202px]" />
-      <img src={bgSeven} alt="bg" className="absolute top-2/3 left-[47%] w-[128px] h-[97px]" />
-      <img src={bgEight} alt="bg" className="absolute bottom-[25%] right-[13%] w-[116px] h-[110px]" />
+      <img
+        src={bgOne}
+        alt="bg"
+        className="absolute top-5 left-5 w-[120.68px] h-[109.72px]"
+      />
+      <img
+        src={bgTwo}
+        alt="bg"
+        className="absolute top-40 left-95 w-[110px] h-[103px]"
+      />
+      <img
+        src={bgThree}
+        alt="bg"
+        className="absolute top-25 left-1/2 w-[127px] h-[108px]"
+      />
+      <img
+        src={bgFour}
+        alt="bg"
+        className="absolute top-10 right-40 w-[278px] h-[220px]"
+      />
+      <img
+        src={bgFive}
+        alt="bg"
+        className="absolute top-3/5 left-0 w-[145px] h-[124px]"
+      />
+      <img
+        src={bgSix}
+        alt="bg"
+        className="absolute top-1/2 left-[20%] w-[290px] h-[202px]"
+      />
+      <img
+        src={bgSeven}
+        alt="bg"
+        className="absolute top-2/3 left-[47%] w-[128px] h-[97px]"
+      />
+      <img
+        src={bgEight}
+        alt="bg"
+        className="absolute bottom-[25%] right-[13%] w-[116px] h-[110px]"
+      />
 
       <div className="h-[600px] md:h-[850px] w-full flex items-center justify-center px-4">
         <div className="flex flex-col md:flex-row max-w-7xl w-full space-x-28">
@@ -107,7 +137,10 @@ const SellerLoginPage: React.FC = () => {
           <div className="w-full md:w-1/2 p-6 sm:p-8 bg-white bg-opacity-90 rounded-lg shadow-lg overflow-hidden z-12">
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="email" className="block text-base font-semibold text-[#474B57] mb-1">
+                <label
+                  htmlFor="email"
+                  className="block text-base font-semibold text-[#474B57] mb-1"
+                >
                   Email
                 </label>
                 <input
@@ -123,7 +156,10 @@ const SellerLoginPage: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-base font-semibold text-[#474B57]">
+                <label
+                  htmlFor="password"
+                  className="block text-base font-semibold text-[#474B57]"
+                >
                   Password
                 </label>
                 <input
@@ -150,12 +186,18 @@ const SellerLoginPage: React.FC = () => {
                   <span className="pointer-events-none absolute left-[5px] top-1 text-white text-xs font-bold cursor-pointer  peer-checked:block hidden">
                     ✓
                   </span>
-                  <label htmlFor="remember-me" className="ml-2 cursor-pointer  text-base text-[#505050]">
+                  <label
+                    htmlFor="remember-me"
+                    className="ml-2 cursor-pointer  text-base text-[#505050]"
+                  >
                     Remember me
                   </label>
                 </div>
 
-                <Link to="/auth/forgot-password" className="text-base text-[#3CA6FC] hover:text-[#77b9f0]">
+                <Link
+                  to="/auth/forgot-password"
+                  className="text-base text-[#3CA6FC] hover:text-[#77b9f0]"
+                >
                   Forgot Password?
                 </Link>
               </div>
@@ -179,13 +221,25 @@ const SellerLoginPage: React.FC = () => {
 
               <div className="flex justify-center space-x-8 mt-4">
                 <button onClick={handleAppleLogin}>
-                  <img className="w-6 h-6 cursor-pointer" src={apple} alt="apple" />
+                  <img
+                    className="w-6 h-6 cursor-pointer"
+                    src={apple}
+                    alt="apple"
+                  />
                 </button>
                 <button onClick={handleGoogleLogin}>
-                  <img className="w-6 h-6 cursor-pointer" src={google} alt="google" />
+                  <img
+                    className="w-6 h-6 cursor-pointer"
+                    src={google}
+                    alt="google"
+                  />
                 </button>
                 <button onClick={handleFacebookLogin}>
-                  <img className="w-6 h-6 cursor-pointer" src={facebook} alt="facebook" />
+                  <img
+                    className="w-6 h-6 cursor-pointer"
+                    src={facebook}
+                    alt="facebook"
+                  />
                 </button>
               </div>
             </div>
@@ -193,7 +247,10 @@ const SellerLoginPage: React.FC = () => {
             <div className="mt-6 text-center">
               <p className="text-base text-[#505050]">
                 Don't have an account?{" "}
-                <Link to="/seller/sign-up" className="font-medium text-[#3CA6FC] hover:text-[#77b9f0]">
+                <Link
+                  to="/seller/sign-up"
+                  className="font-medium text-[#3CA6FC] hover:text-[#77b9f0]"
+                >
                   Create Account
                 </Link>
               </p>

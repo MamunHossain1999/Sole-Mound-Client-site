@@ -9,7 +9,7 @@ export const cartApi = createApi({
   reducerPath: "cartApi",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "http://https://sole-mound-server.vercel.app/api",
     credentials: "include",
   }),
 
